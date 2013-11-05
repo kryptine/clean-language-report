@@ -44,21 +44,22 @@ For example:
 
 iTask compiler features:
 
-- function arguments may have contexts with universally quantified type variables
+- function arguments and constructors may have contexts with universally quantified type variables
 - constructors may have contexts (for normal and universally quantified type variables)
 - dynamic types may have contexts
 - derive class
 
 New features of development versions:
 
-- qualified imports
+- qualified imports and names
 - strictness annotations in types of instance members
 - types of instance members in definition modules
 - hierarchical modules
 - generic functions can have dependent generic functions
 - generic RECORD constructor
 - type GenericInfo (in StdGeneric) changed
-- used GenericInfo fields can be specified in definition modules
+- used GenericInfo fields and dependencies can be specified in definition modules
 - generic instances of generic representation types (e.g. CONS) may occur in definition modules
 - extensible algebraic data types
 - =: can be used in expressions to test if an expression matches a pattern (usually just a constructor)
+- newtype definitions
