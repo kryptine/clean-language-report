@@ -1,0 +1,65 @@
+
+Language additions:
+
+- Unboxed and boxed array expressions and comprehensions.
+  For example:
+    {# 0,1,2 } // an array of type .{#Int}
+    {! 0,1,2 } // an array of type .{!Int}
+    {# e+e \\ e <- [0,1,2] } // an array of type .{#Int}
+    {! e+e \\ e <- [0,1,2] } // an array of type .{!Int}
+
+- Record and array updates after # can also be written as:
+    # r & x = 1
+  instead of
+    # r = {r & x = 1}
+  or
+    # a & [i] = x
+  instead of
+    # a = {a & [i] = x}
+  Multiple updates are also allowed, for example:
+    # r & x = 1,
+              y = 2,
+              z = 3
+  instead of
+    # r = {r & x=1, y=2, z=3}
+  Multiple fields and indices are also possible, for example:
+    # r & a.[i].x = y
+  instead of
+    # r = {r & a.[i].x = y}
+
+- A generic function can be imported explicitly, for example:
+    from StdGeneric import generic bimap
+
+New features not mentioned in release notes:
+
+- special may also be used for overloaded functions (not just for instances)
+
+- Unique selection and update of unique array elements:
+
+For example:
+	f a i j
+		# (e,a) = a![i]		// e and a are both unique
+		# e = {e & [j] = 0} // unique update
+		= {a & [i] = e}		// same index as selection
+
+iTask compiler features:
+
+- function arguments and constructors may have contexts with universally quantified type variables
+- constructors may have contexts (for normal and universally quantified type variables)
+- dynamic types may have contexts
+- derive class
+
+New features of development versions:
+
+- qualified imports and names
+- strictness annotations in types of instance members
+- types of instance members in definition modules
+- hierarchical modules
+- generic functions can have dependent generic functions
+- generic RECORD constructor
+- type GenericInfo (in StdGeneric) changed
+- used GenericInfo fields and dependencies can be specified in definition modules
+- generic instances of generic representation types (e.g. CONS) may occur in definition modules
+- extensible algebraic data types
+- =: can be used in expressions to test if an expression matches a pattern (usually just a constructor)
+- newtype definitions
