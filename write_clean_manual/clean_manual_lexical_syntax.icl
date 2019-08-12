@@ -142,8 +142,7 @@ page_b_3 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
 		[ST2 [
-			[TS "// in class  definitions:",	TS_B,	TSBCr "export",	TS "// to reveal which class instances there are"],
-			[[],								TS_B,	TSBCr "class",		TS "// begin of type class definition"]
+			[TS "// in class  definitions:",	TS_B,	TSBCr "class",		TS "// begin of type class definition"]
 		],ST2 [
 			[[],	TS_B,	TSBCr "derive",		TS "// derive instance of generic function"]
 		],ST2 [

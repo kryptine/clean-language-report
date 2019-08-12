@@ -61,7 +61,6 @@ page_a_1 char_width_and_kerns
 			[[],					TS_B,TS "MacroDef",						TS "// " TAL "see A.4"],
 			[[],					TS_B,TS "TypeDef",						TS "// " TAL "see A.5"],
 			[[],					TS_B,TS "ClassDef",						TS "// " TAL "see A.6"],
-			[[],					TS_B,TS "TypeClassInstanceExportDef",	TS "// " TAL "see A.6"],
 			[[],					TS_B,TS "GenericExportDef",				TS "// " TAL "see A.6"]
   		]
 	  	];
@@ -437,8 +436,7 @@ page_a_6 char_width_and_kerns
 			"A.6" "Class and Generic Definitions"
 		,ST [
 			[TS "ClassDef",	TS_E,	TS "TypeClassDef"],
-			[[],			TS_B,	TS "TypeClassInstanceDef"],
-			[[],			TS_B,	TS "TypeClassInstanceExportDef"]
+			[[],			TS_B,	TS "TypeClassInstanceDef"]
 		],ST [
 			[TS "TypeClassDef",	TS_E,	TSBCr "class" TA " ClassName TypeVariable+ [ClassContext]"],
 		    [[],				[],		TS "[[" TABCr "where" TA "] " TAT "{" TA " {ClassMemberDef}+ " TAT "}" TA "]"],
@@ -462,8 +460,6 @@ page_a_7 char_width_and_kerns
 			 TS "// in implementation modules"],
 			[[],						[],		TS "[" TABCr "special" TA " {TypeVariable = Type}+]",
 			 TS "// in definition modules"]
-		],ST [
-			[TS "TypeClassInstanceExportDef",	TS_E,	TSBCr "export" TA " ClassName BasicType-list" TABCb";"]
 		],ST [
 			[TS "GenericsDef",	TS_E,	TS "GenericDef ;"],
 			[[],				TS_B,	TS "GenericCase;"],
