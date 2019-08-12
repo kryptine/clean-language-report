@@ -535,6 +535,7 @@ page_2_7 char_width_and_kerns
 			[[],						TS_B,	TST "::" TAC "TypeName" TA " [ConstructorsOrFields]"],
 			[[],						TS_B,	TSBCr "class" TAC " ClassName" TA " [Members]"],
 			[[],						TS_B,	TSBCr "instance" TAC " ClassName" TA " {TypeName}+"],
+			[[],						TS_B,	TSBCr "generic" TA " " TAC "FunctionName"],
 			[TS "ConstructorsOrFields",	TS_E,	TST "(..)"],
 			[[],						TS_B,	TST "(" TA "{" TAC "ConstructorName" TA "}-list" TAT ")"],
 			[[],						TS_B,	TST "{..}"],
@@ -542,12 +543,10 @@ page_2_7 char_width_and_kerns
 			[TS "Members",				TS_E,	TST "(..)"],
 			[[],						TS_B,	TST "(" TA "{" TAC "MemberName" TA "}-list" TAT ")"]
   		],P(
-			TS "The syntax and semantics of " TAI "explicit import statements"
-			TA (" has been completely revised in CLEAN 2.x in order to make it "+++ 
-				"possible to discriminate between the different namespaces that exist in CLEAN (")
-			TAL "see 2.1.2"
-			TA ("). One can import functions or macro's, types with optionally their corresponding constructors, record types "+++
-				"with optionally their corresponding fieldnames, classes and instances of classes.")
+			TS ("One can import functions or macro's, types with optionally their corresponding constructors, record types "+++
+				"with optionally their corresponding fieldnames, classes, instances of classes and generic functions. "+++
+				"The syntax makes it possible to discriminate between the different namespaces that exist in CLEAN (")
+			TAL "see 2.1.2" TA ")"
 		),PCH
 			(TS "Example of an explicit import.")
 			(map syntax_color [
@@ -557,7 +556,7 @@ page_2_7 char_width_and_kerns
 			TS "from m import    F,",
 			TS "                 :: T1, :: T2(..), :: T3(C1, C2), :: T4{..}, :: T5{field1, field2},",
 			TS "                 class C1, class C2(..), class C3(mem1, mem2),",
-			TS "                 instance C4 Int",
+			TS "                 instance C4 Int, generic g",
 			[]
 		]),CPCH
 			(TS "With the import statement the following definition exported by module " TAC "m" TA " are imported in module "
@@ -569,7 +568,7 @@ page_2_7 char_width_and_kerns
 			 TAC "field1" TA " and " TAC "field2" TA ", the " TAI "class" TA " " TAC "C1" TA ", the " TAI "class" TA " "
 			 TAC "C2" TA " with all it's members that are exported by " TAC "m" TA ", the " TAI "class" TA " " TAC "C3"
 			 TA " with it's members " TAC "mem1" TA " and " TAC "mem2" TA ", the instance of " TAI "class" TA " " TAC "C4"
-			 TA " defined on integers.")
+			 TA " defined on integers, the generic function " TAC "g" TA ".")
 			[
 		],P(
 			TS ("Importing identifiers can cause error messages because the imported identifiers may be in conflict with other "+++

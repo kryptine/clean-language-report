@@ -51,7 +51,7 @@ where  {
 		| word=="where" || word=="module" || word=="import" || word=="implementation" || word=="definition"
 		|| word=="from" || word=="class" || word=="instance" || word=="case" || word=="of" || word=="otherwise"
 		|| word=="let" || word=="in" || word=="with" || word=="infix" || word=="infixl" || word=="infixr"
-		|| word=="generic" || word=="derive" || word=="dynamic"
+		|| word=="generic" || word=="derive" || word=="dynamic" || word=="special"
 			| i==0
 				| j>=size s
 					= red_bold_s_in_courier s++color_keywords ts;

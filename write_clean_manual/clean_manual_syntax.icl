@@ -82,6 +82,7 @@ page_a_2 char_width_and_kerns
 			[[],						TS_B,	TST "::" TAC "TypeName" TA " [ConstructorsOrFields]"],
 			[[],						TS_B,	TSBCr "class" TAC " ClassName" TA " [Members]"],
 			[[],						TS_B,	TSBCr "instance" TAC " ClassName" TA " {TypeName}+"],
+			[[],						TS_B,	TSBCr "generic" TA " " TAC "FunctionName"],
 			[TS "ConstructorsOrFields",	TS_E,	TST "(..)"],
 			[[],						TS_B,	TST "(" TA "{" TAC "ConstructorName" TA "}-list" TAT ")"],
 			[[],						TS_B,	TST "{..}"],

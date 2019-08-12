@@ -134,11 +134,6 @@ page_d_2 char_width_and_kerns
 			"Qualified imports may be used in definition modules, but qualified "+++
 			"identifiers cannot be imported from a (definition) module."))
 
-		,N
-
-		,SP (TS "A generic function can be imported explicitly, for example:")
-		,PC (map syntax_color [TS "from StdGeneric import generic bimap"])
-
 		,H3 "D.1.3" "Uniqueness typing additions"
 		,N
 
