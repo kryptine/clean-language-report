@@ -1,0 +1,7 @@
+https://www.fontspace.com/red-hat-inc/liberation-sans
+https://www.fontspace.com/download/3435/36725246f64c4594a48441c88f803e0b/red-hat-inc_liberation-sans.zip
+unzip red-hat-inc_liberation-sans.zip LiberationSans-Regular.ttf LiberationSans-Bold.ttf LiberationSans-Italic.ttf
+# http://gnuwin32.sourceforge.net/packages/ttf2pt1.htm
+/cygdrive/c/Program\ Files\ \(x86\)/GnuWin32/bin/ttf2pt1.exe -a LiberationSans-Regular.ttf
+/cygdrive/c/Program\ Files\ \(x86\)/GnuWin32/bin/ttf2pt1.exe -a LiberationSans-Bold.ttf
+/cygdrive/c/Program\ Files\ \(x86\)/GnuWin32/bin/ttf2pt1.exe -a LiberationSans-Italic.ttf
