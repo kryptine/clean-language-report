@@ -682,38 +682,39 @@ page_4_9 char_width_and_kerns
 			TS "A new array can be created in a number of ways. A direct way is to simply " TAI "list" TA " the "
 			TAI "array elements" TA "."
 		),ST [
-			[TS "ArrayDenotation",	TS_E,	TST "{" TA "{GraphExpr}-list" TAT "}"],
+			[TS "ArrayDenotation",	TS_E,	TST "{" TA "[ArrayKind] {GraphExpr}-list" TAT "}"],
 			[[],					TS_B,	TS "StringDenotation"]
 		],ST [
 			[TS "StringDenotation",	TS_E,	TS "StringDel{AnyChar/StringDel}StringDel"],
 			[TS "StrignDel",		TS_E,	TST "\""]
 		],MP [
 			[],
-			TS "By default a " TAI "lazy" TA " array will be created. Arrays are created "
+			TS ("By default this array denotation is overloaded. The type determines "+++
+				"whether a lazy, strict or unboxed array is created. The created array is ")
 			TAI "unique" TA " (the " TAC "*" TA" or " TAC "."
-			TA " attribute in front of the type, see Chapter 4) to make destructive updates possible.",
+			TA " attribute in front of the type, " TAL "see Chapter 9" TA ") to make destructive updates possible.",
 			[],
-			TS "A lazy array is a box with pointers pointing to the array elements. One can also create a strict array (explicitly define its type as "
-			TAC "{!Int}"
+			TS ("A lazy array is a box with pointers pointing to the array elements. One can also create a strict array "+++
+				"by adding a ") TAC "!" TA " after " TAC "{" TA " (or explicitly define its type as " TAC "{!Int}"
 			TA ("), which will have the property that the elements to which the array box points will always be evaluated. "+++
-				"One can furthermore create an unboxed array (explicitly define its type as ")
+				"One can furthermore create an unboxed array by adding a ") TAC "#" TA " (or explicitly define its type as "
 			TAC "{#Int}"
 			TA ("), which will have the property that the evaluated elements (which have to be of basic value) are stored directly "+++
 				"in the array box itself. Clearly the last one is the most efficient representation (")
 			TAL "see also Chapter 10" TA ")."
 		],PCH
 			(TS "Creating a lazy array, strict and unboxed unique array of integers with elements 1,3,5,7,9.")
-			[
+			(map comment_blue [
 			[], 
 			TS "MyLazyArray:: .{Int}",
-			TS "MyLazyArray = {1,3,5,7,9}",
+			TS "MyLazyArray = {1,3,5,7,9}   // overloaded array denotation",
 			[],
 			TS "MyStrictArray:: .{!Int}",
-			TS "MyStrictArray = {1,3,5,7,9}",
+			TS "MyStrictArray = {!1,3,5,7,9}",
 			[],
 			TS "MyUnboxedArray:: .{#Int}",
-			TS "MyUnboxedArray = {1,3,5,7,9}"
-		],PCH
+			TS "MyUnboxedArray = {#1,3,5,7,9}"
+		]),PCH
 			(TS "Creating a two dimensional array, in this case a unique array of unique arrays of unboxed integers.")
 			[
 			[],

@@ -21,12 +21,10 @@ page_d_1 char_width_and_kerns
 		,H3 "D.1.1" "New expressions"
 		,N
 
-		,SP (TS "Unboxed and boxed array expressions and comprehensions.")
+		,SP (TS "Unboxed and boxed array comprehensions.")
 		,PCH (TS "For example:")
 		(map syntax_color [
 			[],
-			TS "{# 0,1,2 } // an array of type .{#Int}",
-			TS "{! 0,1,2 } // an array of type .{!Int}",
 			TS "{# e+e \\ e <- [0,1,2] } // an array of type .{#Int}",
 			TS "{! e+e \\ e <- [0,1,2] } // an array of type .{!Int}"
 		])

@@ -293,7 +293,7 @@ page_a_5 char_width_and_kerns
 			[TS "Array",			TS_E,	TS "ArrayDenotation",									[]],
 			[[],					TS_B,	TS "ArrayUpdate",										[]],
 			[[],					TS_B,	TS "ArraySelection",									[]],
-			[TS "ArrayDenotation",	TS_E,	TST "{" TA "{GraphExpr}-list" TAT "}",					[]],
+			[TS "ArrayDenotation",	TS_E,	TST "{" TA "[ArrayKind] {GraphExpr}-list" TAT "}",		[]],
 			[[],					TS_B,	TS "StringDenotation",									TS "// " TAL "see A.9"],
 			[TS "ArrayUpdate",		TS_E,	TST "{" TA " ArrayExpr " TAT "&" TA " [{ArrayIndex {Selection} " TAT "=" TA " GraphExpr}-list] [" TAT "\\\\" TA " {Qualifier}-list]" TAT "}",
 																									[]],
