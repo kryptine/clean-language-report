@@ -490,22 +490,23 @@ page_a_7 char_width_and_kerns
 		],H2
 			"A.8" "Names"
 		,ST [
-			[TSC "ModuleName",			TS_E,TS "LowerCaseId",TS_B, TS "UpperCaseId",TS_B,TS "FunnyId"],
-			[TSC "FunctionName",		TS_E,TS "LowerCaseId",TS_B, TS "UpperCaseId",TS_B,TS "FunnyId"],
-			[TSC "ConstructorName",		TS_E,[],[],					TS "UpperCaseId",TS_B,TS "FunnyId"],
+			[TSC "ModuleName",			TS_E,TS "LowerCaseId",TS_B, TS "UpperCaseId",TS_B,TS "ModuleDirectoryName " TAT "." TA " ModuleName"],
+			[TSC "ModuleDirectoryName",	TS_E,TS "LowerCaseId",TS_B, TS "UpperCaseId",[],[]],
+			[TSC "FunctionName",		TS_E,TS "LowerCaseId",TS_B, TS "UpperCaseId",TS_B,TS "SymbolId"],
+			[TSC "ConstructorName",		TS_E,[],[],					TS "UpperCaseId",TS_B,TS "SymbolId"],
 			[TSC "SelectorVariable",	TS_E,TS "LowerCaseId",TS "",[],[],[]],
 			[TSC "Variable",			TS_E,TS "LowerCaseId",TS "",[],[],[]],
-			[TSC "MacroName",			TS_E,TS "LowerCaseId",TS_B,	TS "UpperCaseId",TS_B,TS "FunnyId"],
+			[TSC "MacroName",			TS_E,TS "LowerCaseId",TS_B,	TS "UpperCaseId",TS_B,TS "SymbolId"],
 			[TSC "FieldName",			TS_E,TS "LowerCaseId",TS "",[],[],[]],
-			[TSC "TypeConstructorName",	TS_E,[],[],					TS "UpperCaseId",TS_B,TS "FunnyId"],
+			[TSC "TypeConstructorName",	TS_E,[],[],					TS "UpperCaseId",TS_B,TS "SymbolId"],
 			[TSC "TypeVariable",		TS_E,TS "LowerCaseId",TS "",[],[],[]],
 			[TSC "UniqueTypeVariable",	TS_E,TS "LowerCaseId",TS "",[],[],[]],
-			[TSC "ClassName",			TS_E,TS "LowerCaseId",TS_B,	TS "UpperCaseId",TS_B,TS "FunnyId"],
-			[TSC "MemberName",			TS_E,TS "LowerCaseId",TS_B,	TS "UpperCaseId",TS_B,TS "FunnyId"]
+			[TSC "ClassName",			TS_E,TS "LowerCaseId",TS_B,	TS "UpperCaseId",TS_B,TS "SymbolId"],
+			[TSC "MemberName",			TS_E,TS "LowerCaseId",TS_B,	TS "UpperCaseId",TS_B,TS "SymbolId"]
 		  ],ST [
 			[TS "LowerCaseId",	TS_E, TS "LowerCaseChar~{IdChar}"],
 			[TS "UpperCaseId",	TS_E, TS "UpperCaseChar~{IdChar}"],
-			[TS "FunnyId", 		TS_E, TS "{SpecialChar}+"]
+			[TS "SymbolId",		TS_E, TS "{SymbolChar}+"]
 		  ],ST [
 			[TS "LowerCaseChar",TS_E]++separate_by TS_B [TST (toString c) \\ c<-['a'..'j']],
 			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['k'..'t']],
@@ -513,7 +514,7 @@ page_a_7 char_width_and_kerns
 			[TS "UpperCaseChar",TS_E]++separate_by TS_B [TST (toString c) \\ c<-['A'..'J']],
 			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['K'..'T']],
 			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['U'..'Z']]++repeatn 8 [],
-			[TS "SpecialChar",	TS_E,TST "~",TS_B,TST "@",TS_B,TST "#",TS_B,TST "$",TS_B,TST "%",TS_B,TST "^",TS_B,TST "?",TS_B,TST "!",[],[],[],[]],
+			[TS "SymbolChar",	TS_E,TST "~",TS_B,TST "@",TS_B,TST "#",TS_B,TST "$",TS_B,TST "%",TS_B,TST "^",TS_B,TST "?",TS_B,TST "!",[],[],[],[]],
 			[[],				TS_B,TST "+",TS_B,TST "-",TS_B,TST "*",TS_B,TST "<",TS_B,TST ">",TS_B,TST"\\",TS_B,TST "/",TS_B,TST "|",TS_B,TST "&",TS_B,TST "="],
 			[[],				TS_B,TST ":",[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],
 			[TS "IdChar",		TS_E,TS "LowerCaseChar",[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],
