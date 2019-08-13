@@ -365,6 +365,22 @@ page_7_5 char_width_and_kerns
 			),("2.", (TS ("The instance can be generated, but the programmer is not satisfied with generic behavior for this type "+++
 					   "and wants to provide a specific behavior."))
 			)]
+		,H2	"7.3" "Deriving Generic Functions"
+		,P(
+			TS "The user has to tell the compiler instances of which generic functions on which types are to be generated. This is done with the "
+			TAI "derive" TA " clause."
+		),ST [
+			[TS "DeriveDef",	TS_E,	TSBCr "derive" TA " "TAC "FunctionName" TA " " TAC "TypeConstructorName" TA "+"]
+		],PCH
+			(TS "Deriving instances of generic mapping and generic equality for List , Tree and standard list")
+			(map syntax_color [
+			[],
+			TS "derive gEq  List, Tree, []",
+			TS "derive gMap List, Tree, []"
+		]),P(
+			TS "A generic function can be automatically specialized only to algebraic types that are not abstract in the module where the "
+			TAI "derive" TA " directive is given. A generic function cannot be automatically derived for the following types:"
+		)
 		];
 	= make_page pdf_i pdf_shl;
 
@@ -372,22 +388,7 @@ page_7_6 :: !{!CharWidthAndKerns} -> Page;
 page_7_6 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
-	[H2	"7.3" "Deriving Generic Functions"
-	,P(
-		TS "The user has to tell the compiler instances of which generic functions on which types are to be generated. This is done with the "
-		TAI "derive" TA " clause."
-	),ST [
-		[TS "DeriveDef",	TS_E,	TSBCr "derive" TA " "TAC "FunctionName" TA " " TAC "TypeConstructorName" TA "+"]
-	],PCH
-		(TS "Deriving instances of generic mapping and generic equality for List , Tree and standard list")
-		(map syntax_color [
-		[],
-		TS "derive gEq  List, Tree, []",
-		TS "derive gMap List, Tree, []"
-	]),P(
-		TS "A generic function can be automatically specialized only to algebraic types that are not abstract in the module where the "
-		TAI "derive" TA " directive is given. A generic function cannot be automatically derived for the following types:"
-	),CMSP [
+	[CMSP [
 		TSI "Generic structure representation types: "
 		TAC "UNIT" TA ", " TAC "PAIR" TA ", " TAC "EITHER" TA ", " TAC "CONS" TA ", " TAC "OBJECT" TA ", " TAC "RECORD" TA ", " TAC "FIELD"
 		TA (". See also the previous section. It is "+++
@@ -449,15 +450,7 @@ page_7_6 char_width_and_kerns
 		[],
 		TS "eqFsts :: (f (a, b)) (f (a, c)) -> Bool | gEq{|*->*|} f & gEq{|*|} a",
 		TS "eqFsts xs ys     = gEq{|*->*|} (\x y -> fst x === fst y) ys"
-	]
-	];
-	= make_page pdf_i pdf_shl;
-
-page_7_7 :: !{!CharWidthAndKerns} -> Page;
-page_7_7 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-	[PCH
+	],PCH
 		(TS "Examples of generic applications")
 		(map comment_blue [
 		[],
@@ -466,7 +459,15 @@ page_7_7 char_width_and_kerns
 		TS "    , [1,2,3] === [1,2,3]                               // True",
 		TS "    , gEq{|*->*|} (\\x y -> True) [1,2,3] [4,5,6]        // True",
 		TS "    )"
-	]),H2
+	])
+	];
+	= make_page pdf_i pdf_shl;
+
+page_7_7 :: !{!CharWidthAndKerns} -> Page;
+page_7_7 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+	[H2
 		"7.5" "Using Constructor Information"
 	,S(
 		"As it was outlined above, the structural representation of types lacks information about specific constructors and record "+++
@@ -503,23 +504,46 @@ page_7_7 char_width_and_kerns
 		[[],						TS_B,	TSBCr "OBJECT"],
 		[[],						TS_B,	TSBCr "RECORD"],
 		[[],						TS_B,	TSBCr "FIELD"]
-	],PCH
-		(TS "Definition of the constructor and field descriptors (StdGeneric.dcl). Constructor descriptor is passed after "
-		 TABCr "of" TA " in the CONS case of a generic function.")
+	],N
+	,PCMH
+		[TS "Definition of the algebraic type, constructor, record type and field descriptors (StdGeneric.dcl)",
+		 TS "The algebraic type descriptor is passed after " TABCr "of" TA " in the OBJECT case of a generic function."]
 		[
-		[],
-		TS ":: ConsDescriptor     =",
-		TS "    { gcd_name        :: String",
-		TS "    , gcd_arity       :: Int",
+		TS ":: GenericTypeDefDescriptor =",
+		TS "    { gtd_name       :: String",
+		TS "    , gtd_arity      :: Int",
+		TS "    , gtd_num_conses :: Int",
+		TS "    , gtd_conses     :: [GenericConsDescriptor]",
 		TS "    }"
-	],CPCH
-		(TS "Field descriptor is passed after " TABCr "of" TA " in the FIELD case of a generic function.")
-		[
-		[],
-		TS ":: FieldDescriptor    =",
-		TS "  { gfd_name        :: String",
-		TS "  }"
-	]
+	],CPCH (TS "The constructor descriptor is passed after " TABCr "of" TA " in the CONS case of a generic function.")
+		(map comment_blue [
+		TS ":: GenericConsDescriptor =",
+		TS "    { gcd_name       :: String",
+		TS "    , gcd_arity      :: Int",
+		TS "    , gcd_prio       :: GenConsPrio              // priority and associativity",
+		TS "    , gcd_type_def   :: GenericTypeDefDescriptor // type def of the constructor",
+		TS "    , gcd_type       :: GenType                  // type of the constructor",
+		TS "    , gcd_index      :: Int                      // index of the contructor in the type def",
+		TS "    }"
+	]),CPCH
+		(TS "The record descriptor is passed after " TABCr "of" TA " in the RECORD case of a generic function.")
+		(map comment_blue [
+		TS ":: GenericRecordDescriptor =",
+		TS "    { grd_name       :: String",
+		TS "    , grd_arity      :: Int",
+		TS "    , grd_type_arity :: Int                      // arity of the type",
+		TS "    , grd_type       :: GenType                  // type of the constructor",
+		TS "    , grd_fields     :: [String]",
+		TS "    }"
+	]),CPCH
+		(TS "The field descriptor is passed after " TABCr "of" TA " in the FIELD case of a generic function.")
+		(map comment_blue [
+		TS ":: GenericFieldDescriptor =",
+		TS "    { gfd_name       :: String",
+		TS "    , gfd_index      :: Int                      // index of the field in the record",
+		TS "    , gfd_cons       :: GenericRecordDescriptor  // the record constructor",
+		TS "    }"
+	])
 	];
 	= make_page pdf_i pdf_shl;
 

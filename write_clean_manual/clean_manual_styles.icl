@@ -213,15 +213,7 @@ make_pdf pdf_i headings g_s pdf_s=:{y_pos} [PCP lines rectangles:dis]
 
 make_pdf pdf_i headings g_s pdf_s [PCH heading lines:dis=:[CPCH heading2 lines2:_]]
 	# (g_s,pdf_s) = program_code_ heading lines pdf_i g_s pdf_s;
-	= make_pdf_c pdf_i headings g_s pdf_s dis;
-{
-	make_pdf_c pdf_i headings g_s pdf_s [CPCH heading lines:dis=:[CPCH _ _:_]]
-		# (g_s,pdf_s) = c_program_code_ heading lines pdf_i g_s pdf_s;
-		= make_pdf_c pdf_i headings g_s pdf_s dis;
-	make_pdf_c pdf_i headings g_s pdf_s [CPCH heading lines:dis]
-		# (g_s,pdf_s) = c_program_code heading lines pdf_i g_s pdf_s;
-		= make_pdf pdf_i headings g_s pdf_s dis;
-}
+	= make_pdf_c_pc pdf_i headings g_s pdf_s dis;
 make_pdf pdf_i headings g_s pdf_s [PCH heading lines:dis]
 	# (g_s,pdf_s) = program_code heading lines pdf_i g_s pdf_s;
 	= make_pdf pdf_i headings g_s pdf_s dis;
@@ -241,6 +233,10 @@ make_pdf pdf_i headings g_s pdf_s=:{y_pos} [CPCP lines rectangles:dis]
 make_pdf pdf_i headings g_s pdf_s [CPCH heading lines:dis]
 	# (g_s,pdf_s) = a_program_code heading lines pdf_i g_s pdf_s;
 	= make_pdf pdf_i headings g_s pdf_s dis;
+
+make_pdf pdf_i headings g_s pdf_s [PCMH program_headings lines:dis=:[CPCH heading2 lines2:_]]
+	# (g_s,pdf_s) = program_headings_code_ program_headings lines pdf_i g_s pdf_s;
+	= make_pdf_c_pc pdf_i headings g_s pdf_s dis;
 make_pdf pdf_i headings g_s pdf_s [PCMH program_headings lines:dis]
 	# (g_s,pdf_s) = program_headings_code program_headings lines pdf_i g_s pdf_s;
 	= make_pdf pdf_i headings g_s pdf_s dis;
@@ -310,6 +306,13 @@ make_pdf pdf_i headings g_s pdf_s=:{y_pos,t_s} [PI height picture:dis]
 
 make_pdf pdf_i headings g_s pdf_s []
 	= (headings,g_s,pdf_s); // pdf_shl, pdf strings headings links
+
+make_pdf_c_pc pdf_i headings g_s pdf_s [CPCH heading lines:dis=:[CPCH _ _:_]]
+	# (g_s,pdf_s) = c_program_code_ heading lines pdf_i g_s pdf_s;
+	= make_pdf_c_pc pdf_i headings g_s pdf_s dis;
+make_pdf_c_pc pdf_i headings g_s pdf_s [CPCH heading lines:dis]
+	# (g_s,pdf_s) = c_program_code heading lines pdf_i g_s pdf_s;
+	= make_pdf pdf_i headings g_s pdf_s dis;
 
 make_pdf_shl :: !PDFInfo ![DI] -> (!Headings,!{#Char},!PDFState);
 make_pdf_shl pdf_i dis
@@ -1215,24 +1218,30 @@ program_code_ heading lines pdf_i g_s pdf_s=:{y_pos}
 		= c_program_code_ heading lines pdf_i g_s pdf_s;
 		= c_program_code_ heading lines pdf_i g_s pdf_s;
 
-program_headings_code :: ![[Text]] ![[Text]] !PDFInfo !{#Char} !PDFState -> (!{#Char},!PDFState);
-program_headings_code headings lines pdf_i g_s pdf_s=:{y_pos}
+program_headings_code_ :: ![[Text]] ![[Text]] !PDFInfo !{#Char} !PDFState -> (!{#Char},!PDFState);
+program_headings_code_ headings lines pdf_i g_s pdf_s=:{y_pos}
 	# old_y_pos=y_pos;
 	# pdf_s=:{y_pos} = show_format_lines_list_f_pdf headings microsoft_sans_serif_n line_height_i pdf_i pdf_s;
 	# g_s=g_s+++rgb_RGB_8bit ProgramHeadingColor+++background_color old_y_pos y_pos left_margin pdf_i.width top;
 	# (g_s,pdf_s)= a_program_code_only_pdf lines pdf_i g_s pdf_s;
 
 	# {h_s}=pdf_s;
-//	  h_s=h_s+++html_p_t text_l;
 	  h_s=h_s+++"<p><div style=\"background-color:#"+++html_color ProgramHeadingColor+++"\";>";
 	  h_s=h_s+++convert_reserved_chars_t_list headings;
 	  h_s=h_s+++"</div>\n";
 
 	  h_s=h_s+++"<div style=\"font-family:courier;margin:0px;background-color:#"+++html_color ProgramColor+++";\">";
 	  h_s=h_s+++html_ps_courier_t lines;
-	  h_s=h_s+++"</div></p>\n";
+	  h_s=h_s+++"</div>\n";
 
 	  pdf_s & h_s=h_s;
+	= (g_s,pdf_s);
+
+// PCMH
+program_headings_code :: ![[Text]] ![[Text]] !PDFInfo !{#Char} !PDFState -> (!{#Char},!PDFState);
+program_headings_code headings lines pdf_i g_s pdf_s
+	# (g_s,pdf_s) = program_headings_code_ headings lines pdf_i g_s pdf_s;
+	  pdf_s & h_s=pdf_s.h_s+++"</p>\n";
 	= (g_s,pdf_s);
 
 count_n_nil_elements_at_begining [[]:l] = 1+count_n_nil_elements_at_begining l;
