@@ -252,11 +252,24 @@ page_7_4 char_width_and_kerns
 		],ST [
 			[TS "GenericDef",		TS_E,	TSBCr "generic" TA " " TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType"],
 			[TS "GenericCase",		TS_E,	TSC "FunctionName" TA " " TAT "{|" TA "GenericTypeArg" TAT "|}" TA " {Pattern}+ " TAT "=" TA " FunctionBody"],
-			[TS "GenericTypeArg",	TS_E,	TSBCr "CONS" TA " [" TABCr "of" TA " {Pattern}]"],
-			[[],					TS_B,	TSBCr "FIELD" TA " ["  TABCr "of" TA " {Pattern}]"],
+			[TS "GenericTypeArg",	TS_E,	TS "GenericMarkerType [" TABCr "of" TA " Pattern]"],
 			[[],					TS_B,	TSC "TypeConstructorName"],
-			[[],					TS_B,	TSC "TypeVariable"]
-		],PCH
+			[[],					TS_B,	TSC "TypeVariable"],
+			[TS "GenericMarkerType",	TS_E,	TSBCr "CONS"],
+			[[],						TS_B,	TSBCr "OBJECT"],
+			[[],						TS_B,	TSBCr "RECORD"],
+			[[],						TS_B,	TSBCr "FIELD"]
+		],P(
+			TS "In the generic definition, recognised by the keyword " TABCr "generic"
+			TA (", first the type of the generic function has to be specified. "+++
+				"The type variables mentioned after the generic function name are called ") TAI "generic type variables"
+			TA ". Similar to type classes, they are substituted by the actual instance type. A generic definition actually defines a "
+			TAI "set"
+			TA (" of type constructor classes. There is one class for each possible kind in the set. Such a generic funcion is sometimes "+++
+				"called a kind-indexed class. The classes are generated using the type of the generic function. The classes always have one "+++
+				"class variable, even if the generic function has several generic variables. The reason for this restriction is that the "+++
+				"generic function can be defined by induction on one argument only.")
+		),PCH
 			(TS "Example. The generic definition of equality.")
 			(map color_keywords [
 			[],
@@ -271,6 +284,8 @@ page_7_4 char_width_and_kerns
 			TS "gEq {|EITHER|} eql eqr   (RIGHT x)    (RIGHT y)     = eqr x y",
 			TS "gEq {|EITHER|} eql eqr   x            y             = False",
 			TS "gEq {|CONS|}   eq        (CONS x)     (CONS y)      = eq x y",
+			TS "gEq {|OBJECT|} eq        (OBJECT x)   (OBJECT y)    = eq x y",
+			TS "gEq {|RECORD|} eq        (RECORD x)   (RECORD y)    = eq x y",
 			TS "gEq {|FIELD|}  eq        (FIELD x)    (FIELD y)     = eq x y"
 		]),PCH
 			(TS "Example. The generic definition of map.")
@@ -282,6 +297,8 @@ page_7_4 char_width_and_kerns
 			TS "gMap {|EITHER|}   fl fr    (LEFT x)     = LEFT (fl x)",
 			TS "gMap {|EITHER|}   fl fr    (RIGHT x)    = RIGHT (fr x)",
 			TS "gMap {|CONS|}     fx       (CONS x)     = CONS (fx x)",
+			TS "gMap {|OBJECT|}   fx       (OBJECT x)   = OBJECT (fx x)",
+			TS "gMap {|RECORD|}   fx       (RECORD x)   = RECORD (fx x)",
 			TS "gMap {|FIELD|}    fx       (FIELD x)    = FIELD (fx x)"
 		])
 		];
@@ -292,27 +309,6 @@ page_7_5 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
 		[PCH
-			(TS "Bidirectional mapping/ illustrate arrows")
-			[
-			[],
-			TS "generic gMap a b ::        a           -> b",
-			TS "gMap {|c|}        x                    = x",
-			TS "gMap {|PAIR|}     fx fy    (PAIR x y)  = PAIR (fx x) (fy y)", 
-			TS "gMap {|EITHER|}   fl fr    (LEFT x)    = LEFT (fl x)",
-			TS "gMap {|EITHER|}   fl fr    (RIGHT x)   = RIGHT (fr x)",
-			TS "gMap {|CONS|}     fx       (CONS x)    = CONS (fx x)",
-			TS "gMap {|FIELD|}    fx       (FIELD x)   = FIELD (fx x)"
-		],P(
-			TS "In the generic definition, recognised by the keyword " TABCr "generic"
-			TA (", first the type of the generic function has to be specified. "+++
-				"The type variables mentioned after the generic function name are called ") TAI "generic type variables"
-			TA ". Similar to type classes, they are substituted by the actual instance type. A generic definition actually defines a "
-			TAI "set"
-			TA (" of type constructor classes. There is one class for each possible kind in the set. Such a generic funcion is sometimes "+++
-				"called a kind-indexed class. The classes are generated using the type of the generic function. The classes always have one "+++
-				"class variable, even if the generic function has several generic variables. The reason for this restriction is that the "+++
-				"generic function can be defined by induction on one argument only.")
-		),PCH
 			(TS "Classes that are automatically generated for the generic map function given above.")
 			(map color_keywords [
 			[],
@@ -347,8 +343,9 @@ page_7_5 char_width_and_kerns
 			"derived for other types. See the next section for detailed discussion on types for which a generic function can and cannot "+++
 			"be derived. Here we discuss what can be specified as the type argument in the definition of a generic base case"
 		),CMSP [
-			TSI "A Generic structural representation type" TA ": " TAC "UNIT" TA ", " TAC "PAIR" TA ", " TAC "EITHER" TA ", " TAC "CONS"
-			TA " and " TAC "FIELD" TA ". The programmer " TAI "must always provide"
+			TSI "A Generic structural representation type" TA ": "
+			TAC "UNIT" TA ", " TAC "PAIR" TA ", " TAC "EITHER" TA ", " TAC "CONS" TA ", " TAC "OBJECT" TA ", " TAC "RECORD" TA " and " TAC "FIELD"
+			TA ". The programmer " TAI "must always provide"
 			TA (" these cases as they cannot be derived by the compiler. Without these cases a generic function "+++
 				"cannot be derived for basically any type."),
 			TSI "Basic type"
@@ -391,7 +388,8 @@ page_7_6 char_width_and_kerns
 		TS "A generic function can be automatically specialized only to algebraic types that are not abstract in the module where the "
 		TAI "derive" TA " directive is given. A generic function cannot be automatically derived for the following types:"
 	),CMSP [
-		TSI "Generic structure representation types: " TAC "PAIR" TA ", " TAC "EITHER" TA ", " TAC "UNIT" TA ", " TAC "CONS" TA ", " TAC "FIELD"
+		TSI "Generic structure representation types: "
+		TAC "UNIT" TA ", " TAC "PAIR" TA ", " TAC "EITHER" TA ", " TAC "CONS" TA ", " TAC "OBJECT" TA ", " TAC "RECORD" TA ", " TAC "FIELD"
 		TA (". See also the previous section. It is "+++
 			"impossible to derive instances for these types automatically because they are themselves used to build structural "+++
 			"representation of types that is needed to derive an instance. Deriving instances for then would yield non-"+++
@@ -482,6 +480,8 @@ page_7_7 char_width_and_kerns
 		[
 		[],
 		TS ":: CONS a        = CONS a",
+		TS ":: OBJECT a      = OBJECT a",
+		TS ":: RECORD a      = RECORD a",
 		TS ":: FIELD a       = FIELD a"
 	],S(
 		"The markers themselves do not contain any information about constructors and fields. Instead, the information is passed "+++
@@ -496,10 +496,13 @@ page_7_7 char_width_and_kerns
 		TS ":: Complex   = { re   :: Real, im   :: Real }",
 		TS ":: ComplexS  :== PAIR (FIELD Real) (FIELD Real)"
 	],ST [
- 		[TS "GenericTypeArg",	TS_E,	TSBCr "CONS" TA " [" TABCr "of" TA " {Pattern}]"],
-		[[],					TS_B,	TSBCr "FIELD" TA " ["  TABCr "of" TA " {Pattern}]"],
+ 		[TS "GenericTypeArg",	TS_E,	TS "GenericMarkerType [" TABCr "of" TA " Pattern]"],
 		[[],					TS_B,	TSC "TypeConstructorName"],
-		[[],					TS_B,	TSC "TypeVariable"]
+		[[],					TS_B,	TSC "TypeVariable"],
+		[TS "GenericMarkerType",	TS_E,	TSBCr "CONS"],
+		[[],						TS_B,	TSBCr "OBJECT"],
+		[[],						TS_B,	TSBCr "RECORD"],
+		[[],						TS_B,	TSBCr "FIELD"]
 	],PCH
 		(TS "Definition of the constructor and field descriptors (StdGeneric.dcl). Constructor descriptor is passed after "
 		 TABCr "of" TA " in the CONS case of a generic function.")

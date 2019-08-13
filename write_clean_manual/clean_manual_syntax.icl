@@ -468,10 +468,13 @@ page_a_7 char_width_and_kerns
 		],ST [
 			[TS "GenericDef",		TS_E,	TSBCr "generic" TA " " TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType"],
 			[TS "GenericCase",		TS_E,	TSC "FunctionName" TA " " TAT "{|" TA "GenericTypeArg" TAT "|}" TA " {Pattern}+ " TAT "=" TA " FunctionBody"],
-			[TS "GenericTypeArg",	TS_E,	TSBCr "CONS" TA " [" TABCr "of" TA " {Pattern}]"],
-			[[],					TS_B,	TSBCr "FIELD" TA " ["  TABCr "of" TA " {Pattern}]"],
+			[TS "GenericTypeArg",	TS_E,	TS "GenericMarkerType [" TABCr "of" TA " Pattern]"],
 			[[],					TS_B,	TSC "TypeConstructorName"],
-			[[],					TS_B,	TSC "TypeVariable"]
+			[[],					TS_B,	TSC "TypeVariable"],
+			[TS "GenericMarkerType",TS_E,	TSBCr "CONS"],
+			[[],					TS_B,	TSBCr "OBJECT"],
+			[[],					TS_B,	TSBCr "RECORD"],
+			[[],					TS_B,	TSBCr "FIELD"]
 		],ST [
 			[TS "DeriveDef",	TS_E,	TSBCr "derive" TA " "TAC "FunctionName" TA " " TAC "TypeConstructorName" TA "+"]
 		],ST [
