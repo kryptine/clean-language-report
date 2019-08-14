@@ -209,6 +209,14 @@ page_d_3 char_width_and_kerns
 		,N
 
 		,SP (
+			TS "The predefined unit type.")
+
+		,PC [
+			TS ":: () = ()"
+		]
+		,N
+
+		,SP (
 			TS "Extensible algebraic types can be defined by adding " TAC "| .."
 			TA " to the algebraic type definition (or just " TAC ".."
 			TA (" without constructors). In other modules additional constructors may be added "+++
