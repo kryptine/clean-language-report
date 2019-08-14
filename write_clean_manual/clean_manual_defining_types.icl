@@ -101,11 +101,11 @@ page_5_2 char_width_and_kerns
 			(TS "Algebraic type definition and constructor pattern in function definition.")
 			(map syntax_color [
 			[],
-			TS "::Tree2 a    = (/\) infixl 0 (Tree a) (Tree a)",
+			TS "::Tree2 a    = (/\\) infixl 0 (Tree a) (Tree a)",
 			TS "             | Value a",
 			[],
 			TS "Mirror:: (Tree2 a) -> Tree2 a",
-			TS "Mirror (left/\right)  = Mirror right/\Mirror left",
+			TS "Mirror (left/\\right)  = Mirror right/\\Mirror left",
 			TS "Mirror leaf           = leaf"
 		]),PCH
 			(TS "Example of an algebraic type defining an infix data constructor and a function on this type; notice that one cannot use a '"

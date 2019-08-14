@@ -806,9 +806,9 @@ page_4_10 char_width_and_kerns
 			(TS "Creating an array with the integer elements 1,3,5,7,9 using the update operator in combination with array and list comprehensions.")
 			[
 			[],
-			TS "{CreateArray 5 0 & [i] = 2*i+1 \\ i <- [0..4]}",
-			TS "{CreateArray 5 0 & [i] = elem \\ elem <-: {1,3,5,7,9} & i <- [0..4]}",
-			TS "{CreateArray 5 0 & elem \\ elem <-: {1,3,5,7,9}}"
+			TS "{CreateArray 5 0 & [i] = 2*i+1 \\\\ i <- [0..4]}",
+			TS "{CreateArray 5 0 & [i] = elem \\\\ elem <-: {1,3,5,7,9} & i <- [0..4]}",
+			TS "{CreateArray 5 0 & elem \\\\ elem <-: {1,3,5,7,9}}"
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -825,8 +825,8 @@ page_4_11 char_width_and_kerns
 			(TS "Creating an array with the integer elements 1,3,5,7,9 using array and list comprehensions.")
 			[
 			[],
-			TS "{elem \\ elem <-: {1,3,5,7,9}}",
-			TS "{elem \\ elem <-  [1,3,5,7,9]}"
+			TS "{elem \\\\ elem <-: {1,3,5,7,9}}",
+			TS "{elem \\\\ elem <-  [1,3,5,7,9]}"
 		]
 		,PCH
 			(TS ("Array creation, selection, update). The most general types have been defined. One can of course always "+++
@@ -874,7 +874,7 @@ page_4_11 char_width_and_kerns
 			TS "    colindex = [0..maxindex ma.[0]]",
 			[],
 			TS "    Multiply:: {{#Int}} {{#Int}} ->.{.{#Int}}",
-			TS "    Multiply a b =   {  {sum [a.[i,j]*b.[j,k] \\\\ j <- colindex] \\ k <- rowindex}",
+			TS "    Multiply a b =   {  {sum [a.[i,j]*b.[j,k] \\\\ j <- colindex] \\\\ k <- rowindex}",
 			TS "                     \\\\ i <- rowindex",
 			TS "                     }",
 			TS "    where",
