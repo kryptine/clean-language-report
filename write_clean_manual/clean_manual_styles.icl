@@ -197,6 +197,9 @@ make_pdf pdf_i headings g_s pdf_s [N:dis]
 	# pdf_s = show_new_line_s line_height_i pdf_s;
 	= make_pdf pdf_i headings g_s pdf_s dis;
 
+make_pdf pdf_i headings g_s pdf_s [PC lines:dis=:[CPCH heading2 lines2:_]]
+	# (g_s,pdf_s) = program_code_only_ lines pdf_i g_s pdf_s;
+	= make_pdf_c_pc pdf_i headings g_s pdf_s dis;
 make_pdf pdf_i headings g_s pdf_s [PC lines:dis]
 	# (g_s,pdf_s) = program_code_only lines pdf_i g_s pdf_s;
 	= make_pdf pdf_i headings g_s pdf_s dis;
@@ -204,7 +207,7 @@ make_pdf pdf_i headings g_s pdf_s [PC lines:dis]
 make_pdf pdf_i headings g_s pdf_s=:{y_pos} [PCP lines rectangles:dis]
 	# y_pos = if (y_pos<>0) (y_pos+font_size+line_spacing) y_pos;
 	# pdf_s & h_s=pdf_s.h_s+++clean_svg_picture_absolute (toReal line_height_i*(1.0+toReal (length lines))) rectangles;
-	# (g_s,pdf_s) = program_code_only_ lines pdf_i g_s pdf_s;
+	# (g_s,pdf_s) = program_code_p_only lines pdf_i g_s pdf_s;
 	# g_s=g_s+++pen_color_8bit 0 0 0;
 	# (p_g_s,p_t_s) = draw_picture rectangles left_margin (top-toReal y_pos);
 	# g_s=g_s+++p_g_s;
@@ -251,7 +254,7 @@ make_pdf pdf_i=:{width} headings g_s pdf_s=:{y_pos,t_s} [PCNP lines height pictu
 
 	# pdf_s & h_s=pdf_s.h_s+++"<table style=\"width:100%;\"><tr><td style=\"width:50%;\">";
 
-	# (g_s,pdf_s) = program_code_only_ lines {pdf_i & width=0.5*width-20.0} g_s pdf_s;
+	# (g_s,pdf_s) = program_code_p_only lines {pdf_i & width=0.5*width-20.0} g_s pdf_s;
 
 	# pdf_s & h_s=pdf_s.h_s+++"</td><td style=\"width:50%;\">";
 
@@ -1110,7 +1113,16 @@ a_program_code_only_pdf lines pdf_i g_s pdf_s=:{t_s,y_pos}
 a_program_code_only :: ![[Text]] !PDFInfo !{#Char} !PDFState -> (!{#Char},!PDFState);
 a_program_code_only [] pdf_i g_s pdf_s
 	= (g_s,pdf_s);
-a_program_code_only lines pdf_i g_s pdf_s=:{t_s,y_pos,h_s}
+a_program_code_only lines pdf_i g_s pdf_s
+	# (g_s,pdf_s) = a_program_code_only_ lines pdf_i g_s pdf_s;
+	# pdf_s & h_s = pdf_s.h_s+++"</p>\n";
+	= (g_s,pdf_s);
+
+a_program_code_only_ :: ![[Text]] !PDFInfo !{#Char} !PDFState -> (!{#Char},!PDFState);
+a_program_code_only_ [] pdf_i g_s pdf_s
+	# pdf_s & h_s = pdf_s.h_s+++"<p>";
+	= (g_s,pdf_s);
+a_program_code_only_ lines pdf_i g_s pdf_s=:{t_s,y_pos,h_s}
 	# pdf_s & t_s=pdf_s.t_s+++"/F4 "+++toString font_size+++" Tf ";
 	# old_y_pos=y_pos;
 	# {y_pos,t_s,link_l} = show_format_lines_list_f lines courier_n line_height_i pdf_i pdf_s;
@@ -1120,7 +1132,6 @@ a_program_code_only lines pdf_i g_s pdf_s=:{t_s,y_pos,h_s}
 //	# h_s=h_s+++"<p style=\"font-family:courier;margin:0px;background-color:#"+++html_color ProgramColor+++";\">";
 	# h_s=h_s+++"<p style=\"font-family:courier;margin:0px;background-color:#"+++html_color ProgramColor+++";line-height:1.125;\">";
 	# h_s=h_s+++html_ps_courier_t lines;
-	# h_s=h_s+++"</p>\n";
 
 	= (g_s,{y_pos=y_pos,t_s=t_s,link_l=link_l,h_s=h_s});
 
@@ -1129,15 +1140,23 @@ program_code_only :: ![[Text]] !PDFInfo !{#Char} !PDFState -> (!{#Char},!PDFStat
 program_code_only lines char_width_and_kerns g_s pdf_s=:{y_pos}
 	| y_pos<>0
 		# pdf_s = show_new_line_s (font_size+line_spacing) pdf_s;
-		# pdf_s & h_s = pdf_s.h_s+++"</p>";
+		# pdf_s & h_s = pdf_s.h_s+++"<p>";
 		# (g_s,pdf_s) = a_program_code_only lines char_width_and_kerns g_s pdf_s;
 		# pdf_s & h_s = pdf_s.h_s+++"</p>\n";
 		= (g_s,pdf_s);
 		= a_program_code_only lines char_width_and_kerns g_s pdf_s;
 
-// PCP, PCNP
+// PC..
 program_code_only_ :: ![[Text]] !PDFInfo !{#Char} !PDFState -> (!{#Char},!PDFState);
 program_code_only_ lines char_width_and_kerns g_s pdf_s=:{y_pos}
+	| y_pos<>0
+		# pdf_s = show_new_line_s (font_size+line_spacing) pdf_s;
+		= a_program_code_only_ lines char_width_and_kerns g_s pdf_s;
+		= a_program_code_only_ lines char_width_and_kerns g_s pdf_s;
+
+// PCP, PCNP
+program_code_p_only :: ![[Text]] !PDFInfo !{#Char} !PDFState -> (!{#Char},!PDFState);
+program_code_p_only lines char_width_and_kerns g_s pdf_s=:{y_pos}
 	| y_pos<>0
 		# pdf_s = show_new_line_s (font_size+line_spacing) pdf_s;
 		= a_program_code_only lines char_width_and_kerns g_s pdf_s;
@@ -1164,7 +1183,6 @@ c_program_code_ heading lines pdf_i g_s pdf_s=:{y_pos}
 	# (g_s,pdf_s) = a_program_code_only_pdf lines pdf_i g_s pdf_s;
 
 	# {h_s}=pdf_s;
-//	  h_s=h_s+++html_p_t text_l;
 	  h_s=h_s+++"<div style=\"background-color:#"+++html_color ProgramHeadingColor+++"\";>";
 	  h_s=h_s+++convert_reserved_chars_t heading;
 	  h_s=h_s+++"</div>\n";
@@ -1210,6 +1228,7 @@ program_code heading lines pdf_i g_s pdf_s=:{y_pos}
 		= a_program_code heading lines pdf_i g_s pdf_s;
 		= a_program_code heading lines pdf_i g_s pdf_s;
 
+// PCH..
 program_code_ :: ![Text] ![[Text]] !PDFInfo !{#Char} !PDFState -> (!{#Char},!PDFState);
 program_code_ heading lines pdf_i g_s pdf_s=:{y_pos}
 	# pdf_s & h_s=pdf_s.h_s+++"<p>";
