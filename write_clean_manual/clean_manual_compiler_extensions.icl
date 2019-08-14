@@ -21,15 +21,6 @@ page_d_1 char_width_and_kerns
 		,H3 "D.1.1" "New expressions"
 		,N
 
-		,SP (TS "Unboxed and boxed array comprehensions.")
-		,PCH (TS "For example:")
-		(map syntax_color [
-			[],
-			TS "{# e+e \\ e <- [0,1,2] } // an array of type .{#Int}",
-			TS "{! e+e \\ e <- [0,1,2] } // an array of type .{!Int}"
-		])
-		,N
-
 		,SP (TS "Record and array updates after # can also be written as:")
 		,PC [TS "# r & x = 1"]
 		,CPCH
@@ -233,12 +224,8 @@ page_d_3 char_width_and_kerns
 			TS ":: T | B Int Int"
 		]
 
-		,H3 "D.1.7" "Generics additions and changes"
+		,H3 "D.1.7" "Generics additions"
 		,N
-
-		,SP (
-			TS "The generic representation of records now uses the " TAC "RECORD"
-			TA " constructor instead of the " TAC "OBJECT" TA " and " TAC "CONS" TA " constructors")
 
 		,SP (
 			TS "Instances of generic functions for the generic representation types ("

@@ -672,7 +672,8 @@ page_4_9 char_width_and_kerns
 			TA " type. By using the overloading mechanism (type constructor classes) one can still define (overloaded) functions that work on any of these arrays."
 		],ST [
 			[TS "Array",	TS_E,	TS "ArrayDenotation"],
-			[[],			TS_B,	TS "ArrayUpdate"]
+			[[],			TS_B,	TS "ArrayUpdate"],
+			[[],			TS_B,	TS "ArrayComprehension"]
 		],N
 		,SP(
 			TS "All elements of an array need to be of same type."
@@ -764,11 +765,11 @@ page_4_10 char_width_and_kerns
 			TS "It is also possible to construct a new array out of an existing one (a "
 			TAI "functional array update" TA ")."
 		),ST [
-			[TS "ArrayUpdate",	TS_E,	TST "{" TA " ArrayExpr " TAT "&" TA " [{ArrayIndex {Selection} " TAT "=" TA " GraphExpr}-list] [" TAT "\\\\" TA " {Qualifier}-list]" TAT "}"],
-			[[],				TS_B,	TST "{" TA "[ArrayExpr " TAT "&" TA "] GraphExpr " TAT "\\\\" TA " {Qualifier}-list" TAT "}"],
-			[TS "Selection",	TS_E,	TST "." TAC "FieldName"],
-			[[],				TS_B,	TST "." TA "ArrayIndex"],
-			[TS "ArrayExpr",	TS_E,	TS "GraphExpr"]
+			[TS "ArrayUpdate",			TS_E,	TST "{" TA " ArrayExpr " TAT "&" TA " {ArrayIndex {Selection} " TAT "=" TA " GraphExpr}-list [" TAT "\\\\" TA " {Qualifier}-list]" TAT "}"],
+			[TS "ArrayComprehension",	TS_E,	TST "{" TA "[ArrayKind] GraphExpr " TAT "\\\\" TA " {Qualifier}-list" TAT "}"],
+			[TS "Selection",			TS_E,	TST "." TAC "FieldName"],
+			[[],						TS_B,	TST "." TA "ArrayIndex"],
+			[TS "ArrayExpr",			TS_E,	TS "GraphExpr"]
 		],P(
 			TS "Left from the " TAC "& (a & [i] = v" TA " is pronounced as: array " TAC "a"
 			TA " with for " TAC "a.[i]" TA " the value " TAC "v"
