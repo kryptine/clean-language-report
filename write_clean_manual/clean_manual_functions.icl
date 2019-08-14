@@ -694,8 +694,11 @@ page_3_9 char_width_and_kerns
 				"In this way one can specify sequential actions in the order in which they suppose to happen. ") TAI "Let-before"
 			TA " expressions have the following syntax:"
 		],ST [
-			[TS "LetBeforeExpression",	TS_E,	TST "# " TA "{GraphDef}+"],
-			[[],						TS_B,	TST "#!" TA "{GraphDef}+"]
+			[TS "LetBeforeExpression",	TS_E,	TST "# " TA "{GraphDefOrUpdate}+"],
+			[[],						TS_B,	TST "#!" TA "{GraphDefOrUpdate}+"],
+			[TS "GraphDefOrUpdate",		TS_E,	TS "GraphDef"],
+			[[],						TS_B,	TS "Variable " TAT "&" TA " {" TAC "FieldName" TA " {Selection} " TAT "=" TA" GraphExpr}-list " TABCb ";"],
+			[[],						TS_B,	TS "Variable " TAT "&" TA " {ArrayIndex {Selection} " TAT "=" TA " GraphExpr}-list [" TAT "\\\\" TA " {Qualifier}-list] " TABCb ";"]
 		],MP [
 			[],
 			TS "The form with the exclamation mark (" TAC "#!"

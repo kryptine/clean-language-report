@@ -62,21 +62,21 @@ page_a_1 char_width_and_kerns
 			[[],					TS_B,TS "TypeDef",						TS "// " TAL "see A.5"],
 			[[],					TS_B,TS "ClassDef",						TS "// " TAL "see A.6"],
 			[[],					TS_B,TS "GenericExportDef",				TS "// " TAL "see A.6"]
-  		]
-	  	];
+		],H2 "A.2" "Import Definition"
+		,ST [
+			[TS "ImportDef",TS_E,TS "ImplicitImportDef"],
+			[[],			TS_B,TS "ExplicitImportDef"]
+		],ST [
+			[TS "ImplicitImportDef",	TS_E,	TSBCr "import" TA " {" TAC "ModuleName" TA"}-list " TACb ";"]
+		]
+		];
 	= make_page pdf_i pdf_shl;
 
 page_a_2 :: !{!CharWidthAndKerns} -> Page;
 page_a_2 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
-		[H2 "A.2" "Import Definition"
-		,ST [
-			[TS "ImportDef",TS_E,TS "ImplicitImportDef"],
-			[[],			TS_B,TS "ExplicitImportDef"]
-  		],ST [
-			[TS "ImplicitImportDef",	TS_E,	TSBCr "import" TA " {" TAC "ModuleName" TA"}-list " TACb ";"]
-  		],ST [
+		[ST [
 			[TS "ExplicitImportDef",	TS_E,	TSBCr "from" TAC " ModuleName " TABCr "import" TA " {Imports}-list " TACb ";"],
 			[TS "Imports",				TS_E,	TSC "FunctionName"],
 			[[],						TS_B,	TST "::" TAC "TypeName" TA " [ConstructorsOrFields]"],
@@ -105,8 +105,11 @@ page_a_2 char_width_and_kerns
 			[TS "Function",			TS_E,	TSC "FunctionName"],
 			[[],					TS_B,	TS "(" TAC "FunctionName" TA ")"]
 		],ST [
-			[TS "LetBeforeExpression",	TS_E,	TST "# " TA "{GraphDef}+"],
-			[[],						TS_B,	TST "#!" TA "{GraphDef}+"]
+			[TS "LetBeforeExpression",	TS_E,	TST "# " TA "{GraphDefOrUpdate}+"],
+			[[],						TS_B,	TST "#!" TA "{GraphDefOrUpdate}+"],
+			[TS "GraphDefOrUpdate",		TS_E,	TS "GraphDef"],
+			[[],						TS_B,	TS "Variable " TAT "&" TA " {" TAC "FieldName" TA " {Selection} " TAT "=" TA" GraphExpr}-list " TABCb ";"],
+			[[],						TS_B,	TS "Variable " TAT "&" TA " {ArrayIndex {Selection} " TAT "=" TA " GraphExpr}-list [" TAT "\\\\" TA " {Qualifier}-list] " TABCb ";"]
 		],ST [
 			[TS "GraphDef",	TS_E,	TS "Selector " TAT "=" TA "[" TAT ":" TA "] GraphExpr " TABCb ";"],
 			[TS "Selector",	TS_E,	TS "BrackPattern"]
@@ -312,7 +315,7 @@ page_a_5 char_width_and_kerns
 			[TS "Record",			TS_E,	TS "RecordDenotation"],
 			[[],					TS_B,	TS "RecordUpdate"],
 			[TS "RecordDenotation",	TS_E,	TST "{" TA "[TypeName" TAT "|" TA "] {" TAC "FieldName" TA " " TAT "=" TA " GraphExpr}-list]" TAT "}"],
-			[TS "RecordUpdate",		TS_E,	TST "{" TA "[TypeName" TAT "|" TA "][RecordExpr " TAT "&" TA "][{" TAC "FieldName" TA " {Selection} = GraphExpr}-list]" TAT "}"],
+			[TS "RecordUpdate",		TS_E,	TST "{" TA "[TypeName" TAT "|" TA "][RecordExpr " TAT "&" TA "][{" TAC "FieldName" TA " {Selection} " TAT "=" TA " GraphExpr}-list]" TAT "}"],
 			[TS "RecordExpr",		TS_E,	TS "GraphExpr"],
 			[TS "RecordSelection",	TS_E,	TS "RecordExpr [" TAT "." TA "TypeName]" TAT "." TAC "FieldName" TA " {Selection}"],
 			[[],					TS_B,	TS "RecordExpr [" TAT "." TA "TypeName]" TAT "!" TAC "FieldName" TA " {Selection}"]
