@@ -797,8 +797,8 @@ page_4_10 char_width_and_kerns
 			TS "{CreateArray 5 0 & [1] = 3, [0] = 1, [3] = 7, [4] = 9, [2] = 5}"
 		],MP [
 			[],
-			TS "One can use an " TAI "array comprehension" TA " or a " TAI "list comprehension" TA " ("
-			TAL "see 4.2.1" TA ") to list these elements compactly in the same spirit as with a list comprehension.",
+			TS "One can use an " TAI "array comprehension"
+			TA " to list these elements compactly in the same spirit as with a list comprehension (" TAL "see 4.2.1" TA ").",
 			[],
 			TS ("Array comprehensions can be used in combination with the update operator. Used in combination with the update "+++
 				"operator the original uniquely typed array is updated destructively. The combination of array comprehensions and update "+++
@@ -911,6 +911,23 @@ page_4_12 char_width_and_kerns
 			TS "# (elem,ar)       = ar![i,j]",
 			TS "= {ar & [i,j]     = elem*factor}"
 		],N
+		,H3T "# with Array Update"
+		,P (TSC "variable = {variable & " TA "updates" TAC "}" TA " after " TAC "#" TA " or " TAC "#!" TA " can be abbreviated to "
+			TAC "variable & " TA "updates, by omitting " TAC "= {variable" TA " and " TAC "}" TA ".")
+		,ST [
+			[[],						TS_B,	TS "Variable " TAT "&" TA " {ArrayIndex {Selection} " TAT "=" TA " GraphExpr}-list [" TAT "\\\\" TA " {Qualifier}-list] " TABCb ";"]
+		],S "For example"
+		,PC [TS "# a & [i] = x"]
+		,CPCH
+			(TS "instead of")
+			[TS "# a = {a & [i] = x}"]
+		,P (TS "Multiple indices and fields are also possible, for example: (for record updates " TAL "see 5.2.1 below" TA ")")
+		,PC [TS "# r & a.[i].x = y"]
+		,CPCH
+			(TS "instead of")
+			[TS "# r = {r & a.[i].x = y}"]
+		,N
+
 		,H3T
 			"Selection of an Array Element"
 		,ST [
@@ -929,9 +946,10 @@ page_4_12 char_width_and_kerns
 			TA ". A \"unique\" selection using the '" TAC "!"
 			TA ("' symbol returns a tuple containing the demanded array element and "+++
 				"the original array. This type of array selection can be very handy for destructively updating of uniquely typed arrays "+++
-				"with values that depend on the current contents of the array. Array selection binds more tightly (priority")
+				"with values that depend on the current contents of the array. Array selection binds more tightly (priority ")
 			TAC "11" TA ") than application (priority " TAC "10" TA ")."
-		),H3
+		),N
+		,H3
 			"4.4.2" "Array Patterns"
 		,P(
 			TS "An object of type " TAI "array"
@@ -942,7 +960,15 @@ page_4_12 char_width_and_kerns
 			TS "All array elements of an array need to be of same type.",
 			TS "An array index must be an integer value between " TAC "0" TA " and the number of elements of the array-" TAC "1"
 			TA ". Accessing an array with an index out of this range will result in a " TAI "run-time" TA " error."
-		],ST [
+		]
+		];
+	= make_page pdf_i pdf_shl;
+
+page_4_13 :: !{!CharWidthAndKerns} -> Page;
+page_4_13 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[ST [
 			[TS "ArrayPattern",	TS_E,	TST "{" TA "{GraphPattern}-list" TAT "}"],
 			[[],				TS_B,	TST "{" TA "{ArrayIndex " TAT "=" TA " Variable}-list"++TST "}"],
 			[[],				TS_B,	TS "StringDenotation"]
@@ -966,15 +992,7 @@ page_4_12 char_width_and_kerns
 			TA ", etcetera). All function arguments are of kind " TAC "X" TAC ". The kind " TAC "X -> X"
 			TA "stands for a type that can be applied to a (first-order) type, which then yields another first-order type, "
 			TAC "X -> X -> X" TA " expects two type arguments, and so on."
-		)
-		];
-	= make_page pdf_i pdf_shl;
-
-page_4_13 :: !{!CharWidthAndKerns} -> Page;
-page_4_13 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[PC [
+		),PC [
 			TS "Int, Bool, [Int], Tree [Int]   :: X",
 			TS "[], Tree, (,) Int, (->) a, {}  :: X -> X",
 			TS "(,), (->)                      :: X -> X -> X",
@@ -1026,7 +1044,15 @@ page_4_13 char_width_and_kerns
 			[
 			[],
 			TS "((a -> b -> c) -> [a] -> [b] -> [c])"
-		],H2
+		]
+		];
+	= make_page pdf_i pdf_shl;
+
+page_4_14 :: !{!CharWidthAndKerns} -> Page;
+page_4_14 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[H2
 			"4.7" "Predefined Abstract Types"
 		,MP [
 			[],
@@ -1047,15 +1073,7 @@ page_4_13 char_width_and_kerns
 			TA " (see CLEANs Standard Library). It makes direct manipulation of persistent data possible. The type "
 			TAC "File" TA " is predefined for reasons of efficiency: CLEAN "
 			TAC "Files" TA " are directly coupled to concrete files."	
-		]
-		];
-	= make_page pdf_i pdf_shl;
-
-page_4_14 :: !{!CharWidthAndKerns} -> Page;
-page_4_14 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[P(
+		],P(
 			TS ("The type String is a predefined synonym type that is predefined for convenience. "+++
 			 "The type is synonym for an unboxed array of characters ") TAC "{#Char}" TA "."
 		),ST2 [

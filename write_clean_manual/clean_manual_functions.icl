@@ -693,12 +693,14 @@ page_3_9 char_width_and_kerns
 			TSI "Let-before" TA (" expressions are special let expressions that can be defined before a guard or function body. "+++
 				"In this way one can specify sequential actions in the order in which they suppose to happen. ") TAI "Let-before"
 			TA " expressions have the following syntax:"
-		],ST [
-			[TS "LetBeforeExpression",	TS_E,	TST "# " TA "{GraphDefOrUpdate}+"],
-			[[],						TS_B,	TST "#!" TA "{GraphDefOrUpdate}+"],
-			[TS "GraphDefOrUpdate",		TS_E,	TS "GraphDef"],
-			[[],						TS_B,	TS "Variable " TAT "&" TA " {" TAC "FieldName" TA " {Selection} " TAT "=" TA" GraphExpr}-list " TABCb ";"],
-			[[],						TS_B,	TS "Variable " TAT "&" TA " {ArrayIndex {Selection} " TAT "=" TA " GraphExpr}-list [" TAT "\\\\" TA " {Qualifier}-list] " TABCb ";"]
+		],ST2 [
+			[TS "LetBeforeExpression",	TS_E,	TST "# " TA "{GraphDefOrUpdate}+",[]],
+			[[],						TS_B,	TST "#!" TA "{GraphDefOrUpdate}+",[]],
+			[TS "GraphDefOrUpdate",		TS_E,	TS "GraphDef",[]],
+			[[],						TS_B,	TS "Variable " TAT "&" TA " {" TAC "FieldName" TA " {Selection} " TAT "=" TA" GraphExpr}-list " TABCb ";",
+			 TS "// "TAL "see 5.2.1"],
+			[[],						TS_B,	TS "Variable " TAT "&" TA " {ArrayIndex {Selection} " TAT "=" TA " GraphExpr}-list [" TAT "\\\\" TA " {Qualifier}-list] " TABCb ";",
+			 TS "// "TAL "see 4.4.1"]
 		],MP [
 			[],
 			TS "The form with the exclamation mark (" TAC "#!"

@@ -21,30 +21,6 @@ page_d_1 char_width_and_kerns
 		,H3 "D.1.1" "New expressions"
 		,N
 
-		,SP (TS "Record and array updates after # can also be written as:")
-		,PC [TS "# r & x = 1"]
-		,CPCH
-			(TS "instead of")
-			[TS "# r = {r & x = 1}"]
-		,S "or"
-		,PC [TS "# a & [i] = x"]
-		,CPCH
-			(TS "instead of")
-			[TS "# a = {a & [i] = x}"]
-		,S "Multiple updates are also allowed, for example:"
-		,PC
-			[TS "# r & x=1, y=2, z=3"]
-		,CPCH
-			(TS "instead of")
-			[TS "# r = {r & x=1, y=2, z=3}"]
-
-		,S "Multiple fields and indices are also possible, for example:"
-		,PC [TS "# r & a.[i].x = y"]
-		,CPCH
-			(TS "instead of")
-			[TS "# r = {r & a.[i].x = y}"]
-		,N
-
 		,SP (
 			TSC "v =: " TA "PATTERN in an expression yields " TAC "True"
 			TA " if the expression matches the PATTERN and " TAC "False"
@@ -64,16 +40,9 @@ page_d_1 char_width_and_kerns
 			TS "is_X_or_Y :: T -> Bool;",
 			TS "is_X_or_Y t = t=:X _ || t=:Y _ _;"
 		]
-	  ];
-	= make_page pdf_i pdf_shl;
-
-page_d_2 :: !{!CharWidthAndKerns} -> Page;
-page_d_2 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i [
-		SP (TSC "=:" TA "cannot be used anymore to define variables.")
 		,N
-
+		,SP (TSC "=:" TA "cannot be used anymore to define variables.")
+		,N
 		,SP (TSC "#" TA ", " TAC "#!" TA " and " TAC "|" TA " may be used in " TAC "\\" TA " expressions.")
 		
 		,PCH (TS "For example:") (map syntax_color [
@@ -86,8 +55,14 @@ page_d_2 char_width_and_kerns
 			TS "            # b=2;",
 			TS "            -> (a+b,y)"			
 		])
+	  ];
+	= make_page pdf_i pdf_shl;
 
-		,H3 "D.1.2" "New imports"
+page_d_2 :: !{!CharWidthAndKerns} -> Page;
+page_d_2 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i [
+		H3 "D.1.2" "New imports"
 		,N
 
 		,SP (TS "Identifiers can be imported qualified by adding "

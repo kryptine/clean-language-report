@@ -657,7 +657,7 @@ page_5_9 char_width_and_kerns
 			TA ". Notice that the functional update is not an update in the classical, destructive sense since a " TAI "new"
 			TA (" record is created.  The functional update of records is performed very efficient "+++
 				"such that we have not added support for destructive updates of records of unique type. The ")
-			TAC "&" TA "-operator is strict in its arguments."
+			TAC "&" TA "-operator is strict in the record argument and arguments for strict fields."
 		),PCH
 			(TS "Updating a record within a record using the functional update.")
 			[
@@ -665,6 +665,25 @@ page_5_9 char_width_and_kerns
 			TS "MoveColorPoint:: ColorPoint (Real,Real) -> ColorPoint",
 			TS "MoveColorPoint cp (dx,dy) = {cp & p.x = cp.p.x + dx, p.y = c.p.y + dy}"
 		],N
+
+		,H3T "# with Record Update"
+		,P (TSC "variable = {variable & " TA "updates" TAC "}" TA " after " TAC "#" TA " or " TAC "#!" TA " can be abbreviated to "
+			TAC "variable & " TA "updates, by omitting " TAC "= {variable" TA " and " TAC "}"
+			TA " (same as for array updates in " TAL "section 4.4.1" TA ").")
+		,ST [
+			[[],						TS_B,	TS "Variable " TAT "&" TA " {" TAC "FieldName" TA " {Selection} " TAT "=" TA" GraphExpr}-list " TABCb ";"]
+		],S "For example:"
+		,PC [TS "# r & x = 1"]
+		,CPCH
+			(TS "instead of")
+			[TS "# r = {r & x = 1}"]
+		,S "Multiple updates are also allowed, for example:"
+		,PC
+			[TS "# r & x=1, y=2, z.c='a'"]
+		,CPCH
+			(TS "instead of")
+			[TS "# r = {r & x=1, y=2, z.c='a'}"]
+		,N
 		,H3T "Selection of a Record Field"
 		,ST [
 			[TS "RecordSelection",	TS_E,	TS "RecordExpr [" TAT "." TA "TypeName]" TAT "." TAC "FieldName" TA " {Selection}"],
@@ -693,7 +712,7 @@ page_5_9 char_width_and_kerns
 		]),H3
 			"5.2.2" "Record Patterns"
 		,P(
-			TS "An object of type " TAI "record "
+			TS "An object of type " TAI "record"
 			TA (" can be specified as pattern. Only those fields which contents one would like to use in the right-hand "+++
 				"side need to be mentioned in the pattern.")
 		),ST [
@@ -704,7 +723,15 @@ page_5_9 char_width_and_kerns
 			TS ("When matching a record, the type contructor which can be used to disambiguate the record from other records, can "+++
 				"only be left out if there is ") TAI "at least "
 			TA "one field name is specified which is not being defined in some other record."
-		],PCH
+		]
+		];
+	= make_page pdf_i pdf_shl;
+
+page_5_10 :: !{!CharWidthAndKerns} -> Page;
+page_5_10 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[PCH
 			(TS "Use of record patterns.")
 			[
 			[],
@@ -719,25 +746,17 @@ page_5_9 char_width_and_kerns
 			TS "Mirror (Node tree=:{left=l,right=r})    = Node {tree & left=r,right=l}",
 			TS "Mirror leaf                             = leaf"
 		],PCH
-			(TS "The first alternative of function " TAC "Mirror" TA " defined in another equivalent way.")
+			(TS "The first alternative of function " TAC "Mirror" TA " defined in another equivalent way:")
 			[
 			[],
-			TS "Mirror (Node tree) = Node {tree & left=tree.right,right=tree.left}",
+			TS "Mirror (Node tree=:{left,right}) = Node {tree & left=right,right=left}",
 			[]
 		],CPCH
-			(TS "or")
+			(TS "or (except " TAC "tree" TA " may be evaluated lazily):")
 			[
 			[],
-			TS "Mirror (Node tree=:{left,right}) = Node {tree & left=right,right=left}"
-		]
-		];
-	= make_page pdf_i pdf_shl;
-
-page_5_10 :: !{!CharWidthAndKerns} -> Page;
-page_5_10 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[H2
+			TS "Mirror (Node tree) = Node {tree & left=tree.right,right=tree.left}"
+		],H2
 			"5.3" "Defining Synonym Types"
 		,P(
 			TSI "Synonym types" TA "permit the programmer to introduce a new type name for an existing type."
