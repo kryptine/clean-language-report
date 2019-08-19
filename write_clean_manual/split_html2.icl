@@ -88,7 +88,7 @@ update_hrefs i line chapter_name file_name
 
 write_chapters [(chapter_name,chapter_lines):chapters] header final_lines file_name w
 	# chapter_file_name = file_name+++chapter_name+++".html";
-	# (ok,file,w) = fopen chapter_file_name FWriteText w
+	# (ok,file,w) = fopen chapter_file_name FWriteData w
 	| not ok
 		= abort "Could not create file";
 	# file = write_lines header file;
@@ -106,7 +106,7 @@ write_chapters [] header final_lines file_name w
 
 split_html_chapters :: !{#Char} !*World -> *World;
 split_html_chapters file_name w
-	# (ok,input_file,w) = fopen (file_name+++".html") FReadText w;
+	# (ok,input_file,w) = fopen (file_name+++".html") FReadData w;
 	| not ok
 		= abort "Error: could not open file\n";
 	# (header,chapter_line,input_file) = read_header input_file;
