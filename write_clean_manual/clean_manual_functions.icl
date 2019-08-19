@@ -387,13 +387,15 @@ page_3_5 char_width_and_kerns
 			TAI "lambda abstraction"
 			TA ". An anonymous function is defined which can have several formal arguments that can be patterns as common in ordinary function definitions ("
 			TAL "see Chapter 3"
-			TA "). However, only simple functions can be defined in this way: no guards, no rule alternatives, and no local definitions.",
+			TA "). However, only simple functions can be defined in this way: no rule alternatives, and no local function definitions.",
 			[],
-			TS "For compatibility with CLEAN 1.3 it is also allowed to use the arrow  ('" TAC "?"
+			TS "It is also allowed to use the arrow ('" TAC "->"
 			TA "') to separate  the  formal  arguments from the function body:"
 		],ST [
-				[TS "LambdaAbstr",	TS_E,	TST "\\" TA " {Pattern} " TAT "= " TA " GraphExpr"],
-				[[],				TS_B,	TST "\\" TA " {Pattern} " TAT "->" TA " GraphExpr"]
+			[TS "LambdaAbstr",		TS_E,	TST "\\" TA " {Pattern}+ {LambdaGuardAlt} {LetBeforeExpression} LambdaResult"],
+			[TS "LambdaResult",		TS_E,	TST "= " TA " GraphExpr"],
+			[[],					TS_B,	TST "->" TA " GraphExpr"],
+			[[],					TS_B,	TST "|" TA " Guard LambdaGuardRhs"]
 		],PCH
 			(TS "Example of a Lambda expression.")
 			[
@@ -410,6 +412,7 @@ page_3_5 char_width_and_kerns
 			[],
 			TS "\\ arg1 arg2 ... argn = function_body"
 		] [Rectangle (2.0*courier_char_width-2.0,line_height) ((37.0-2.0)*courier_char_width,line_height-1.0)]
+		,S "Let-before expressions and guards can be used in lambda abstractions:"
 		];
  	= make_page pdf_i pdf_shl;
 
@@ -418,7 +421,13 @@ page_3_6 char_width_and_kerns
 	# line_height = toReal line_height_i;
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
-		[H3
+		[ST [
+			[TS "LambdaGuardAlt",	TS_E,	TS "{LetBeforeExpression} " TAT "|" TA " BooleanExpr LambdaGuardRhs"],
+			[TS "LambdaGuardRhs",	TS_E,	TS "{LambdaGuardAlt} {LetBeforeExpression} LambdaGuardResult"],
+			[TS "LambdaGuardResult",TS_E,	TST "= " TA " GraphExpr"],
+			[[],					TS_B,	TST "->" TA " GraphExpr"],
+			[[],					TS_B,	TST "|" TA " " TABCr "otherwise" TA " LambdaGuardRhs"]
+		],H3
 			"3.4.2" "Case Expression and Conditional Expression"
 		,P(
 			TS "For programming convenience a " TAI "case expression" TA " and " TAI "conditional expression" TA " are added."
@@ -496,11 +505,7 @@ page_3_6 char_width_and_kerns
 			TA " that have a local scope, i.e. which have only a meaning in a certain program region.",
 			[],
 			TS ("Outside the scope the functions are unknown. This locality can be used to get a better program structure: functions that "+++
-				"are only used in a certain program area can remain hidden outside that area."),
-			[],
-			TS "Besides functions one can also convenient to define constant selectors. Constants are named graph expressions ("
-			TAL "see 3.6" TA ").",
-			[] 
+				"are only used in a certain program area can remain hidden outside that area.")
 		]
 		];
  	= make_page pdf_i pdf_shl;
@@ -510,7 +515,11 @@ page_3_7 char_width_and_kerns
 	# line_height = toReal line_height_i;
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
-		[ST [
+		[MP [
+			TS "Besides functions one can also define constant selectors. Constants are named graph expressions ("
+			TAL "see 3.6" TA ").",
+			[]
+		],ST [
 			[TS "LocalDef",	TS_E,	TS "GraphDef"],
 			[[],			TS_B,	TS "FunctionDef"]
 		],H3

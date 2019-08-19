@@ -42,27 +42,7 @@ page_d_1 char_width_and_kerns
 		]
 		,N
 		,SP (TSC "=:" TA "cannot be used anymore to define variables.")
-		,N
-		,SP (TSC "#" TA ", " TAC "#!" TA " and " TAC "|" TA " may be used in " TAC "\\" TA " expressions.")
-		
-		,PCH (TS "For example:") (map syntax_color [
-			[],
-			TS "f :: Bool -> .(Int -> (Int,Int));",
-			TS "f x = (\\ y",
-			TS "        #! a=1;",
-			TS "        | x",
-			TS "            -> (y,a)",
-			TS "            # b=2;",
-			TS "            -> (a+b,y)"			
-		])
-	  ];
-	= make_page pdf_i pdf_shl;
-
-page_d_2 :: !{!CharWidthAndKerns} -> Page;
-page_d_2 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i [
-		H3 "D.1.2" "New imports"
+		,H3 "D.1.2" "New imports"
 		,N
 
 		,SP (TS "Identifiers can be imported qualified by adding "
@@ -85,7 +65,14 @@ page_d_2 char_width_and_kerns
 			[],
 			TS "f l = 'StdList'.drop 1 (l 'StdList'. ++ [2]);"
 		]
-		,P (TS (
+	  ];
+	= make_page pdf_i pdf_shl;
+
+page_d_2 :: !{!CharWidthAndKerns} -> Page;
+page_d_2 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i [
+		P (TS (
 			"Currently field names of records are not imported by an implicit "+++
 			"qualified import, but can be imported with an explicit qualified "+++
 			"import."))
@@ -129,15 +116,7 @@ page_d_2 char_width_and_kerns
 			TS "          a & [i]=n+1;",
 			TS "        = inc_a (i+1) a;",
 			TS "        = a;"
-		])
-
-	  ];
-	= make_page pdf_i pdf_shl;
-
-page_d_3 :: !{!CharWidthAndKerns} -> Page;
-page_d_3 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i [
+		]),
 		H3 "D.1.4" "New strictness annotations"
 		,N
 
@@ -168,8 +147,14 @@ page_d_3 char_width_and_kerns
 		,PC (map syntax_color [
 			TS "instance next Int"
 		])
+	  ];
+	= make_page pdf_i pdf_shl;
 
-		,H3 "D.1.5" "Hierarchical modules"
+page_d_3 :: !{!CharWidthAndKerns} -> Page;
+page_d_3 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i [
+		H3 "D.1.5" "Hierarchical modules"
 		
 		,P (TS ("The module name can be used to specify the directory containing the "+++
 				"module. In that case the module name is the list of folder names of "+++

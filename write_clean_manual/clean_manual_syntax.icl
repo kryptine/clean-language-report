@@ -237,8 +237,15 @@ page_a_4 char_width_and_kerns
 			[TS "GraphVariable",TS_E,	TS "Variable",			TS "// " TAL "see A.8"],
 			[[],				TS_B,	TS "SelectorVariable",	TS "// " TAL "see A.8"]
 		],ST [
-			[TS "LambdaAbstr",	TS_E,	TST "\\" TA " {Pattern} " TAT "= " TA " GraphExpr"],
-			[[],				TS_B,	TST "\\" TA " {Pattern} " TAT "->" TA " GraphExpr"]
+			[TS "LambdaAbstr",		TS_E,	TST "\\" TA " {Pattern}+ {LambdaGuardAlt} {LetBeforeExpression} LambdaResult"],
+			[TS "LambdaResult",		TS_E,	TST "= " TA " GraphExpr"],
+			[[],					TS_B,	TST "->" TA " GraphExpr"],
+			[[],					TS_B,	TST "|" TA " Guard LambdaGuardRhs"],
+			[TS "LambdaGuardAlt",	TS_E,	TS "{LetBeforeExpression} " TAT "|" TA " BooleanExpr LambdaGuardRhs"],
+			[TS "LambdaGuardRhs",	TS_E,	TS "{LambdaGuardAlt} {LetBeforeExpression} LambdaGuardResult"],
+			[TS "LambdaGuardResult",TS_E,	TST "= " TA " GraphExpr"],
+			[[],					TS_B,	TST "->" TA " GraphExpr"],
+			[[],					TS_B,	TST "|" TA " " TABCr "otherwise" TA " LambdaGuardRhs"]
 		],ST [
 			[TS "CaseExpr",		TS_E,	TSBCr "case" TA " GraphExpr " TABCr "of"],
 			[[],				[],		TSBCb "{" TA " {CaseAltDef}+ " TABCb "}"],
