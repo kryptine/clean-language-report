@@ -28,9 +28,9 @@ page_3_1 char_width_and_kerns
 			[TS "FunctionDef",		TS_E,	TS "[FunctionTypeDef]",
 											TS "// " TAL "see Chapter 4 for typing functions"],
 			[[],					[],		TS "DefOfFunction",
-		 									[]],
-		 	[TS "DefOfFunction",	TS_E,	TS "{FunctionAltDef "++TSb ";" TA "}+",
-		 									[]],
+											[]],
+			[TS "DefOfFunction",	TS_E,	TS "{FunctionAltDef "++TSb ";" TA "}+",
+											[]],
 			[TS "FunctionAltDef", 	TS_E,	TS "Function {Pattern}",
 										 	TS "// " TAL "see 3.2 for patterns"],
 			[[],					[],		TS "{LetBeforeExpression}",
@@ -858,12 +858,13 @@ page_3_11 char_width_and_kerns
 	# pdf_shl = make_pdf_shl pdf_i
 		[MP [
 			TS ("Syntactically the definition of a graph is distinguished from the definition of a function by the symbol "+++
-			"which separates left-hand side from right-hand side: \"")
-			TAC "=:" TA "\" is used for graphs while \"" TAC "=>"
-			TA "\" is used for functions. However, in general the more common symbol \"" TAC "="
-			TA ("\" is used for both type of definitions. Generally it is clear from the context what is meant (functions "+++
-			"have parameters, selectors are also easy recognisible). However, when a simple constant is defined the syntax is "+++
-			"ambiguous (it can be a constant function definition as well as a constant graph definition)."),
+				"which separates the left-hand side from the right-hand side: \"")
+			TAC "=" TA "\" or \"" TAC "=>" TA "\" is used for functions, while \""
+			TAC "=" TA "\" is used for local graphs and \"" TAC "=:"
+			TA "\" for global graphs. However, in general \"" TAC "="
+			TA ("\" is used both for functions and local graphs. Generally it is clear from the context which is meant (functions "+++
+				"have parameters, selectors are also easy recognisible). However, when a simple constant is defined the syntax is "+++
+				"ambiguous (it can be a constant function definition as well as a constant graph definition)."),
 			[],
 			TS "To allow the use of the \"" TAC "="
 			TA "\" whenever possible, the following rule is followed. Local constant definitions are " TAI "by default"
@@ -881,7 +882,7 @@ page_3_11 char_width_and_kerns
 						[],
 						TS "biglist1 =   [1..10000]                 // a graph (if defined locally)",
 						TS "biglist1 =   [1..10000]                 // a constant function (if defined globally)",
-						TS "biglist2 =:  [1..10000]                 // a graph (always)",
+						TS "biglist2 =:  [1..10000]                 // a graph (if defined globally)",
 						TS "biglist3 =>  [1..10000]                 // a constant function (always)"
 		]),P(
 			TS "The garbage collector will collect locally defined graphs when they are no longer connected to the root of the program graph ("

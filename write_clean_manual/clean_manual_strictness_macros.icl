@@ -229,12 +229,13 @@ page_10_4 char_width_and_kerns
 			TA ("): its value is computed at most once and remembered at run-time. A global graph can save execution-time "+++
 				"at the cost of permanent space consumption."),
 			[],
-			TS ("Syntactically the definition of a graph is distinguished from the definition of a function by the symbol which "+++
-				"separates left-hand side from right-hand side: \"") TAC "=:"
-			TA "\" is used for graphs while \"" TAC "=>"
-			TA "\" is used for functions. However, in general the more common symbol \"" TAC "="
-			TA ("\" is used for both type of definitions. Generally it is clear from the context what is meant (functions "+++
-				"have parameters, selectors are also easy recognisable). However, when a simple constant is defined the syntax is "+++
+			TS ("Syntactically the definition of a graph is distinguished from the definition of a function by the symbol "+++
+				"which separates the left-hand side from the right-hand side: \"")
+			TAC "=" TA "\" or \"" TAC "=>" TA "\" is used for functions, while \""
+			TAC "=" TA "\" is used for local graphs and \"" TAC "=:"
+			TA "\" for global graphs. However, in general \"" TAC "="
+			TA ("\" is used both for functions and local graphs. Generally it is clear from the context which is meant (functions "+++
+				"have parameters, selectors are also easy recognisible). However, when a simple constant is defined the syntax is "+++
 				"ambiguous (it can be a constant function definition as well as a constant graph definition)."),
 			[],
 			TS "To allow the use of the \"" TAC "=" TA "\" whenever possible, the following rule is followed. Locally constant definitions are "
@@ -251,7 +252,7 @@ page_10_4 char_width_and_kerns
 			(map comment_blue [
 			[],
 			TS "biglist1 =   [1..10000]                // a constant function (if defined globally)",
-			TS "biglist2 =:  [1..10000]                // a graph",
+			TS "biglist2 =:  [1..10000]                // a graph (if defined globally)",
 			TS "biglist3 =>  [1..10000]                // a constant function"
 		]),S(
 			"A graph saves execution-time at the cost of space consumption. A constant function saves space at the cost of "+++

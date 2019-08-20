@@ -40,8 +40,7 @@ page_d_1 char_width_and_kerns
 			TS "is_X_or_Y :: T -> Bool;",
 			TS "is_X_or_Y t = t=:X _ || t=:Y _ _;"
 		]
-		,N
-		,SP (TSC "=:" TA "cannot be used anymore to define variables.")
+
 		,H3 "D.1.2" "New imports"
 		,N
 
