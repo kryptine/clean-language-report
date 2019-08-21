@@ -247,17 +247,20 @@ page_a_4 char_width_and_kerns
 			[[],					TS_B,	TST "->" TA " GraphExpr"],
 			[[],					TS_B,	TST "|" TA " " TABCr "otherwise" TA " LambdaGuardRhs"]
 		],ST [
-			[TS "CaseExpr",		TS_E,	TSBCr "case" TA " GraphExpr " TABCr "of"],
-			[[],				[],		TSBCb "{" TA " {CaseAltDef}+ " TABCb "}"],
-			[[],				TS_B,	TSBCr "if" TA " BrackGraph BrackGraph BrackGraph"],
-			[TS "CaseAltDef",	TS_E,	TS "{Pattern}"],
-			[[],				[],		TS "{{LetBeforeExpression}"], // double {{ ?
-			[[],				[],		TS "{" TAT "|" TA " Guard} " TAT "=" TA " [" TAT ">" TA "] FunctionBody}+"],
-			[[],				[],		TS "[LocalFunctionAltDefs]"],
-			[[],				TS_B,	TS "{Pattern}"],
-			[[],				[],		TS "{{LetBeforeExpression}"], // double {{ ?
-			[[],				[],		TS "{" TAT "|" TA " Guard} " TAT "->" TA " FunctionBody}+"],
-			[[],				[],		TS "[LocalFunctionAltDefs]"]
+			[TS "CaseExpr",			TS_E,	TSBCr "case" TA " GraphExpr " TABCr "of"],
+			[[],					[],		TSBCb "{" TA " {CaseAltDef}+ " TABCb "}"],
+			[[],					TS_B,	TSBCr "if" TA " BrackGraph BrackGraph BrackGraph"],
+			[TS "CaseAltDef",		TS_E,	TS "{Pattern}"],
+			[[],					[],		TS "{CaseGuardAlt} {LetBeforeExpression} CaseResult"],
+			[[],					[],		TS "[LocalFunctionAltDefs]"],
+			[TS "CaseResult",		TS_E,	TST "=" TA " [" TAT ">" TA "] FunctionBody"],
+			[[],					TS_B,	TST "->" TA " FunctionBody"],
+			[[],					TS_B,	TST "|" TA " Guard CaseGuardRhs"],
+			[TS "CaseGuardAlt",		TS_E,	TS "{LetBeforeExpression} " TAT "|" TA " BooleanExpr CaseGuardRhs"],
+			[TS "CaseGuardRhs",		TS_E,	TS "{CaseGuardAlt} {LetBeforeExpression} CaseGuardResult"],
+			[TS "CaseGuardResult",	TS_E,	TST "=" TA " [" TAT ">" TA "] FunctionBody"],
+			[[],					TS_B,	TST "->" TA " FunctionBody"],
+			[[],					TS_B,	TST "|" TA " " TABCr "otherwise" TA " CaseGuardRhs"]
 		],ST [
 			[TS "LetExpression",	TS_E,	TSBCr "let" TA " " TABCb "{" TA " {LocalDef}+ " TABCb "}" TA " " TABCr "in" TA " GraphExpr"]
 		], ST [

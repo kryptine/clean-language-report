@@ -432,17 +432,20 @@ page_3_6 char_width_and_kerns
 		,P(
 			TS "For programming convenience a " TAI "case expression" TA " and " TAI "conditional expression" TA " are added."
 		),ST [
-			[TS "CaseExpr",		TS_E,	TSBCr "case" TA " GraphExpr " TABCr "of"],
-			[[],				[],		TSBCb "{" TA " {CaseAltDef}+ " TABCb "}"],
-			[[],				TS_B,	TSBCr "if" TA " BrackGraph BrackGraph BrackGraph"],
-			[TS "CaseAltDef",	TS_E,	TS "{Pattern}"],
-			[[],				[],		TS "{{LetBeforeExpression}"], // double {{ ?
-			[[],				[],		TS "{" TAT "|" TA " Guard} " TAT "=" TA " [" TAT ">" TA "] FunctionBody}+"],
-			[[],				[],		TS "[LocalFunctionAltDefs]"],
-			[[],				TS_B,	TS "{Pattern}"],
-			[[],				[],		TS "{{LetBeforeExpression}"], // double {{ ?
-			[[],				[],		TS "{" TAT "|" TA " Guard} " TAT "->" TA " FunctionBody}+"],
-			[[],				[],		TS "[LocalFunctionAltDefs]"]
+			[TS "CaseExpr",			TS_E,	TSBCr "case" TA " GraphExpr " TABCr "of"],
+			[[],					[],		TSBCb "{" TA " {CaseAltDef}+ " TABCb "}"],
+			[[],					TS_B,	TSBCr "if" TA " BrackGraph BrackGraph BrackGraph"],
+			[TS "CaseAltDef",		TS_E,	TS "{Pattern}"],
+			[[],					[],		TS "{CaseGuardAlt} {LetBeforeExpression} CaseResult"],
+			[[],					[],		TS "[LocalFunctionAltDefs]"],
+			[TS "CaseResult",		TS_E,	TST "=" TA " [" TAT ">" TA "] FunctionBody"],
+			[[],					TS_B,	TST "->" TA " FunctionBody"],
+			[[],					TS_B,	TST "|" TA " Guard CaseGuardRhs"],
+			[TS "CaseGuardAlt",		TS_E,	TS "{LetBeforeExpression} " TAT "|" TA " BooleanExpr CaseGuardRhs"],
+			[TS "CaseGuardRhs",		TS_E,	TS "{CaseGuardAlt} {LetBeforeExpression} CaseGuardResult"],
+			[TS "CaseGuardResult",	TS_E,	TST "=" TA " [" TAT ">" TA "] FunctionBody"],
+			[[],					TS_B,	TST "->" TA " FunctionBody"],
+			[[],					TS_B,	TST "|" TA " " TABCr "otherwise" TA " CaseGuardRhs"]
 		],MP [
 			[],
 			TS "In a " TAI "case expression"
@@ -454,7 +457,7 @@ page_3_6 char_width_and_kerns
 			TAC "True" TA " the corresponding alternative is chosen. A new block structure (scope) is created for each case alternative ("
 			TAL "see 2.1" TA ").",
 			[],
-			TS "For compatibility with CLEAN 1.3.x it is also allowed to use the arrow ('" TAC "->" TA "') to separate the case alternatives"
+			TS "It is also allowed to use the arrow ('" TAC "->" TA "') to separate the case alternatives"
 		],PCH
 			(TS "The variables defined in the patterns have the only a meaning in the corresponding alternative.")
 			[]
@@ -496,16 +499,6 @@ page_3_6 char_width_and_kerns
 		),MSP [
 			TS "The then- and else-part in the conditional expression must be of the same type.",
 			TS "The discriminating expression must be of type " TAC "Bool" TA "."
-		],H2
-			"3.5" "Local Definitions"
-		,MP [
-			[],
-			TS ("Sometimes it is convenient to introduce definitions that have a limited scope and are not visible throughout the whole "+++
-				"module. One can define ") TAI "functions"
-			TA " that have a local scope, i.e. which have only a meaning in a certain program region.",
-			[],
-			TS ("Outside the scope the functions are unknown. This locality can be used to get a better program structure: functions that "+++
-				"are only used in a certain program area can remain hidden outside that area.")
 		]
 		];
  	= make_page pdf_i pdf_shl;
@@ -515,7 +508,17 @@ page_3_7 char_width_and_kerns
 	# line_height = toReal line_height_i;
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
-		[MP [
+		[H2
+			"3.5" "Local Definitions"
+		,MP [
+			[],
+			TS ("Sometimes it is convenient to introduce definitions that have a limited scope and are not visible throughout the whole "+++
+				"module. One can define ") TAI "functions"
+			TA " that have a local scope, i.e. which have only a meaning in a certain program region.",
+			[],
+			TS ("Outside the scope the functions are unknown. This locality can be used to get a better program structure: functions that "+++
+				"are only used in a certain program area can remain hidden outside that area.")
+		],MP [
 			TS "Besides functions one can also define constant selectors. Constants are named graph expressions ("
 			TAL "see 3.6" TA ").",
 			[]
