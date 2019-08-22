@@ -180,7 +180,7 @@ page_8_3 char_width_and_kerns
 		),H3
 			"8.1.2" "Packing Overloaded Functions"	
 		,P(
-			TSBCr "Not yet implemented:" TA " Overloaded functions can also be packed into a " TAC "Dynamic"
+			TS "Overloaded functions can also be packed into a " TAC "Dynamic"
 			TA ". In that case the corresponding type classes (" TAL "see 6.1"
 			TA ") are packed as additional dictionary argument of the function into the " TAC "Dynamic"
 			TA ". When the " TAC "Dynamic"
@@ -201,7 +201,7 @@ page_8_3 char_width_and_kerns
 		),H3
 			"8.1.3" "Packing Expressions of Unique Type"
 		,P(
-			TSBCr "Not yet implemented:" TA " Expressions of unique type (" TAL "see Chapter 9"
+			TS "Expressions of unique type (" TAL "see Chapter 9"
 			TA (") can also be packed into a Dynamic. However, the run-time system cannot deal with uniqueness type variables "+++
 				"or with coercion statements (attribute variable inequalities). One can only use the type attribute \"") TAC "*"
 			TA "\". Furthermore, one has to explicitly define the desired unicity in the type of the expression to be packed into a " 
@@ -469,13 +469,11 @@ page_8_7 char_width_and_kerns
 			"8.2.1" "Unpacking Abstract Data Types"
 		,N
 		,SP(
-			TS ("It is not yet possible to pack or unpack an abstract data type. We are working on this. Check the latest version of "+++
-				"the Clean system. See also 8.1.1.")
+			TS "It is not yet possible to pack or unpack an abstract data type. " TAL "See also 8.1.1" TA "."
 		),H3
 			"8.2.2" "Unpacking of Overloaded Functions"
 		,P(
-			TSBCr "Not yet implemented:"
-			TA (" One can specify a class restriction in the type in a dynamic pattern match. The system will "+++
+			TS ("One can specify a class restriction in the type in a dynamic pattern match. The system will "+++
 				"check whether the actual dynamic contains a function that is indeed overloaded with exactly the same class context "+++
 				"restriction as specified in the pattern. Two class definitions are regarded to be equal if all involved class definitions are "+++
 				"syntactically equal, modulo alpha conversion of the type variables.")
@@ -496,7 +494,7 @@ page_8_7 char_width_and_kerns
 		],H3
 			"8.2.3" "Unpacking Expressions of Unique Type"
 		,P(
-			TSBCr "Not yet implemented:" TA " Expressions of unique type (" TAL "see Chapter 9)"
+			TS "Expressions of unique type (" TAL "see Chapter 9)"
 			TA (" can also be unpacked via a dynamic pattern "+++
 				"match. However, the run-time system cannot deal with uniqueness type variables or with coercion statements (attribute "+++
 				"variable inequalities). One can only use the type attribute \"") TAC "*"
