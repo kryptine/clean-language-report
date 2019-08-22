@@ -1126,15 +1126,12 @@ page_3_14 char_width_and_kerns
 			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{TypeVariable }+" TAT ":"]
 		],MP [
 			[],
-			orange_bold_s "Implemented:"
-			TA (" CLEAN 2.0 offers Rank 2 polymorphism: it is also possible to specify the universal quantifier with as scope "+++
-				"the type of an argument of a function or the type of the result of a function. This makes it possible to pass polymorphic "+++
+			TS ("CLEAN offers Rank 2 polymorphism: it is possible to specify the universal quantifier with as scope "+++
+				"the type of an argument of a function. This makes it possible to pass polymorphic "+++
 				"functions as an argument to a function which otherwise would be treated monomorphic. The advantage of the use of "+++
 				"Rank 2 polymorphism is that more programs will be approved by the type system, but one explicitly (by writing down the "+++
 				"universal quantifier) has to specify in the type of function that such a polymorphic function is expected as argument or "+++
-				"delivered as result."),
-			[],
-			orange_bold_s "Not yet Implemented:" TA " We will allow Rank N polymorphism. We are working on it."
+				"delivered as result.")
 		],PCH
 			(TS "Example: The function " TAC "h" TA " is used to apply a polymorphic function of type "
 						  TAC "(A.a: [a] -> Int)" TA " to a list of " TAC "Int" TA "as well as a list of " TAC "Char"

@@ -759,7 +759,7 @@ page_5_10 char_width_and_kerns
 		],H2
 			"5.3" "Defining Synonym Types"
 		,P(
-			TSI "Synonym types" TA "permit the programmer to introduce a new type name for an existing type."
+			TSI "Synonym types" TA " permit the programmer to introduce a new type name for an existing type."
 		),ST [
 			[TS "SynonymTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT ":==" TA " [UniversalQuantVariables]Type " TABCb ";"]
 		],MSP [
