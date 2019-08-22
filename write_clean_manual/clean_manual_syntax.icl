@@ -98,12 +98,16 @@ page_a_2 char_width_and_kerns
 		 	[TS "DefOfFunction",	TS_E,	TS "{FunctionAltDef "++TSb ";" TA "}+"],
 		 	[[],					TS_B,	TS "ABCCodeFunctionDef"],
 			[TS "FunctionAltDef", 	TS_E,	TS "Function {Pattern}"],
-			[[],					[],		TS "{LetBeforeExpression}"],
-			[[],					[],		TS "{{" TAT "|" TA " Guard} " TAT "=" TA "[" TAT ">" TA "] FunctionBody}+"],
-			[[],					[],		TS "[LocalFunctionAltDefs]"]
+			[[],					[],		TS "{GuardAlt} {LetBeforeExpression} FunctionResult"],
+			[[],					[],		TS "[LocalFunctionAltDefs]"],
+			[TS "FunctionResult",	TS_E,	TST "=" TA "[" TAT ">" TA "] FunctionBody"],
+			[[],					TS_B,	TST "|" TA " Guard GuardRhs"],
+			[TS "GuardAlt",			TS_E,	TS "{LetBeforeExpression} " TAT "|" TA " BooleanExpr GuardRhs"],
+			[TS "GuardRhs",			TS_E,	TS "{GuardAlt} {LetBeforeExpression} " TAT "=" TA " [" TAT ">" TA "] FunctionBody"],
+			[[],					TS_B,	TS "{GuardAlt} {LetBeforeExpression} " TAT "|" TA " " TABCr "otherwise" TA " GuardRhs"]
 		],ST [
 			[TS "Function",			TS_E,	TSC "FunctionName"],
-			[[],					TS_B,	TS "(" TAC "FunctionName" TA ")"]
+			[[],					TS_B,	TST "(" TAC "FunctionName" TAT ")"]
 		],ST [
 			[TS "LetBeforeExpression",	TS_E,	TST "# " TA "{GraphDefOrUpdate}+"],
 			[[],						TS_B,	TST "#!" TA "{GraphDefOrUpdate}+"],
