@@ -399,11 +399,11 @@ page_a_6 char_width_and_kerns
 		],ST [
 			[TS "Type",						TS_E,	TS "{BrackType}+"]
 		],ST [
-			[TS "SynonymTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT ":==" TA " [UniversalQuantVariables]Type " TABCb ";"]
+			[TS "SynonymTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT ":==" TA " Type " TABCb ";"]
 		],ST [
 			[TS "AbstractTypeDef",	TS_E,	TST "::" TA "TypeLhs " TABCb ";"]
 		],ST [
-			[TS "AbstractSynonymTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT "(:==" TA " [UniversalQuantVariables]Type " TAT ")" TA " " TABCb ";"]
+			[TS "AbstractSynonymTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT "(:==" TA " Type " TAT ")" TA " " TABCb ";"]
 		],H3
 			"A.5.1" "Types Expression"
 		,ST2 [

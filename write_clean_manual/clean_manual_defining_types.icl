@@ -761,7 +761,7 @@ page_5_10 char_width_and_kerns
 		,P(
 			TSI "Synonym types" TA " permit the programmer to introduce a new type name for an existing type."
 		),ST [
-			[TS "SynonymTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT ":==" TA " [UniversalQuantVariables]Type " TABCb ";"]
+			[TS "SynonymTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT ":==" TA " Type " TABCb ";"]
 		],MSP [
 			TS "For the left-hand side the same restrictions hold as for algebraic types.",
 			TS "Cyclic definitions of synonym types (e.g. " TAC "::T a b :== G a b; ::G a b :== T a b" TA ") are not allowed."
@@ -844,7 +844,7 @@ page_5_11 char_width_and_kerns
 			"generate optimal code. Therefore, if the concrete type is a synonym type, the right-hand-side of the definition may be "+++
 			"included surrounded by brackets:"
 		),ST [
-			[TS "AbstractSynonymTypeDef",	TS_E,	TST "::" TA "TypeLhs ( " TAT ":==" TA " [UniversalQuantVariables] Type ) " TABCb ";"]
+			[TS "AbstractSynonymTypeDef",	TS_E,	TST "::" TA "TypeLhs ( " TAT ":==" TA " Type ) " TABCb ";"]
 		],S(
 			"The type of the implementation is still hidden as for other abstract data types, except that the compiler uses it only to "+++
 			"generate the same code as for a synonym type."
