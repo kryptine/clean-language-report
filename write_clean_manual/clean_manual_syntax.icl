@@ -80,8 +80,8 @@ page_a_2 char_width_and_kerns
 			[TS "ExplicitImportDef",	TS_E,	TSBCr "from" TAC " ModuleName " TABCr "import" TA " {Imports}-list " TACb ";"],
 			[TS "Imports",				TS_E,	TSC "FunctionName"],
 			[[],						TS_B,	TST "::" TAC "TypeName" TA " [ConstructorsOrFields]"],
-			[[],						TS_B,	TSBCr "class" TAC " ClassName" TA " [Members]"],
-			[[],						TS_B,	TSBCr "instance" TAC " ClassName" TA " {TypeName}+"],
+			[[],						TS_B,	TSBCr "class" TA " " TAC "ClassName" TA " [Members]"],
+			[[],						TS_B,	TSBCr "instance" TA " " TAC "ClassName" TA " {TypeName}+"],
 			[[],						TS_B,	TSBCr "generic" TA " " TAC "FunctionName"],
 			[TS "ConstructorsOrFields",	TS_E,	TST "(..)"],
 			[[],						TS_B,	TST "(" TA "{" TAC "ConstructorName" TA "}-list" TAT ")"],
@@ -112,8 +112,8 @@ page_a_2 char_width_and_kerns
 			[TS "LetBeforeExpression",	TS_E,	TST "# " TA "{GraphDefOrUpdate}+"],
 			[[],						TS_B,	TST "#!" TA "{GraphDefOrUpdate}+"],
 			[TS "GraphDefOrUpdate",		TS_E,	TS "GraphDef"],
-			[[],						TS_B,	TS "Variable " TAT "&" TA " {" TAC "FieldName" TA " {Selection} " TAT "=" TA" GraphExpr}-list " TABCb ";"],
-			[[],						TS_B,	TS "Variable " TAT "&" TA " {ArrayIndex {Selection} " TAT "=" TA " GraphExpr}-list [" TAT "\\\\" TA " {Qualifier}-list] " TABCb ";"]
+			[[],						TS_B,	TSC "Variable" TA " " TAT "&" TA " {" TAC "FieldName" TA " {Selection} " TAT "=" TA" GraphExpr}-list " TABCb ";"],
+			[[],						TS_B,	TSC "Variable" TA " " TAT "&" TA " {ArrayIndex {Selection} " TAT "=" TA " GraphExpr}-list [" TAT "\\\\" TA " {Qualifier}-list] " TABCb ";"]
 		],ST [
 			[TS "GraphDef",	TS_E,	TS "Selector " TAT "=" TA "[" TAT ":" TA "] GraphExpr " TABCb ";"],
 			[TS "Selector",	TS_E,	TS "BrackPattern"]
@@ -140,8 +140,8 @@ page_a_2 char_width_and_kerns
 			[TS "FunctionTypeDef",		TS_E,	TSC "FunctionName" TA " " TAT "::" TA " FunctionType " TABCb ";"],
 			[[],						TS_B,	TST "(" TAC "FunctionName" TAT ")" TA " [Fix][Prec] [" TAT "::" TA" FunctionType] " TABCb ";"],
 			[TS "FunctionType",			TS_E,	TS "[Type " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
-			[TS "ClassContext",			TS_E,	TST "|" TA " ClassOrGenericName-list TypeVariable {" TAT "&" TA " ClassName-list TypeVariable }"],
-			[TS "UnqTypeUnEqualities",	TS_E,	TS "{{UniqueTypeVariable}+ " TAT "<=" TA " UniqueTypeVariable}-list"],
+			[TS "ClassContext",			TS_E,	TST "|" TA " ClassOrGenericName-list " TAC "TypeVariable" TA " {" TAT "&" TA " " TAC "ClassName" TA "-list " TAC "TypeVariable" TA "}"],
+			[TS "UnqTypeUnEqualities",	TS_E,	TS "{{" TAC "UniqueTypeVariable" TA "}+ " TAT "<=" TA " " TAC "UniqueTypeVariable" TA "}-list"],
 			[TS "ClassOrGenericName",	TS_E,	TSC "ClassName"],
 			[[],						TS_B,	TSC "FunctionName" TA " TypeKind"]
 		]
@@ -154,15 +154,15 @@ page_a_3 char_width_and_kerns
 	# pdf_shl = make_pdf_shl pdf_i
 		[H3 "A.3.2" "Patterns"
 		,ST [
-			[TS "Pattern",			TS_E,	TS "[Variable " TAT "=:" TA "] BrackPattern"],
+			[TS "Pattern",			TS_E,	TS "[" TAC "Variable" TA " " TAT "=:" TA "] BrackPattern"],
 			[TS "BrackPattern",		TS_E,	TS "PatternVariable"],
 			[[],					TS_B,	TS "Constructor"],
 			[[],					TS_B,	TST "(" TA "GraphPattern" TAT ")"], 
 			[[],					TS_B,	TS "SpecialPattern"], 
 			[[],					TS_B,	TS "DynamicPattern"]
 		],ST [
-			[TS "PatternVariable",	TS_E,	TS "Variable"],
-			[[],					TS_B,	TS "_ "]
+			[TS "PatternVariable",	TS_E,	TSC "Variable"],
+			[[],					TS_B,	TST "_"]
 		],ST [
 			[TS "Constructor",	TS_E,	TSC "ConstructorName"],
 			[[],				TS_B,	TST "(" TAC "ConstructorName" TAT ")"]
@@ -196,7 +196,7 @@ page_a_3 char_width_and_kerns
 			[TS "RecordPattern",	TS_E,	TST "{" TA "[TypeName " TAT "|" TA "] {" TAC "FieldName" TA " [" TAT "=" TA " GraphPattern]}-list" TAT "}"]
 		],ST [
 			[TS "ArrayPattern",	TS_E,	TST "{" TA "{GraphPattern}-list" TAT "}"],
-			[[],				TS_B,	TST "{" TA "{ArrayIndex " TAT "=" TA " Variable}-list"++TST "}"],
+			[[],				TS_B,	TST "{" TA "{ArrayIndex " TAT "=" TA " " TAC "Variable" TA "}-list"++TST "}"],
 			[[],				TS_B,	TS "StringDenotation"]
 		],ST [
 			[TS "DynamicPattern",			TS_E,	TST "(" TA "GraphPattern " TAT "::" TA " DynamicType" TAT ")"],
@@ -204,8 +204,8 @@ page_a_3 char_width_and_kerns
 			[TS "DynPatternType",			TS_E,	TS "Type"],
 			[[],							TS_B,	TS "TypePatternVariable"],
 			[[],							TS_B,	TS "OverloadedTypePatternVariable"],
-			[TS "TypePatternVariable",		TS_E,	TS "Variable"],
-			[TS "OverloadedTypeVariable",	TS_E,	TS "Variable" TABCr "^"]
+			[TS "TypePatternVariable",		TS_E,	TSC "Variable"],
+			[TS "OverloadedTypeVariable",	TS_E,	TSC "Variable" TABCr "^"]
 		],H3
 			"A.3.3" "Graph Expressions"
 		,ST [
@@ -238,8 +238,8 @@ page_a_4 char_width_and_kerns
 			table_alt "SpecialExpression",
 			table_alt "DynamicExpression"
 		],ST2 [
-			[TS "GraphVariable",TS_E,	TS "Variable",			TS "// " TAL "see A.8"],
-			[[],				TS_B,	TS "SelectorVariable",	TS "// " TAL "see A.8"]
+			[TS "GraphVariable",TS_E,	TSC "Variable",			TS "// " TAL "see A.8"],
+			[[],				TS_B,	TSC "SelectorVariable",	TS "// " TAL "see A.8"]
 		],ST [
 			[TS "LambdaAbstr",		TS_E,	TST "\\" TA " {Pattern}+ {LambdaGuardAlt} {LetBeforeExpression} LambdaResult"],
 			[TS "LambdaResult",		TS_E,	TST "= " TA " GraphExpr"],
@@ -341,7 +341,7 @@ page_a_5 char_width_and_kerns
 			[TS "MacroDef",			TS_E,	TS "[MacroFixityDef]"],
 			[[],					[],	    TS "DefOfMacro"],
 			[TS "MacroFixityDef",	TS_E,	TST "(" TAC "FunctionName" TAT ")" TA " [Fix][Prec] " TABCb ";"],
-			[TS "DefOfMacro",		TS_E,	TS "Function {Variable} " TAT ":==" TA " FunctionBody " TABCb ";"],
+			[TS "DefOfMacro",		TS_E,	TS "Function {" TAC "Variable" TA "} " TAT ":==" TA " FunctionBody " TABCb ";"],
 			[[],					[],		TS "[LocalFunctionAltDefs]"]
 		],H2
 			"A.5" "Type Definition"
@@ -365,9 +365,9 @@ page_a_5 char_width_and_kerns
 			 []]++dummy_columns
 		]),ST [
 			[TS "TypeLhs",	TS_E,	TS "[" TAT "*" TA "] TypeConstructor",	TS "// " TAL "see A.8"],
-			[[],			[],		TS "{TypeVariable}",					[]]
+			[[],			[],		TS "{" TAC "TypeVariable" TA "}",		[]]
 		],ST [
-			[TS "ExistentalQuantVariables",	TS_E,	TST "E." TA "{TypeVariable }+" TAT ":"]
+			[TS "ExistentalQuantVariables",	TS_E,	TST "E." TA "{" TAC "TypeVariable" TA " }+" TAT ":"]
 		],ST [
 			[TS "Fix",	TS_E,	TSBCr "infixl"],
 			[[],		TS_B,	TSBCr "infixr"],
@@ -375,15 +375,14 @@ page_a_5 char_width_and_kerns
 		],ST [
 			[TS "Prec",	TS_E,	TS "Digit",	TS "// " TAL "see A.8"]
 		],ST [
-			// [TS "BrackType",	TS_E,	TS "[UniversalQuantVariables] [Strict] [UnqTypeAttrib] SimpleType"]
-			[TS "BrackType",	TS_E,	TS "[UniversalQuantVariables] [Strict] [UnqTypeAttrib] TypeExpression"]
+			[TS "BrackType",	TS_E,	TS "[UniversalQuantVariables] [Strict] [UnqTypeAttrib] SimpleType"]
 		],ST [
-			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{TypeVariable }+" TAT ":"]
+			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{" TAC "TypeVariable" TA " }+" TAT ":"]
 		],ST [
 			[TS "Strict",	TS_E,	TST "!"]
 		],ST [
 			[TS "UnqTypeAttrib",	TS_E,	TST "*",							[]],
-			[[],					TS_B,	TS "UniqueTypeVariable" TAT ":",	TS "// " TAL "see A.8"],
+			[[],					TS_B,	TSC "UniqueTypeVariable" TAT ":",	TS "// " TAL "see A.8"],
 			[[],					TS_B,	TST ".",							[]]
 		]
 		];
@@ -394,10 +393,10 @@ page_a_6 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
 		[ST [
+			[TS "Type",				TS_E,	TS "{BrackType}+"]
+		],ST [
 			[TS "RecordTypeDef",	TS_E,
 			 TST "::" TA "TypeLhs " TAT "=" TA " [ExistentalQuantVariables] [Strict] " TAT "{" TA "{" TAC "FieldName" TA " " TAT "::" TA "[Strict] Type}-list" TAT "}" TA " " TABCb ";"]
-		],ST [
-			[TS "Type",						TS_E,	TS "{BrackType}+"]
 		],ST [
 			[TS "SynonymTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT ":==" TA " Type " TABCb ";"]
 		],ST [
@@ -407,9 +406,8 @@ page_a_6 char_width_and_kerns
 		],H3
 			"A.5.1" "Types Expression"
 		,ST2 [
-			// SimpleType ? not in manual ?
-			[TS "TypeExpression",	TS_E,	TS "TypeVariable",				TS "// " TAL "see A.8"],
-			[[],					TS_B,	TS "TypeConstructorName",		[]],
+			[TS "SimpleType",		TS_E,	TSC "TypeVariable",				TS "// " TAL "see A.8"],
+			[[],					TS_B,	TSC "TypeConstructorName",		[]],
 			[[],					TS_B,	TST "(" TA "Type" TAT ")",		[]],
 			[[],					TS_B,	TS "PredefinedType",			[]],
 			[[],					TS_B,	TS "PredefinedTypeConstructor",	[]]
@@ -457,10 +455,10 @@ page_a_6 char_width_and_kerns
 			[TS "ClassDef",	TS_E,	TS "TypeClassDef"],
 			[[],			TS_B,	TS "TypeClassInstanceDef"]
 		],ST [
-			[TS "TypeClassDef",	TS_E,	TSBCr "class" TA " ClassName TypeVariable+ [ClassContext]"],
+			[TS "TypeClassDef",	TS_E,	TSBCr "class" TA " " TAC "ClassName" TA " " TAC "TypeVariable" TA "+ [ClassContext]"],
 		    [[],				[],		TS "[[" TABCr "where" TA "] " TAT "{" TA " {ClassMemberDef}+ " TAT "}" TA "]"],
-			[[],				TS_B,	TSBCr "class" TA " FunctionName TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"],
-			[[],				TS_B,	TSBCr "class" TA " (FunctionName) [Fix][Prec] TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"]
+			[[],				TS_B,	TSBCr "class" TA " " TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType" TABCb ";"],
+			[[],				TS_B,	TSBCr "class" TA " (" TAC "FunctionName" TA ") [Fix][Prec] " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType" TABCb ";"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -473,11 +471,11 @@ page_a_7 char_width_and_kerns
 			[TS "ClassMemberDef",	TS_E,	TS "FunctionTypeDef"],
 			[[],					[],		TS "[MacroDef]"]
 		],ST2 [
-			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " ClassName Type+ [ClassContext]",
+			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " " TAC "ClassName" TA " Type+ [ClassContext]",
 			 []],
 			[[],						[],		TS "[[" TABCr "where" TA "] " TAT "{" TA "{DefOfFunction}+ " TAT "}" TA "]",
 			 TS "// in implementation modules"],
-			[[],						[],		TS "[" TABCr "special" TA " {TypeVariable = Type}+]",
+			[[],						[],		TS "[" TABCr "special" TA " {" TAC "TypeVariable" TA " = Type}+]",
 			 TS "// in definition modules"]
 		],ST [
 			[TS "GenericsDef",	TS_E,	TS "GenericDef ;"],
@@ -582,8 +580,8 @@ page_a_8 char_width_and_kerns
 			[[],			TS_B]++separate_by TS_B [TST (toString c) \\ c<-['A'..'F']]++repeatn 8 [],
 			[[],			TS_B]++separate_by TS_B [TST (toString c) \\ c<-['a'..'f']]++repeatn 8 []
 		 ],ST [
-			[TS "CharDel",		TS_E,	TS "'"],
-			[TS "StringDel",	TS_E,	TS "\""]
+			[TS "CharDel",		TS_E,	TST "'"],
+			[TS "StringDel",	TS_E,	TST "\""]
 		]
 		];
 	= make_page pdf_i pdf_shl;

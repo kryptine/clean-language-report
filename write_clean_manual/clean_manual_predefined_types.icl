@@ -27,12 +27,12 @@ page_4_1 char_width_and_kerns
 						"sugar that has been added to create and to inspect (via pattern matching) objects of these popular types are treated in "+++
 						"this chapter.")
 		),ST2 [
-			[TS "PredefinedType",	TS_E,	TS "BasicType",			TS "// " TAL "see 4.1"],
-			[[],					TS_B,	TS "ListType",			TS "// " TAL "see 4.2"],
-			[[],					TS_B,	TS "TupleType",			TS "// " TAL "see 4.3"],
-			[[],					TS_B,	TS "ArrayType",			TS "// " TAL "see 4.4"],
-			[[],					TS_B,	TS "ArrowType",			TS "// " TAL "see 4.6"],
-			[[],					TS_B,	TS "PredefAbstractType",TS "// " TAL "see 4.7"]
+			[TS "PredefinedType",	TS_E,	TS "BasicType",		TS "// " TAL "see 4.1"],
+			[[],					TS_B,	TS "ListType",		TS "// " TAL "see 4.2"],
+			[[],					TS_B,	TS "TupleType",		TS "// " TAL "see 4.3"],
+			[[],					TS_B,	TS "ArrayType",		TS "// " TAL "see 4.4"],
+			[[],					TS_B,	TS "ArrowType",		TS "// " TAL "see 4.6"],
+			[[],					TS_B,	TS "PredefType",	TS "// " TAL "see 4.7"]
 		],S(
 			"In Chapter 5 we will explain how new types can be defined."
 		),H2
