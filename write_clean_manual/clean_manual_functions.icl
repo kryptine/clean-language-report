@@ -966,9 +966,11 @@ page_3_12 char_width_and_kerns
 			[[],							TS_B,	TSBCr "infixr"],
 			[[],							TS_B,	TSBCr "infix"],
 			[TS "Prec",						TS_E,	TS "Digit"],
-			[TS "FunctionType",				TS_E,	TS "Type " TAT "->" TA " Type [ClassContext] [UnqTypeUnEqualities]"],
+			[TS "FunctionType",				TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
+			[TS "ArgType",					TS_E,	TS "BrackType"],
+			[[],							TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type" TA ")"],
 			[TS "Type",						TS_E,	TS "{BrackType}+"],
-			[TS "BrackType",				TS_E,	TS "[UniversalQuantVariables] [Strict] [UnqTypeAttrib] SimpleType"],
+			[TS "BrackType",				TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"],
 			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{TypeVariable }+" TAT ":"]
 	],MP [
 		[],
@@ -1120,9 +1122,11 @@ page_3_14 char_width_and_kerns
 				"A. (for all) direct after the :: in the type definition of a function. In this way one can explicitly introduce the type variables used in the "+++
 				"type definition of the function. As usual, the type variables thus introduced have the whole function type definition as scope.")
 		),ST [
-			[TS "FunctionType",				TS_E,	TS "Type " TAT "->" TA " Type [ClassContext] [UnqTypeUnEqualities]"],
+			[TS "FunctionType",				TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
+			[TS "ArgType",					TS_E,	TS "BrackType"],
+			[[],							TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type" TA ")"],
 			[TS "Type",						TS_E,	TS "{BrackType}+"],
-			[TS "BrackType",				TS_E,	TS "[UniversalQuantVariables] [Strict] [UnqTypeAttrib] SimpleType"],
+			[TS "BrackType",				TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"],
 			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{TypeVariable }+" TAT ":"]
 		],MP [
 			[],

@@ -139,7 +139,7 @@ page_a_2 char_width_and_kerns
 		,ST [
 			[TS "FunctionTypeDef",		TS_E,	TSC "FunctionName" TA " " TAT "::" TA " FunctionType " TABCb ";"],
 			[[],						TS_B,	TST "(" TAC "FunctionName" TAT ")" TA " [Fix][Prec] [" TAT "::" TA" FunctionType] " TABCb ";"],
-			[TS "FunctionType",			TS_E,	TS "[Type " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
+			[TS "FunctionType",			TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
 			[TS "ClassContext",			TS_E,	TST "|" TA " ClassOrGenericName-list " TAC "TypeVariable" TA " {" TAT "&" TA " " TAC "ClassName" TA "-list " TAC "TypeVariable" TA "}"],
 			[TS "UnqTypeUnEqualities",	TS_E,	TS "{{" TAC "UniqueTypeVariable" TA "}+ " TAT "<=" TA " " TAC "UniqueTypeVariable" TA "}-list"],
 			[TS "ClassOrGenericName",	TS_E,	TSC "ClassName"],
@@ -163,9 +163,6 @@ page_a_3 char_width_and_kerns
 		],ST [
 			[TS "PatternVariable",	TS_E,	TSC "Variable"],
 			[[],					TS_B,	TST "_"]
-		],ST [
-			[TS "Constructor",	TS_E,	TSC "ConstructorName"],
-			[[],				TS_B,	TST "(" TAC "ConstructorName" TAT ")"]
 		],ST [
 			[TS "Constructor",	TS_E,	TSC "ConstructorName"],
 			[[],				TS_B,	TST "(" TAC "ConstructorName" TAT ")"]
@@ -359,9 +356,9 @@ page_a_5 char_width_and_kerns
 			[[],							[],		[],
 			 TS "{" TAT "|" TA " ConstructorDef} " TABCb ";"]
 			 ++dummy_columns,
-			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {BrackType}",
+			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {ArgType}",
 			 []]++dummy_columns,
-			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [Fix][Prec] {BrackType}",
+			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [Fix][Prec] {ArgType}",
 			 []]++dummy_columns
 		]),ST [
 			[TS "TypeLhs",	TS_E,	TS "[" TAT "*" TA "] TypeConstructor",	TS "// " TAL "see A.8"],
@@ -375,9 +372,7 @@ page_a_5 char_width_and_kerns
 		],ST [
 			[TS "Prec",	TS_E,	TS "Digit",	TS "// " TAL "see A.8"]
 		],ST [
-			[TS "BrackType",	TS_E,	TS "[UniversalQuantVariables] [Strict] [UnqTypeAttrib] SimpleType"]
-		],ST [
-			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{" TAC "TypeVariable" TA " }+" TAT ":"]
+			[TS "BrackType",	TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"]
 		],ST [
 			[TS "Strict",	TS_E,	TST "!"]
 		],ST [
@@ -393,10 +388,17 @@ page_a_6 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
 		[ST [
-			[TS "Type",				TS_E,	TS "{BrackType}+"]
+			[TS "Type",				TS_E,	TS "{BrackType}+"],
+			[TS "ArgType",			TS_E,	TS "BrackType"],
+			[[],					TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type" TA ")"]
+		],ST [
+			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{" TAC "TypeVariable" TA " }+" TAT ":"]
 		],ST [
 			[TS "RecordTypeDef",	TS_E,
-			 TST "::" TA "TypeLhs " TAT "=" TA " [ExistentalQuantVariables] [Strict] " TAT "{" TA "{" TAC "FieldName" TA " " TAT "::" TA "[Strict] Type}-list" TAT "}" TA " " TABCb ";"]
+			 TST "::" TA "TypeLhs " TAT "=" TA " [ExistentalQuantVariables] [Strict] " TAT "{" TA "{" TAC "FieldName" TA " " TAT "::" TA " FieldType}-list" TAT "}" TA " " TABCb ";"],
+			[TS "FieldType",		TS_E,	TS "[Strict] Type"],
+			[[],					TS_B,	TS "UniversalQuantVariables [Strict] Type"],
+			[[],					TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type" TA ")"]
 		],ST [
 			[TS "SynonymTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT ":==" TA " Type " TABCb ";"]
 		],ST [
@@ -436,7 +438,7 @@ page_a_6 char_width_and_kerns
 			[[],				TS_B,	TST "#",								TS "// unboxed array"]
 		],ST2 [
 			[TS "PredefType",					TS_E,	TST "World",	TS "// see " TAC "StdWorld.dcl"],
-			[[],								TS_E,	TST "File",		TS "// see " TAC "StdFileIO.dcl"],
+			[[],								TS_B,	TST "File",		TS "// see " TAC "StdFileIO.dcl"],
 			[[],								TS_B,	TST "String",	TS "// synonym for {#Char}"],
 			[TS "PredefinedTypeConstructor",	TS_E,	TST "[]",		TS "// list type constructor"],
 			[[],								TS_B,	TST "[! ]",		TS "// head strict list type constructor"],
@@ -449,7 +451,15 @@ page_a_6 char_width_and_kerns
 			[[],								TS_B,	TST "{!}",		TS "// strict array type constructor"],
 			[[],								TS_B,	TST "{#}",		TS "// unboxed array type constructor"],
 			[[],								TS_B,	TST "(->)",		TS "// arrow type constructor"]
-		],H2
+		]
+		];
+	= make_page pdf_i pdf_shl;
+
+page_a_7 :: !{!CharWidthAndKerns} -> Page;
+page_a_7 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[H2
 			"A.6" "Class and Generic Definitions"
 		,ST [
 			[TS "ClassDef",	TS_E,	TS "TypeClassDef"],
@@ -459,15 +469,7 @@ page_a_6 char_width_and_kerns
 		    [[],				[],		TS "[[" TABCr "where" TA "] " TAT "{" TA " {ClassMemberDef}+ " TAT "}" TA "]"],
 			[[],				TS_B,	TSBCr "class" TA " " TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType" TABCb ";"],
 			[[],				TS_B,	TSBCr "class" TA " (" TAC "FunctionName" TA ") [Fix][Prec] " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType" TABCb ";"]
-		]
-		];
-	= make_page pdf_i pdf_shl;
-
-page_a_7 :: !{!CharWidthAndKerns} -> Page;
-page_a_7 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[ST [
+		],ST [
 			[TS "ClassMemberDef",	TS_E,	TS "FunctionTypeDef"],
 			[[],					[],		TS "[MacroDef]"]
 		],ST2 [
@@ -523,7 +525,15 @@ page_a_7 char_width_and_kerns
 			[TS "LowerCaseId",	TS_E, TS "LowerCaseChar~{IdChar}"],
 			[TS "UpperCaseId",	TS_E, TS "UpperCaseChar~{IdChar}"],
 			[TS "SymbolId",		TS_E, TS "{SymbolChar}+"]
-		  ],ST [
+		  ]
+		];
+	= make_page pdf_i pdf_shl;
+
+page_a_8 :: !{!CharWidthAndKerns} -> Page;
+page_a_8 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[ST [
 			[TS "LowerCaseChar",TS_E]++separate_by TS_B [TST (toString c) \\ c<-['a'..'j']],
 			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['k'..'t']],
 			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['u'..'z']]++repeatn 8 [],
@@ -537,15 +547,7 @@ page_a_7 char_width_and_kerns
 			[[],				TS_B,TS "UpperCaseChar",[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],
 			[[],				TS_B,TS "Digit",[],[],[],[],[],[],[],[],[],[],[],[],TST "// " TAL "see A.9",[],[],[],[],[]],
 			[[],				TS_B,TST "_",TS_B,TST "`",[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
-		]
-		];
-	= make_page pdf_i pdf_shl;
-
-page_a_8 :: !{!CharWidthAndKerns} -> Page;
-page_a_8 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[H2
+		],H2
 			"A.9" "Denotations"
 		,ST2 [
 			[TS "IntDenotation",	TS_E,	TS "[Sign]{Digit}+",							TS "// decimal number"],

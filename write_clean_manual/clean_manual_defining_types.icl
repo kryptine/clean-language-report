@@ -51,14 +51,16 @@ page_5_1 char_width_and_kerns
 		],ST [
 			[TS "TypeLhs",					TS_E,	TS "[" TAT "*" TA "] TypeConstructor {TypeVariable}"],
 			[TS "TypeConstructor",			TS_E,	TSC "TypeName"],
-			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] ConstructorName {BrackType}"],
-			[[],							TS_B,	TS "[ExistentalQuantVariables] (ConstructorName) [Fix][Prec] {BrackType}"],
+			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {ArgType}"],
+			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [Fix][Prec] {ArgType}"],
 			[TS "Fix",						TS_E,	TSBCr "infixl"],
 			[[],							TS_B,	TSBCr "infixr"],
 			[[],							TS_B,	TSBCr "infix"],
 			[TS "Prec",						TS_E,	TS "Digit"],
 			[[],							[],		[]],
-			[TS "BrackType",				TS_E,	TS "[UniversalQuantVariables] [Strict] [UnqTypeAttrib] SimpleType"],
+			[TS "BrackType",				TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"],
+			[TS "ArgType",					TS_E,	TS "BrackType"],
+			[[],							TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type" TA ")"],
 			[TS "ExistentalQuantVariables",	TS_E,	TST "E." TA "{TypeVariable }+" TAT ":"],
 			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{TypeVariable }+" TAT ":"] 
 		]
@@ -230,9 +232,9 @@ page_5_3 char_width_and_kerns
 			[[],							[],		[],
 			 TS "{" TAT "|" TA " ConstructorDef} " TABCb ";"]
 			 ++dummy_columns,
-			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {BrackType}",
+			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {ArgType}",
 			 []]++dummy_columns,
-			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [Fix][Prec] {BrackType}",
+			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [Fix][Prec] {ArgType}",
 			 []]++dummy_columns,
 			[TS "ExistentalQuantVariables",	TS_E,	TST "E." TA "{TypeVariable}+" TAT ":",
 			 []]++dummy_columns
@@ -306,11 +308,15 @@ page_5_4 char_width_and_kerns
 			[[],							[],		[],
 			 TS "{" TAT "|" TA " ConstructorDef} " TABCb ";"]
 			 ++dummy_columns,
-			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {BrackType}",
+			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {ArgType}",
 			 []]++dummy_columns,
-			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [Fix][Prec] {BrackType}",
+			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [Fix][Prec] {ArgType}",
 			 []]++dummy_columns,
-			[TS "BrackType",				TS_E,	TS "[UniversalQuantVariables] [Strict] [UnqTypeAttrib] SimpleType",
+			[TS "BrackType",				TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType",
+			 []]++dummy_columns,
+			[TS "ArgType",					TS_E,	TS "BrackType",
+			 []]++dummy_columns,
+			[[],							TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type" TA ")",
 			 []]++dummy_columns,
 			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{TypeVariable}+" TAT ":",
 			 []]++dummy_columns
@@ -369,9 +375,9 @@ page_5_5 char_width_and_kerns
 			[[],							[],		[],
 			 TS "{" TAT "|" TA " ConstructorDef} " TABCb ";"]
 			 ++dummy_columns,
-			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {BrackType}",
+			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {ArgType}",
 			 []]++dummy_columns,
-			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [Fix][Prec] {BrackType}",
+			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [Fix][Prec] {ArgType}",
 			 []]++dummy_columns,
 			[TS "Strict",					TS_E,	TST "!",
 			 []]++dummy_columns
@@ -514,7 +520,10 @@ page_5_7 char_width_and_kerns
 			TAL "see 10.1" TA "). The optional uniqueness attributes are treated in " TAL "Chapter 9" TA "."
 		),ST [
 			[TS "RecordTypeDef",	TS_E,
-			 TST "::" TA "TypeLhs " TAT "=" TA " [ExistentalQuantVariables] [Strict] " TAT "{" TA "{" TAC "FieldName" TA " " TAT "::" TA "[Strict] Type}-list" TAT "}" TA " " TABCb ";"]
+			 TST "::" TA "TypeLhs " TAT "=" TA " [ExistentalQuantVariables] [Strict] " TAT "{" TA "{" TAC "FieldName" TA " " TAT "::" TA "FieldType}-list" TAT "}" TA " " TABCb ";"],
+			[TS "FieldType",		TS_E,	TS "[Strict] Type"],
+			[[],					TS_B,	TS "UniversalQuantVariables [Strict] Type"],
+			[[],					TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type" TA ")"]
 		],S(
 			"As data constructor for a record the name of the record type is used internally."
 		),MSP [
@@ -601,7 +610,7 @@ page_5_8 char_width_and_kerns
 		,P(
 			TS "The first way is to create a record is by " TAI "explicitly" TA " defining a value for " TAI "each" TA " of its fields."
 		),ST [
-			[TS "RecordDenotation",	TS_E,	TST "{" TA "[TypeName" TAT "|" TA "] {" TAC "FieldName" TA " " TAT "=" TA " GraphExpr}-list]" TAT "}"]
+			[TS "RecordDenotation",	TS_E,	TST "{" TA "[" TAC "TypeName" TAT "|" TA "] {" TAC "FieldName" TA " " TAT "=" TA " GraphExpr}-list]" TAT "}"]
 		],PCH
 			(TS "Creation of a record.")
 			(map comment_blue [
@@ -634,7 +643,7 @@ page_5_8 char_width_and_kerns
 		,P(
 			TS "The second way is to construct a new record out of an existing one (a " TAI "functional record update" TA ")."
 		),ST2 [
-			[TS "RecordUpdate",	TS_E,	TST "{" TA "[TypeName" TAT "|" TA "][RecordExpr " TAT "&" TA "][{" TAC "FieldName" TA " {Selection} = GraphExpr}-list]" TAT "}"],
+			[TS "RecordUpdate",	TS_E,	TST "{" TA "[" TAC "TypeName" TAT "|" TA "][RecordExpr " TAT "&" TA "][{" TAC "FieldName" TA " {Selection} = GraphExpr}-list]" TAT "}"],
 			[TS "Selection",	TS_E,	TST "." TAC "FieldName"],
 			[[],				TS_B,	TST "." TA "ArrayIndex"],
 			[TS "RecordExpr",	TS_E,	TS "GraphExpr"]
@@ -686,8 +695,8 @@ page_5_9 char_width_and_kerns
 		,N
 		,H3T "Selection of a Record Field"
 		,ST [
-			[TS "RecordSelection",	TS_E,	TS "RecordExpr [" TAT "." TA "TypeName]" TAT "." TAC "FieldName" TA " {Selection}"],
-			[[],					TS_B,	TS "RecordExpr [" TAT "." TA "TypeName]" TAT "!" TAC "FieldName" TA " {Selection}"],
+			[TS "RecordSelection",	TS_E,	TS "RecordExpr [" TAT "." TAC "TypeName" TA "]" TAT "." TAC "FieldName" TA " {Selection}"],
+			[[],					TS_B,	TS "RecordExpr [" TAT "." TAC "TypeName" TA "]" TAT "!" TAC "FieldName" TA " {Selection}"],
 			[TS "Selection",		TS_E,	TST "." TAC "FieldName"],
 			[[],					TS_B,	TST "." TA "ArrayIndex"]
 		],P(
@@ -716,7 +725,7 @@ page_5_9 char_width_and_kerns
 			TA (" can be specified as pattern. Only those fields which contents one would like to use in the right-hand "+++
 				"side need to be mentioned in the pattern.")
 		),ST [
-			[TS "RecordPattern",	TS_E,	TST "{" TA "[TypeName " TAT "|" TA "] {" TAC "FieldName" TA " [" TAT "=" TA " GraphPattern]}-list" TAT "}"]
+			[TS "RecordPattern",	TS_E,	TST "{" TA "[" TAC "TypeName" TA " " TAT "|" TA "] {" TAC "FieldName" TA " [" TAT "=" TA " GraphPattern]}-list" TAT "}"]
 		],MSP [
 			TS "The type of the record must have been defined in a record type definition.",
 			TS "The field names specified in the pattern must be identical to the field names specified in the corresponding type.",

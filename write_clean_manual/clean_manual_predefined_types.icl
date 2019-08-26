@@ -1078,7 +1078,7 @@ page_4_14 char_width_and_kerns
 			 "The type is synonym for an unboxed array of characters ") TAC "{#Char}" TA "."
 		),ST2 [
 				[TS "PredefType",	TS_E,	TST "World",	TS "// see " TAC "StdWorld.dcl"],
-				[[],				TS_E,	TST "File",		TS "// see " TAC "StdFileIO.dcl"],
+				[[],				TS_B,	TST "File",		TS "// see " TAC "StdFileIO.dcl"],
 				[[],				TS_B,	TST "String",	TS "// synonym for {#Char}"]
 		]
 		];

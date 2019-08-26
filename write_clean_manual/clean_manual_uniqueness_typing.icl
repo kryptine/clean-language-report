@@ -51,8 +51,7 @@ page_9_1 char_width_and_kerns
 			TA "). A classical type can be prefixed by one of the following uniqueness type attributes:"
 		),ST2 [
 			[TS "Type",				TS_E,	TS "{BrackType}+",							[]],
-			[TS "BrackType",		TS_E,	TS "[UniversalQuantVariables] [Strict]",	[]],
-			[[],					[],		TS "[UnqTypeAttrib] SimpleType",			[]],
+			[TS "BrackType",		TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType",	[]],
 			[TS "UnqTypeAttrib",	TS_E,	TST "*",									TS "// type attribute \"unique\""],
 			[[],					TS_B,	TS "UniqueTypeVariable" TAT ":",			TS "// a type attribute variable"],
 			[[],					TS_B,	TST ".",									TS "// an anonymous type attribute variable"]
@@ -285,9 +284,9 @@ page_9_4 char_width_and_kerns
 			[[],							[],		[],
 			 TS "{" TAT "|" TA " ConstructorDef} " TABCb ";"]
 			 ++dummy_columns,
-			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {BrackType}",
+			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {ArgType}",
 			 []]++dummy_columns,
-			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [Fix][Prec] {BrackType}",
+			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [Fix][Prec] {ArgType}",
 			 []]++dummy_columns
 		],ST [
 			[TS "TypeLhs",					TS_E,	TS "[" TAT "*" TA "]TypeConstructor {TypeVariable}"],
@@ -296,7 +295,9 @@ page_9_4 char_width_and_kerns
 			[TS "ExistentalQuantVariables",	TS_E,	TST "E." TA "{TypeVariable }+" TAT ":"],
 			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{TypeVariable }+" TAT ":"] 
 		],ST [
-			[TS "BrackType",		TS_E,	TS "[UniversalQuantVariables] [Strict] [UnqTypeAttrib] SimpleType"],
+			[TS "BrackType",		TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"],
+			[TS "ArgType",			TS_E,	TS "BrackType"],
+			[[],					TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type" TA ")"],
 			[TS "UnqTypeAttrib",	TS_E,	TST "*"],
 			[[],					TS_B,	TS "UniqueTypeVariable" TAT ":"],
 			[[],					TS_B,	TST "."]
