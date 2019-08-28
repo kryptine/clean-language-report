@@ -201,7 +201,7 @@ page_6_3 char_width_and_kerns
 				"record which has to be passed to the function in worst case). Such a context can also be regarded as an "+++
 				"additional restriction imposed on a type variable, introducing a kind of ") TAI "bounded polymorphism" TA "."
 		),ST [
-			[TS "FunctionType",			TS_E,	TS "Type " TAT "->" TA " Type [ClassContext] [UnqTypeUnEqualities]"],
+			[TS "FunctionType",			TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
 			[TS "ClassContext",			TS_E,	TST "|" TA " ClassOrGenericName-list TypeVariable {" TAT "&" TA " ClassName-list TypeVariable }"],
 			[TS "ClassOrGenericName",	TS_E,	TSC "ClassName"],
 			[[],						TS_B,	TSC "FunctionName" TA " TypeKind"]

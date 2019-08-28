@@ -124,7 +124,7 @@ page_a_2 char_width_and_kerns
 		],ST [
 			[TS "FunctionBody",		TS_E,	TS "RootExpression "++TSb ";"],
 			[[],					[],		TS "[LocalFunctionDefs]"]
-  		],ST [
+		],ST [
 			[TS "RootExpression",	TS_E,	TS "GraphExpr"] 
 		],ST [
 			[TS "LocalFunctionAltDefs",	TS_E,	TS "[" TABCr "where" TA "] " TABCb "{" TA " {LocalDef}+ " TABCb "}"],
@@ -197,7 +197,7 @@ page_a_3 char_width_and_kerns
 			[[],				TS_B,	TS "StringDenotation"]
 		],ST [
 			[TS "DynamicPattern",			TS_E,	TST "(" TA "GraphPattern " TAT "::" TA " DynamicType" TAT ")"],
-			[TS "DynamicType",				TS_B,	TS "{ DynPatternType}+"],
+			[TS "DynamicType",				TS_E,	TS "[UniversalQuantVariables] {DynPatternType}+ [ClassContext]"],
 			[TS "DynPatternType",			TS_E,	TS "Type"],
 			[[],							TS_B,	TS "TypePatternVariable"],
 			[[],							TS_B,	TS "OverloadedTypePatternVariable"],
@@ -331,7 +331,7 @@ page_a_5 char_width_and_kerns
 			[TS "RecordSelection",	TS_E,	TS "RecordExpr [" TAT "." TA "TypeName]" TAT "." TAC "FieldName" TA " {Selection}"],
 			[[],					TS_B,	TS "RecordExpr [" TAT "." TA "TypeName]" TAT "!" TAC "FieldName" TA " {Selection}"]
 		],ST [
-			[TS "DynamicExpression"	,	TS_E,	TSBCr "dynamic" TA " GraphExpr [" TAT "::" TA " Type]"]
+			[TS "DynamicExpression"	,	TS_E,	TSBCr "dynamic" TA " GraphExpr [" TAT "::" TA " [UniversalQuantVariables] Type [ClassContext]]"]
 		],H2
 			"A.4" "Macro Definition"
 		,ST [
