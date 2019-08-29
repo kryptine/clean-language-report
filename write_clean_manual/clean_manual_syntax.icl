@@ -233,7 +233,8 @@ page_a_4 char_width_and_kerns
 			table_alt "CaseExpr",
 			table_alt "LetExpr",
 			table_alt "SpecialExpression",
-			table_alt "DynamicExpression"
+			table_alt "DynamicExpression",
+			table_alt "MatchesPatternExpr"
 		],ST2 [
 			[TS "GraphVariable",TS_E,	TSC "Variable",			TS "// " TAL "see A.8"],
 			[[],				TS_B,	TSC "SelectorVariable",	TS "// " TAL "see A.8"]
@@ -294,8 +295,6 @@ page_a_4 char_width_and_kerns
 			[TS "Selector",			TS_E,	TS "BrackPattern",							TS "// for brack patterns " TAL "see 3.2"],
 			[TS "ListExpr",			TS_E,	TS "GraphExpr",								[]],
 			[TS "ArrayExpr",		TS_E,	TS "GraphExpr",								[]]
-		],ST [
-			[TS "Tuple",	TS_E,	TST "(" TA "GraphExpr" TAT "," TA "{GraphExpr}-list" TAT ")"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -304,7 +303,9 @@ page_a_5 :: !{!CharWidthAndKerns} -> Page;
 page_a_5 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
-		[ST2 [
+		[ST [
+			[TS "Tuple",	TS_E,	TST "(" TA "GraphExpr" TAT "," TA "{GraphExpr}-list" TAT ")"]
+		],ST2 [
 			[TS "Array",			TS_E,	TS "ArrayDenotation",									[]],
 			[[],					TS_B,	TS "ArrayUpdate",										[]],
 			[[],					TS_B,	TS "ArrayComprehension",								[]],
@@ -331,7 +332,10 @@ page_a_5 char_width_and_kerns
 			[TS "RecordSelection",	TS_E,	TS "RecordExpr [" TAT "." TA "TypeName]" TAT "." TAC "FieldName" TA " {Selection}"],
 			[[],					TS_B,	TS "RecordExpr [" TAT "." TA "TypeName]" TAT "!" TAC "FieldName" TA " {Selection}"]
 		],ST [
-			[TS "DynamicExpression"	,	TS_E,	TSBCr "dynamic" TA " GraphExpr [" TAT "::" TA " [UniversalQuantVariables] Type [ClassContext]]"]
+			[TS "DynamicExpression",TS_E,	TSBCr "dynamic" TA " GraphExpr [" TAT "::" TA " [UniversalQuantVariables] Type [ClassContext]]"]
+		],ST [
+			[TS "MatchesPatternExpr",	TS_E,	TS "GraphExpr" TA " " TAT "=:" TA " " TAC "ConstructorName" TA " { " TAT "_" TA " }"],
+			[[],						TS_B,	TS "GraphExpr" TA " " TAT "=:" TA " BrackPattern"]
 		],H2
 			"A.4" "Macro Definition"
 		,ST [
@@ -375,10 +379,6 @@ page_a_5 char_width_and_kerns
 			[TS "BrackType",	TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"]
 		],ST [
 			[TS "Strict",	TS_E,	TST "!"]
-		],ST [
-			[TS "UnqTypeAttrib",	TS_E,	TST "*",							[]],
-			[[],					TS_B,	TSC "UniqueTypeVariable" TAT ":",	TS "// " TAL "see A.8"],
-			[[],					TS_B,	TST ".",							[]]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -388,6 +388,10 @@ page_a_6 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
 		[ST [
+			[TS "UnqTypeAttrib",	TS_E,	TST "*",							[]],
+			[[],					TS_B,	TSC "UniqueTypeVariable" TAT ":",	TS "// " TAL "see A.8"],
+			[[],					TS_B,	TST ".",							[]]
+		],ST [
 			[TS "Type",				TS_E,	TS "{BrackType}+"],
 			[TS "ArgType",			TS_E,	TS "BrackType"],
 			[[],					TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type" TA ")"]

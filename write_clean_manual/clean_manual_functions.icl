@@ -309,7 +309,8 @@ page_3_4 char_width_and_kerns
 			table_alt_link "CaseExpr" "see 3.4.2",
 			table_alt_link "LetExpr" "see 3.5.1",
 			table_alt "SpecialExpression",
-			table_alt "DynamicExpression"
+			table_alt "DynamicExpression",
+			table_alt "MatchesPatternExpr"
 		],ST [
 			[TS "Function",		TS_E,	TSC "FunctionName"],
 			[[],				TS_B,	TST "(" TAC "FunctionName" TAT ")"],
