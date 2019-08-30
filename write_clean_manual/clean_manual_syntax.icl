@@ -351,7 +351,9 @@ page_a_5 char_width_and_kerns
 			[[],			TS_B,	TS "RecordTypeDef"],
 			[[],			TS_B,	TS "SynonymTypeDef"],
 			[[],			TS_B,	TS "AbstractTypeDef"],
-			[[],			TS_B,	TS "AbstractSynonymTypeDef"]
+			[[],			TS_B,	TS "AbstractSynonymTypeDef"],
+			[[],			TS_B,	TS "ExtensibleAlgebraicTypeDef"],
+			[[],			TS_B,	TS "AlgebraicTypeDefExtension"]
 		],ST (let {
 				dummy_columns = repeatn 6 [];
 			} in [
@@ -375,10 +377,6 @@ page_a_5 char_width_and_kerns
 			[[],		TS_B,	TSBCr "infix"]
 		],ST [
 			[TS "Prec",	TS_E,	TS "Digit",	TS "// " TAL "see A.8"]
-		],ST [
-			[TS "BrackType",	TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"]
-		],ST [
-			[TS "Strict",	TS_E,	TST "!"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -388,6 +386,10 @@ page_a_6 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
 		[ST [
+			[TS "BrackType",	TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"]
+		],ST [
+			[TS "Strict",	TS_E,	TST "!"]
+		],ST [
 			[TS "UnqTypeAttrib",	TS_E,	TST "*",							[]],
 			[[],					TS_B,	TSC "UniqueTypeVariable" TAT ":",	TS "// " TAL "see A.8"],
 			[[],					TS_B,	TST ".",							[]]
@@ -409,6 +411,10 @@ page_a_6 char_width_and_kerns
 			[TS "AbstractTypeDef",	TS_E,	TST "::" TA "TypeLhs " TABCb ";"]
 		],ST [
 			[TS "AbstractSynonymTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT "(:==" TA " Type " TAT ")" TA " " TABCb ";"]
+		],ST [
+			[TS "ExtensibleAlgebraicTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT "=" TA " {ConstructorDef " TAT "|" TA "} " TAT ".." TABCb ";"]
+		],ST [
+			[TS "AlgebraicTypeDefExtension",	TS_E,	TST "::" TA "TypeLhs " TAT "|" TA " ConstructorDef " TA " {" TAT "|" TA " ConstructorDef} " TABCb ";"]
 		],H3
 			"A.5.1" "Types Expression"
 		,ST2 [
@@ -443,7 +449,16 @@ page_a_6 char_width_and_kerns
 		],ST2 [
 			[TS "PredefType",					TS_E,	TST "World",	TS "// see " TAC "StdWorld.dcl"],
 			[[],								TS_B,	TST "File",		TS "// see " TAC "StdFileIO.dcl"],
-			[[],								TS_B,	TST "String",	TS "// synonym for {#Char}"],
+			[[],								TS_B,	TST "String",	TS "// synonym for {#Char}"]
+		]
+		];
+	= make_page pdf_i pdf_shl;
+
+page_a_7 :: !{!CharWidthAndKerns} -> Page;
+page_a_7 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[ST2 [
 			[TS "PredefinedTypeConstructor",	TS_E,	TST "[]",		TS "// list type constructor"],
 			[[],								TS_B,	TST "[! ]",		TS "// head strict list type constructor"],
 			[[],								TS_B,	TST "[ !]",		TS "// tail strict list type constructor"],
@@ -455,15 +470,7 @@ page_a_6 char_width_and_kerns
 			[[],								TS_B,	TST "{!}",		TS "// strict array type constructor"],
 			[[],								TS_B,	TST "{#}",		TS "// unboxed array type constructor"],
 			[[],								TS_B,	TST "(->)",		TS "// arrow type constructor"]
-		]
-		];
-	= make_page pdf_i pdf_shl;
-
-page_a_7 :: !{!CharWidthAndKerns} -> Page;
-page_a_7 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[H2
+		],H2
 			"A.6" "Class and Generic Definitions"
 		,ST [
 			[TS "ClassDef",	TS_E,	TS "TypeClassDef"],
@@ -509,7 +516,15 @@ page_a_7 char_width_and_kerns
 			"A.7" "Foreign Export Definition"
 		,ST [
 			[TS "ForeignExportDef",	TS_E,	TSBCr "foreign export" TA " [ " TABCr "ccall" TA " | " TABCr "stdcall" TA " ] " TAC "FunctionName" TA " " TABCb";"]
-		],H2
+		]
+		];
+	= make_page pdf_i pdf_shl;
+
+page_a_8 :: !{!CharWidthAndKerns} -> Page;
+page_a_8 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[H2
 			"A.8" "Names"
 		,ST [
 			[TSC "ModuleName",			TS_E,TS "LowerCaseId",TS_B, TS "UpperCaseId",TS_B,TS "ModuleDirectoryName " TAT "." TA " ModuleName"],
@@ -525,19 +540,12 @@ page_a_7 char_width_and_kerns
 			[TSC "UniqueTypeVariable",	TS_E,TS "LowerCaseId",TS "",[],[],[]],
 			[TSC "ClassName",			TS_E,TS "LowerCaseId",TS_B,	TS "UpperCaseId",TS_B,TS "SymbolId"],
 			[TSC "MemberName",			TS_E,TS "LowerCaseId",TS_B,	TS "UpperCaseId",TS_B,TS "SymbolId"]
-		  ],ST [
+		  ]
+		,ST [
 			[TS "LowerCaseId",	TS_E, TS "LowerCaseChar~{IdChar}"],
 			[TS "UpperCaseId",	TS_E, TS "UpperCaseChar~{IdChar}"],
 			[TS "SymbolId",		TS_E, TS "{SymbolChar}+"]
-		  ]
-		];
-	= make_page pdf_i pdf_shl;
-
-page_a_8 :: !{!CharWidthAndKerns} -> Page;
-page_a_8 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[ST [
+		],ST [
 			[TS "LowerCaseChar",TS_E]++separate_by TS_B [TST (toString c) \\ c<-['a'..'j']],
 			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['k'..'t']],
 			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['u'..'z']]++repeatn 8 [],
