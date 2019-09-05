@@ -620,7 +620,7 @@ page_9_8 char_width_and_kerns
 			TA (" attributes in "+++sigma_string+++","+++sigma_string+++"`. One has, for example"),
 			[],
 			TSC "u:[v:[w:Int]]" TA (" "+++lessequal_string+++" ") TAC "u':[v':[w':Int]]" TA " iff " 
-			TAC "u" TA (" "+++lessequal_string+++" ") TAC "u'" TA ", " TAC "v" TA (lessequal_string+++" ") TAC "v'" TA ", " TAC "w" TA (" "+++lessequal_string+++" ") TAC "w'" TA ".",
+			TAC "u" TA (" "+++lessequal_string+++" ") TAC "u'" TA ", " TAC "v" TA (" "+++lessequal_string+++" ") TAC "v'" TA ", " TAC "w" TA (" "+++lessequal_string+++" ") TAC "w'" TA ".",
 			[],
 			TS ("However, a few refinements are necessary. Firstly, the uniqueness constraints expressed in terms of coercion "+++
 				"statements (on attribute variables) have to be taken into account. Secondly, the coercion restriction on arrow types "+++

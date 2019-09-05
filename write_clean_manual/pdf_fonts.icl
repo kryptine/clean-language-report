@@ -1,6 +1,6 @@
 implementation module pdf_fonts;
 
-import StdEnv,pdf_text,parse_afm;
+import StdEnv,pdf_text,parse_ttf;
 
 make_object i s
 	= toString i+++" 0 obj "+++s+++"\nendobj\n";
@@ -51,6 +51,30 @@ liberation_sans_bold_font_descriptor
 differences_s
 	= "/Differences [128 /lessequal /greaterequal /sigma /tau /Sigma /Tau 196 /Adieresis 225 /aacute 228 /adieresis 246 /odieresis 241 /ntilde 243 /oacute]";
 
+ls_unicode_to_adobe_encoding :: !Int -> Int;
+ls_unicode_to_adobe_encoding 0x2022 = 183; // bullet
+ls_unicode_to_adobe_encoding 0x2026 = 188; // ellipsis
+ls_unicode_to_adobe_encoding 0x2264 = 128; // lessequal
+ls_unicode_to_adobe_encoding 0x2265 = 129; // greaterequal
+ls_unicode_to_adobe_encoding 0x03C3 = 130; // sigma
+ls_unicode_to_adobe_encoding 0x03C4 = 131; // tau
+ls_unicode_to_adobe_encoding 0x03A3 = 132; // Sigma
+ls_unicode_to_adobe_encoding 0x03A4 = 133; // Tau
+//ls_unicode_to_adobe_encoding 0x00C4 = 196; // Adieresis
+//ls_unicode_to_adobe_encoding 0x00E1 = 225; // aacute
+//ls_unicode_to_adobe_encoding 0x00E4 = 228; // adieresis
+//ls_unicode_to_adobe_encoding 0x00F6 = 246; // odieresis
+//ls_unicode_to_adobe_encoding 0x00F1 = 241; // ntilde
+//ls_unicode_to_adobe_encoding 0x00F3 = 243; // oacute
+
+ls_unicode_to_adobe_encoding 183 = 999999999; // bullet
+ls_unicode_to_adobe_encoding 188 = 999999999; // ellipsis
+ls_unicode_to_adobe_encoding c
+	| c>=128 && c<=133
+		= 999999999; // lessequal, greaterequal, sigma, tau, Sigma, Tau
+
+ls_unicode_to_adobe_encoding c = c;
+
 liberation_sans_font char_width_and_kerns
 	= "<< /Type /Font /Subtype /TrueType /BaseFont /LiberationSans"+++
 	" /FontDescriptor 11 0 R"+++
@@ -80,6 +104,25 @@ microsoft_sans_serif_bold_font
 	= "<< /Type /Font /Subtype /TrueType /BaseFont /MicrosoftSansSerif,Bold >>";
 
 perpendicular_string :== "\x86"; // not in liberation sans
+
+c_unicode_to_adobe_encoding :: !Int -> Int;
+c_unicode_to_adobe_encoding 0x2022 = 183; // bullet
+c_unicode_to_adobe_encoding 0x2026 = 188; // ellipsis
+c_unicode_to_adobe_encoding 0x2264 = 128; // lessequal
+c_unicode_to_adobe_encoding 0x2265 = 129; // greaterequal
+c_unicode_to_adobe_encoding 0x03C3 = 130; // sigma
+c_unicode_to_adobe_encoding 0x03C4 = 131; // tau
+c_unicode_to_adobe_encoding 0x03A3 = 132; // Sigma
+c_unicode_to_adobe_encoding 0x03A4 = 133; // Tau
+c_unicode_to_adobe_encoding 0x22A5 = 134; // perpendicular
+
+c_unicode_to_adobe_encoding 183 = 999999999; // bullet
+c_unicode_to_adobe_encoding 188 = 999999999; // ellipsis
+c_unicode_to_adobe_encoding c
+	| c>=128 && c<=134
+		= 999999999; // lessequal, greaterequal, sigma, tau, Sigma, Tau, perpendicular
+
+c_unicode_to_adobe_encoding c = c;
 
 differences2_s
 	= "/Differences [128 /lessequal /greaterequal /sigma /tau /Sigma /Tau /perpendicular]";
@@ -219,12 +262,12 @@ read_font font_file_name world
 
 read_font_files :: !*World -> (![{#Char}],!{!CharWidthAndKerns},!*World);
 read_font_files world
-	# afm_file_name = MS_OR_LIBERATION "micross.afm" "LiberationSans-Regular.afm";
-	# (microsoft_or_liberation_sans_serif_cwk,world) = parse_afm_file afm_file_name world;
-	# afm_file_name = COURIER_NIMBUS_OR_LIBERATION "COM_____.AFM" "NimbusMonoPS-Regular.afm" "COM_____.AFM";
-	# (courier_cwk,world) = parse_afm_file afm_file_name world;
-	# afm_file_name = COURIER_NIMBUS_OR_LIBERATION "COB_____.AFM" "NimbusMonoPS-Bold.afm" "COB_____.AFM";
-	# (courier_bold_cwk,world) = parse_afm_file afm_file_name world;
+	# ttf_file_name = MS_OR_LIBERATION "micross.ttf" "LiberationSans-Regular.ttf"
+	# (microsoft_or_liberation_sans_serif_cwk,world) = parse_ttf_file ttf_file_name ls_unicode_to_adobe_encoding world;
+	# ttf_file_name = COURIER_NIMBUS_OR_LIBERATION "COM_____.TTF" "NimbusMonoPS-Regular.ttf" "COM_____.TTF";
+	# (courier_cwk,world) = parse_ttf_file ttf_file_name c_unicode_to_adobe_encoding world;
+	# ttf_file_name = COURIER_NIMBUS_OR_LIBERATION "COB_____.TTF" "NimbusMonoPS-Bold.ttf" "COB_____.TTF";
+	# (courier_bold_cwk,world) = parse_ttf_file ttf_file_name c_unicode_to_adobe_encoding world;
 	
 	# char_width_and_kerns = {!microsoft_or_liberation_sans_serif_cwk,courier_cwk,courier_bold_cwk};
 

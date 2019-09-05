@@ -12,7 +12,7 @@ page_c_1 char_width_and_kerns
 		[C "Appendix C" "Bibliography"
 		,MP [
 			[],
-			TS "You can find all our papers on our site:"++TSb "http://wiki.clean.cs.ru.nl/Publications",
+			TS "You can find all our papers on our site: "++TSb "http://wiki.clean.cs.ru.nl/Publications",
 			[],
 			TS "Peter Achten, John van Groningen and Rinus Plasmeijer (1992). \"High-level specification of I/O in functional languages\". "
 			TAI "In: Proc. of the Glasgow workshop on Functional programming"
