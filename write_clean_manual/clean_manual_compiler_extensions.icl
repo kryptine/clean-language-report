@@ -18,30 +18,7 @@ page_d_1 char_width_and_kerns
 		,H2	"D.1" "Clean 3.0 Compiler Extensions"
 		,N
 
-		,H3 "D.1.1" "New expressions"
-		,N
-
-		,SP (
-			TSC "v =: " TA "PATTERN in an expression yields " TAC "True"
-			TA " if the expression matches the PATTERN and " TAC "False"
-			TA " otherwise. Variable names are not allowed in the PATTERN, but " TAC "_"
-			TA ("'s may be used. The compiler optimizes the case where the pattern "+++
-				"consists of just a constructor, optionally followed by ") TAC "_"
-				TA "'s. Otherwise it is transformed to a case expression.")
-
-		,P (TS "The parser accepts additional " TAC "_"
-			TA "'s at the end of the pattern, so " TAC "x=:(Constructor _ _)"
-			TA " may be written without parenthesis as " TAC "x=:Constructor _ _" TA ".")
-
-		,PCH (TS "For example:")[
-			[],
-			TS ":: T = X Int | Y Int Int | Z;",
-			[],
-			TS "is_X_or_Y :: T -> Bool;",
-			TS "is_X_or_Y t = t=:X _ || t=:Y _ _;"
-		]
-
-		,H3 "D.1.2" "New imports"
+		,H3 "D.1.1" "New imports"
 		,N
 
 		,SP (TS "Identifiers can be imported qualified by adding "
@@ -63,15 +40,7 @@ page_d_1 char_width_and_kerns
 		,PCH (TS "For example:")[
 			[],
 			TS "f l = 'StdList'.drop 1 (l 'StdList'. ++ [2]);"
-		]
-	  ];
-	= make_page pdf_i pdf_shl;
-
-page_d_2 :: !{!CharWidthAndKerns} -> Page;
-page_d_2 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i [
-		P (TS (
+		],P (TS (
 			"Currently field names of records are not imported by an implicit "+++
 			"qualified import, but can be imported with an explicit qualified "+++
 			"import."))
@@ -86,7 +55,14 @@ page_d_2 char_width_and_kerns
 			"Qualified imports may be used in definition modules, but qualified "+++
 			"identifiers cannot be imported from a (definition) module."))
 
-		,H3 "D.1.3" "Uniqueness typing additions"
+	  ];
+	= make_page pdf_i pdf_shl;
+
+page_d_2 :: !{!CharWidthAndKerns} -> Page;
+page_d_2 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i [
+		H3 "D.1.2" "Uniqueness typing additions"
 		,N
 
 		,SP (TS "Updates of unique array elements:")
@@ -116,7 +92,7 @@ page_d_2 char_width_and_kerns
 			TS "        = inc_a (i+1) a;",
 			TS "        = a;"
 		]),
-		H3 "D.1.4" "New strictness annotations"
+		H3 "D.1.3" "New strictness annotations"
 		,N
 
 		,SP (TS "Strictness annotations in types of class instance members")
@@ -146,14 +122,7 @@ page_d_2 char_width_and_kerns
 		,PC (map syntax_color [
 			TS "instance next Int"
 		])
-	  ];
-	= make_page pdf_i pdf_shl;
-
-page_d_3 :: !{!CharWidthAndKerns} -> Page;
-page_d_3 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i [
-		H3 "D.1.5" "Hierarchical modules"
+		,H3 "D.1.4" "Hierarchical modules"
 		
 		,P (TS ("The module name can be used to specify the directory containing the "+++
 				"module. In that case the module name is the list of folder names of "+++
@@ -163,8 +132,14 @@ page_d_3 char_width_and_kerns
 			TAC "Y" TA " of folder " TAC "Z" TA "). The path containing the first folder ("
 			TAC "X" TA " in this case) should be a module search path for the compiler."
 		)
+	  ];
+	= make_page pdf_i pdf_shl;
 
-		,H3 "D.1.6" "New types"
+page_d_3 :: !{!CharWidthAndKerns} -> Page;
+page_d_3 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i [
+		H3 "D.1.5" "New types"
 		,N
 
 		,SP (
@@ -191,7 +166,7 @@ page_d_3 char_width_and_kerns
 			TS ":: T | B Int Int"
 		]
 
-		,H3 "D.1.7" "Generics additions"
+		,H3 "D.1.6" "Generics additions"
 		,N
 
 		,SP (
@@ -229,20 +204,13 @@ page_d_3 char_width_and_kerns
 			TA " followed by the list of dependencies, but an " TAC "_"
 			TA " for unused dependencies. The compiler uses this to optimize the generated code.")
 		
-	  ];
-	= make_page pdf_i pdf_shl;
-
-page_d_4 :: !{!CharWidthAndKerns} -> Page;
-page_d_4 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i [
-		S "For example if the implementation module defines:"
+		,S "For example if the implementation module defines:"
 		
 		,PC (map syntax_color [
 			TS "generic g1 a :: a -> Int;",
 			TS "generic g2 a :: a -> Int;",
- 			TS "generic h a | g1 a, g2 a :: a -> Int;",
- 			[],
+			TS "generic h a | g1 a, g2 a :: a -> Int;",
+			[],
 			TS "h{|OBJECT of {gtd_name}|} _ g1 _ (OBJECT a)",
 			TS "    = g1 a+size (gtd_name);"
 		])
@@ -257,9 +225,14 @@ page_d_4 char_width_and_kerns
 			TSC "h" TA " for " TAC "OBJECT" TA " will be called without a function argument for "
 			TAC "h" TA " (for a of " TAC "OBJECT" TA "), with " TAC "g1" TA " and without " TAC "g2"
 			TA ", because " TAC "h" TA " and " TAC "g2" TA " are not used by the implementation.")
+	  ];
+	= make_page pdf_i pdf_shl;
 
-
-		,H2	"D.2" "Clean Development Compiler Extensions"
+page_d_4 :: !{!CharWidthAndKerns} -> Page;
+page_d_4 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i [
+		H2	"D.2" "Clean Development Compiler Extensions"
 		,MSP [
 			TS "types of instance members in definition modules.",
 			TS "generic functions can have dependent generic functions (also in Clean 3.0).",

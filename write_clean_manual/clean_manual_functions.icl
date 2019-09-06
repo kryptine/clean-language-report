@@ -59,7 +59,7 @@ page_3_1 char_width_and_kerns
 											TS "// " TAL "see 3.4"],
 			[[],					[],		TS "[LocalFunctionDefs]",
 											TS "// " TAL "see 3.5"]
-  		],P(
+		],P(
 			TS "A " TAI "function definition" TA " consists of one or more definition of a " TAI "function alternative"
 			TA " (rewrite rule). On the left-hand side of such a function alternative a " TAI "pattern"
 			TA " can be specified which can serve a whole sequence of " TAI "guarded function bodies"
@@ -310,7 +310,7 @@ page_3_4 char_width_and_kerns
 			table_alt_link "LetExpr" "see 3.5.1",
 			table_alt "SpecialExpression",
 			table_alt "DynamicExpression",
-			table_alt "MatchesPatternExpr"
+			table_alt_link "MatchesPatternExpr" "see 3.4.2"
 		],ST [
 			[TS "Function",		TS_E,	TSC "FunctionName"],
 			[[],				TS_B,	TST "(" TAC "FunctionName" TAT ")"],
@@ -512,7 +512,14 @@ page_3_6 char_width_and_kerns
 		),MSP [
 			TS "The then- and else-part in the conditional expression must be of the same type.",
 			TS "The discriminating expression must be of type " TAC "Bool" TA "."
-		]
+		],H3
+			"3.4.3" "Matches Pattern Expression"
+		,P (
+			TSC "expression" TA " " TAC "=:" TA " " TAC "pattern" TA " in an expression yields " TAC "True"
+			TA " if the " TAC "expression" TA " matches the " TAC "pattern" TA " and " TAC "False"
+			TA " otherwise. Variable names are not allowed in the " TAC "pattern" TA ", but " TAC "_"
+			TA ("'s may be used. The compiler converts the expression to a case if the pattern "+++
+				"is more complicated than just a constructor and ") TAC "_" TA "'s.")
 		];
  	= make_page pdf_i pdf_shl;
 
@@ -521,7 +528,17 @@ page_3_7 char_width_and_kerns
 	# line_height = toReal line_height_i;
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
-		[H2
+		[ST [
+			[TS "MatchesPatternExpr",	TS_E,	TS "GraphExpr" TA " " TAT "=:" TA " " TAC "ConstructorName" TA " { " TAT "_" TA " }"],
+			[[],						TS_B,	TS "GraphExpr" TA " " TAT "=:" TA " BrackPattern"]
+		],P (TSC "=:" TA " in expressions binds stronger than function application. This includes additional " TAC "_"
+			TA "'s after a " TAC "ConstructorName" TA ", so " TAC "x=:(Constructor _ _)"
+			TA " may be written without parenthesis as " TAC "x=:Constructor _ _" TA ", for example:")
+		,PC (map comment_blue [
+			TS ":: T = X Int | Y Int Int | Z"  TABCb ";" TA "    // algebraic type definition ",
+			[],
+			TS "isXorY t  =  t=:X _ || t=:Y _ _"  TABCb ";"
+		]),H2
 			"3.5" "Local Definitions"
 		,MP [
 			[],
@@ -531,11 +548,10 @@ page_3_7 char_width_and_kerns
 			[],
 			TS ("Outside the scope the functions are unknown. This locality can be used to get a better program structure: functions that "+++
 				"are only used in a certain program area can remain hidden outside that area.")
-		],MP [
+		],P (
 			TS "Besides functions one can also define constant selectors. Constants are named graph expressions ("
-			TAL "see 3.6" TA ").",
-			[]
-		],ST [
+			TAL "see 3.6" TA ")."
+		),ST [
 			[TS "LocalDef",	TS_E,	TS "GraphDef"],
 			[[],			TS_B,	TS "FunctionDef"]
 		],H3
