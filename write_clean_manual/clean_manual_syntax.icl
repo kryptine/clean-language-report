@@ -55,7 +55,7 @@ page_a_1 char_width_and_kerns
 			[[],					TS_B,TS "ClassDef",			TS "// " TAL "see A.6"],
 			[[],					TS_B,TS "GenericsDef",		TS "// " TAL "see A.7"],
 			[[],					TS_B,TS "ForeignExportDef",	TS "// " TAL "see A.7"]
-  		],ST2 [
+		],ST2 [
 			[TS "DefDefinition",	TS_E,TS "ImportDef",					TS "// " TAL "see A.2"],
 			[[],					TS_B,TS "FunctionTypeDef",				TS "// " TAL "see A.3"],
 			[[],					TS_B,TS "MacroDef",						TS "// " TAL "see A.4"],
@@ -505,13 +505,17 @@ page_a_7 char_width_and_kerns
 			[[],					TS_B,	TSBCr "RECORD"],
 			[[],					TS_B,	TSBCr "FIELD"]
 		],ST [
-			[TS "DeriveDef",	TS_E,	TSBCr "derive" TA " "TAC "FunctionName" TA " " TAC "TypeConstructorName" TA "+"]
+			[TS "DeriveDef",	TS_E,	TSBCr "derive" TA " "TAC "FunctionName" TA " {" TAC "TypeConstructorName" TA "}-list"]
 		],ST [
 			[TS "GenericAppExpression",	TS_E,	TSC "FunctionName" TA "TypeKind GraphExpr"],
 			[TS "TypeKind",				TS_E,	TST "{|* " TA "{" TAT "-> *" TA "} " TAT "|}"]
 		],ST [
-			[TS "GenericExportDef",	TS_E,	TS "GenericDef " TABCb ";"],
-			[[],					TS_B,	TS "DeriveDef " TABCb ";"]
+			[TS "GenericExportDef",		TS_E,	TS "GenericDef " TABCb ";"],
+			[[],						TS_B,	TSBCr "derive" TA " " TAC "FunctionName" TA " {DeriveExportTypeArg}-list " TABCb ";"],
+			[TS "DeriveExportTypeArg",	TS_E,	TSC "TypeConstructorName"],
+			[[],						TS_B,	TS "GenericMarkerType [" TABCr "of" TA " UsedGenericInfoFields]"],
+			[TS "UsedGenericInfoFields",TS_E,	TST "{" TA "[{" TAC "FieldName" TA "}-list]"  TAT "}"],
+			[[],						TS_B,	TSC "Variable"]
 		],H2
 			"A.7" "Foreign Export Definition"
 		,ST [
