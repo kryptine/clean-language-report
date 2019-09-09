@@ -67,7 +67,7 @@ page_a_1 char_width_and_kerns
 			[TS "ImportDef",TS_E,TS "ImplicitImportDef"],
 			[[],			TS_B,TS "ExplicitImportDef"]
 		],ST [
-			[TS "ImplicitImportDef",	TS_E,	TSBCr "import" TA " {" TAC "ModuleName" TA"}-list " TACb ";"]
+			[TS "ImplicitImportDef",	TS_E,	TSBCr "import" TA " [" TAT "qualified" TA "] {" TAC "ModuleName" TA"}-list " TACb ";"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -77,7 +77,7 @@ page_a_2 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
 		[ST [
-			[TS "ExplicitImportDef",	TS_E,	TSBCr "from" TAC " ModuleName " TABCr "import" TA " {Imports}-list " TACb ";"],
+			[TS "ExplicitImportDef",	TS_E,	TSBCr "from" TAC " ModuleName " TABCr "import" TA " [" TAT "qualified" TA "] {Imports}-list " TACb ";"],
 			[TS "Imports",				TS_E,	TSC "FunctionName"],
 			[[],						TS_B,	TST "::" TAC "TypeName" TA " [ConstructorsOrFields]"],
 			[[],						TS_B,	TSBCr "class" TA " " TAC "ClassName" TA " [Members]"],
@@ -554,11 +554,11 @@ page_a_8 char_width_and_kerns
 			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['U'..'Z']]++repeatn 8 [],
 			[TS "SymbolChar",	TS_E,TST "~",TS_B,TST "@",TS_B,TST "#",TS_B,TST "$",TS_B,TST "%",TS_B,TST "^",TS_B,TST "?",TS_B,TST "!",[],[],[],[]],
 			[[],				TS_B,TST "+",TS_B,TST "-",TS_B,TST "*",TS_B,TST "<",TS_B,TST ">",TS_B,TST"\\",TS_B,TST "/",TS_B,TST "|",TS_B,TST "&",TS_B,TST "="],
-			[[],				TS_B,TST ":",[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],
-			[TS "IdChar",		TS_E,TS "LowerCaseChar",[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],
-			[[],				TS_B,TS "UpperCaseChar",[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],
+			[[],				TS_B,TST ":"]++repeatn 18 [],
+			[TS "IdChar",		TS_E,TS "LowerCaseChar"]++repeatn 18 [],
+			[[],				TS_B,TS "UpperCaseChar"]++repeatn 18 [],
 			[[],				TS_B,TS "Digit",[],[],[],[],[],[],[],[],[],[],[],[],TST "// " TAL "see A.9",[],[],[],[],[]],
-			[[],				TS_B,TST "_",TS_B,TST "`",[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+			[[],				TS_B,TST "_",TS_B,TST "`"]++repeatn 16 []
 		],H2
 			"A.9" "Denotations"
 		,ST2 [
