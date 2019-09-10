@@ -57,7 +57,7 @@ page_a_1 char_width_and_kerns
 			[[],					TS_B,TS "ForeignExportDef",	TS "// " TAL "see A.7"]
 		],ST2 [
 			[TS "DefDefinition",	TS_E,TS "ImportDef",					TS "// " TAL "see A.2"],
-			[[],					TS_B,TS "FunctionTypeDef",				TS "// " TAL "see A.3"],
+			[[],					TS_B,TS "FunctionExportTypeDef",		TS "// " TAL "see A.3"],
 			[[],					TS_B,TS "MacroDef",						TS "// " TAL "see A.4"],
 			[[],					TS_B,TS "TypeDef",						TS "// " TAL "see A.5"],
 			[[],					TS_B,TS "ClassDef",						TS "// " TAL "see A.6"],
@@ -152,7 +152,10 @@ page_a_3 :: !{!CharWidthAndKerns} -> Page;
 page_a_3 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
-		[H3 "A.3.2" "Patterns"
+		[ST [
+			[TS "FunctionExportTypeDef",TS_E,	TSC "FunctionName" TA " " TAT "::" TA " FunctionType [Special] " TABCb ";"],
+			[[],						TS_B,	TST "(" TAC "FunctionName" TAT ")" TA " [Fix][Prec] " TAT "::" TA" FunctionType [Special] " TABCb ";"]
+		],H3 "A.3.2" "Patterns"
 		,ST [
 			[TS "Pattern",			TS_E,	TS "[" TAC "Variable" TA " " TAT "=:" TA "] BrackPattern"],
 			[TS "BrackPattern",		TS_E,	TS "PatternVariable"],
@@ -477,7 +480,7 @@ page_a_7 char_width_and_kerns
 			[[],			TS_B,	TS "TypeClassInstanceDef"]
 		],ST [
 			[TS "TypeClassDef",	TS_E,	TSBCr "class" TA " " TAC "ClassName" TA " " TAC "TypeVariable" TA "+ [ClassContext]"],
-		    [[],				[],		TS "[[" TABCr "where" TA "] " TAT "{" TA " {ClassMemberDef}+ " TAT "}" TA "]"],
+		    [[],				[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA " {ClassMemberDef}+ " TABCb "}" TA "] " TABCb ";"],
 			[[],				TS_B,	TSBCr "class" TA " " TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType" TABCb ";"],
 			[[],				TS_B,	TSBCr "class" TA " (" TAC "FunctionName" TA ") [Fix][Prec] " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType" TABCb ";"]
 		],ST [
@@ -486,10 +489,12 @@ page_a_7 char_width_and_kerns
 		],ST2 [
 			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " " TAC "ClassName" TA " Type+ [ClassContext]",
 			 []],
-			[[],						[],		TS "[[" TABCr "where" TA "] " TAT "{" TA "{DefOfFunction}+ " TAT "}" TA "]",
+			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{DefOfFunction}+ " TABCb "}" TA "]",
 			 TS "// in implementation modules"],
-			[[],						[],		TS "[" TABCr "special" TA " {" TAC "TypeVariable" TA " = Type}+]",
-			 TS "// in definition modules"]
+			[[],						[],		TS "[Special] " TABCb ";",
+			 TS "// in definition modules"],
+			[TS "Special",				TS_E,	TSBCr "special" TA " " TABCb "{" TA "{" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list" TA " { " TABCb ";" TA " {" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list }" TABCb "}",
+			 []]
 		],ST [
 			[TS "GenericsDef",	TS_E,	TS "GenericDef ;"],
 			[[],				TS_B,	TS "GenericCase;"],

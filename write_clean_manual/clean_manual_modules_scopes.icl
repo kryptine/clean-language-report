@@ -445,13 +445,13 @@ page_2_6 char_width_and_kerns
 			TS "In a definition module the following global definitions can be given in " TAI "any" TA " order."
 		),ST2 [
 			[TS "DefDefinition",	TS_E,TS "ImportDef",					TS "// " TAL "see 2.5"],
-			[[],					TS_B,TS "FunctionTypeDef",				TS "// " TAL "see 3.7"],
+			[[],					TS_B,TS "FunctionExportTypeDef",		TS "// " TAL "see 3.7"],
 			[[],					TS_B,TS "MacroDef",						TS "// " TAL "see 10.3"],
 			[[],					TS_B,TS "TypeDef",						TS "// " TAL "see Chapter 5"],
 			[[],					TS_B,TS "ClassDef",						TS "// " TAL "see Chapter 6"],
 			[[],					TS_B,TS "TypeClassInstanceExportDef",	TS "// " TAL "see 6.10"],
 			[[],					TS_B,TS "GenericExportDef",				TS "// " TAL "see Chapter 7"]
-  		],MSP [
+		],MSP [
 			TS "The definitions given in an implementation module only have a meaning in the module in which they are defined ("
 			TAL "see 2.3"
 			TA (") unless these definitions are exported by putting them into the corresponding definition module. In  that "+++

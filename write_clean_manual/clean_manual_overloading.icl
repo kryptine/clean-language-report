@@ -73,12 +73,12 @@ page_6_2 char_width_and_kerns
 				TAI "overloaded function" TA " or " TAI "operator" TA " which is a " TAI "member" TA " of the class the "
 				TAI "overloaded name" TA " and its " TAI "overloaded type" TA " is specified. The " TAI "type class variables"
 				TA (" are used to indicate how the different instantiations of the class vary from each other. "+++
-					"CLEAN 2.0 offers multi-parameter type constructor classes, similar to those available in Haskell.")
+					"CLEAN offers multi-parameter type constructor classes, similar to those available in Haskell.")
 			),ST [
-				[TS "TypeClassDef",	TS_E,	TSBCr "class" TA " ClassName TypeVariable+ [ClassContext]"],
-			    [[],				[],		TS "[[" TABCr "where" TA "] " TAT "{" TA " {ClassMemberDef}+ " TAT "}" TA "]"],
-				[[],				TS_B,	TSBCr "class" TA " FunctionName TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"],
-				[[],				TS_B,	TSBCr "class" TA " (FunctionName) [Fix][Prec] TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"]
+			[TS "TypeClassDef",	TS_E,	TSBCr "class" TA " ClassName TypeVariable+ [ClassContext]"],
+		    [[],				[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA " {ClassMemberDef}+ " TABCb "}" TA "] " TABCb ";"],
+			[[],				TS_B,	TSBCr "class" TA " FunctionName TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"],
+			[[],				TS_B,	TSBCr "class" TA " (FunctionName) [Fix][Prec] TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"]
 			],ST [
 				[TS "ClassMemberDef",	TS_E,	TS "FunctionTypeDef"],
 				[[],					[],		TS "[MacroDef]"]
@@ -107,12 +107,12 @@ page_6_2 char_width_and_kerns
 				TA (" has to be defined. The type of the instance can be found via uniform substitution of the type class "+++
 					"variables by the corresponding type instances specified in the instance definition.")
 			),ST2 [
-				[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " ClassName Type+ [ClassContext]",
-				 []],
-				[[],						[],		TS "[[" TABCr "where" TA "] " TAT "{" TA "{DefOfFunction}+ " TAT "}" TA "]",
-				 TS "// in implementation modules"],
-				[[],						[],		TS "[" TABCr "special" TA " {TypeVariable = Type}+]",
-				 TS "// in definition modules"]
+			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " " TAC "ClassName" TA " Type+ [ClassContext]",
+			 []],
+			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{DefOfFunction}+ " TABCb "}" TA "]",
+			 TS "// in implementation modules"],
+			[[],						[],		TS "[Special] " TABCb ";",
+			 TS "// in definition modules"]
 			],PCH
 				(TS "Example of the definition of an instance of a type class " TAC "Arith" TA " for type " TAC "Int"
 				 TA (". The type of the concrete functions can be  obtained via uniform substitution of the type class "+++
@@ -496,7 +496,7 @@ page_6_7 char_width_and_kerns
 			"Special syntax is provided for this case."
 		),ST [
 			[TS "TypeClassDef",	TS_E,	TSBCr "class" TA " ClassName TypeVariable+ [ClassContext]"],
-		    [[],				[],		TS "[[" TABCr "where" TA "] " TAT "{" TA " {ClassMemberDef}+ " TAT "}" TA "]"],
+		    [[],				[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA " {ClassMemberDef}+ " TABCb "}" TA "] " TABCb ";"],
 			[[],				TS_B,	TSBCr "class" TA " FunctionName TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"],
 			[[],				TS_B,	TSBCr "class" TA " (FunctionName) [Fix][Prec] TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"]
 		],PCH
@@ -559,12 +559,14 @@ page_6_8 char_width_and_kerns
 			TAI "without"
 			TA " revealing the concrete implementation (which can only be specified in the implementation module)."
 		),ST2 [
-			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " ClassName Type+ [ClassContext]",
+			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " " TAC "ClassName" TA " Type+ [ClassContext]",
 			 []],
-				[[],						[],		TS "[[" TABCr "where" TA "] " TAT "{" TA "{DefOfFunction}+ " TAT "}" TA "]",
-				 TS "// only in implementation modules"],
-			[[],						[],		TS "[" TABCr "special" TA " {{TypeVariable " TAT "=" TA " Type}-list}+]",
-			 TS "// only in definition modules"]
+			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{DefOfFunction}+ " TABCb "}" TA "]",
+			 TS "// only in implementation modules"],
+			[[],						[],		TS "[Special] " TABCb ";",
+			 TS "// only in definition modules"],
+			[TS "Special",				TS_E,	TSBCr "special" TA " " TABCb "{" TA "{" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list" TA " { " TABCb ";" TA " {" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list }" TABCb "}",
+			 []]
 		],PCH
 			(TS "Exporting classes and instances.")
 			(map syntax_color [
@@ -577,7 +579,7 @@ page_6_8 char_width_and_kerns
 			[],
 			TS "instance Eq [a] | Eq a             // an instance of Eq on lists is exported",
 			TS "special  a = Int                   // with an additional specialised version for [Int]",
-			TS "         a = Real                  // and an additional specialised version for [real]",
+			TS "         a = Real                  // and an additional specialised version for [Real]",
 			[],
 			TS "instance Eq  a                     // a general instance of Eq is exported"
 		]),MP [
