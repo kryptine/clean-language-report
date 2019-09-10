@@ -52,8 +52,8 @@ page_b_1 char_width_and_kerns
 			[TS "AnythingTill*/",	TS_E,	TS "{AnyChar/ */}",				TS "// no \"*/\""],
 			[TS "AnyChar",			TS_E,	TS "IdChar",					TS "// " TAL "see A.8"],
 			[[],					TS_B,	TS "ReservedChar",				[]],
-			[[],					TS_B,	TS "Special",					[]]
-  		]
+			[[],					TS_B,	TS "SpecialChar",				[]]
+		]
 		];
 	= make_page pdf_i pdf_shl;
 

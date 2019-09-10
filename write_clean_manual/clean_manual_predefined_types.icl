@@ -84,9 +84,9 @@ page_4_2 char_width_and_kerns
 		[let {
 			n_extra_columns = 6;
 		} in ST [
-			[TS "AnyChar",		TS_E,concat_with_separator (TS " | ") [TS "IdChar",TS "ReservedChar",TS "Special"]]++repeatn (16+n_extra_columns) [],
+			[TS "AnyChar",		TS_E,concat_with_separator (TS " | ") [TS "IdChar",TS "ReservedChar",TS "SpecialChar"]]++repeatn (16+n_extra_columns) [],
 			[TS "ReservedChar",	TS_E]++separate_by TS_B (map TST ["(",")","{","}","[","]",";",",","."])++repeatn n_extra_columns [],
-			[TS "Special",		TS_E]++separate_by TS_B (map TST ["\\n","\\r","\\f","\\b"])++repeatn 3 []
+			[TS "SpecialChar",	TS_E]++separate_by TS_B (map TST ["\\n","\\r","\\f","\\b"])++repeatn 3 []
 			++[TS "// newline,return,formf,backspace"]++repeatn (6+n_extra_columns) [],
 			[[],				TS_B]++separate_by TS_B [TST "\\t",TST "\\\\",TST "\\" TA "CharDel"]++repeatn 5 []
 			++[TS "// tab,backslash,character delimiter"]++repeatn (6+n_extra_columns) [],
