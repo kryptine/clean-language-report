@@ -81,7 +81,7 @@ page_a_2 char_width_and_kerns
 			[TS "Imports",				TS_E,	TSC "FunctionName"],
 			[[],						TS_B,	TST "::" TAC "TypeName" TA " [ConstructorsOrFields]"],
 			[[],						TS_B,	TSBCr "class" TA " " TAC "ClassName" TA " [Members]"],
-			[[],						TS_B,	TSBCr "instance" TA " " TAC "ClassName" TA " {TypeName}+"],
+			[[],						TS_B,	TSBCr "instance" TA " " TAC "ClassName" TA " {SimpleType}+"],
 			[[],						TS_B,	TSBCr "generic" TA " " TAC "FunctionName"],
 			[TS "ConstructorsOrFields",	TS_E,	TST "(..)"],
 			[[],						TS_B,	TST "(" TA "{" TAC "ConstructorName" TA "}-list" TAT ")"],
@@ -89,14 +89,14 @@ page_a_2 char_width_and_kerns
 			[[],						TS_B,	TST "{" TA "{" TAC "FieldName" TA"}-list"  TAT "}"],
 			[TS "Members",				TS_E,	TST "(..)"],
 			[[],						TS_B,	TST "(" TA "{" TAC "MemberName" TA "}-list" TAT ")"]
-  		],H2
+		],H2
 			"A.3" "Function Definition"
 		,ST [
 			[TS "FunctionDef",		TS_E,	TS "[FunctionTypeDef]"],
-		 	[[],					[],		TS "DefOfFunction"]
+			[[],					[],		TS "DefOfFunction"]
 		 ],ST [
-		 	[TS "DefOfFunction",	TS_E,	TS "{FunctionAltDef "++TSb ";" TA "}+"],
-		 	[[],					TS_B,	TS "ABCCodeFunctionDef"],
+			[TS "DefOfFunction",	TS_E,	TS "{FunctionAltDef "++TSb ";" TA "}+"],
+			[[],					TS_B,	TS "ABCCodeFunctionDef"],
 			[TS "FunctionAltDef", 	TS_E,	TS "Function {Pattern}"],
 			[[],					[],		TS "{GuardAlt} {LetBeforeExpression} FunctionResult"],
 			[[],					[],		TS "[LocalFunctionAltDefs]"],
@@ -140,7 +140,7 @@ page_a_2 char_width_and_kerns
 			[TS "FunctionTypeDef",		TS_E,	TSC "FunctionName" TA " " TAT "::" TA " FunctionType " TABCb ";"],
 			[[],						TS_B,	TST "(" TAC "FunctionName" TAT ")" TA " [Fix][Prec] [" TAT "::" TA" FunctionType] " TABCb ";"],
 			[TS "FunctionType",			TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
-			[TS "ClassContext",			TS_E,	TST "|" TA " ClassOrGenericName-list " TAC "TypeVariable" TA " {" TAT "&" TA " " TAC "ClassName" TA "-list " TAC "TypeVariable" TA "}"],
+			[TS "ClassContext",			TS_E,	TST "|" TA " ClassOrGenericName-list {SimpleType}+ {" TAT "&" TA " " TAC "ClassName" TA "-list {SimpleType}+ }"],
 			[TS "UnqTypeUnEqualities",	TS_E,	TS "{{" TAC "UniqueTypeVariable" TA "}+ " TAT "<=" TA " " TAC "UniqueTypeVariable" TA "}-list"],
 			[TS "ClassOrGenericName",	TS_E,	TSC "ClassName"],
 			[[],						TS_B,	TSC "FunctionName" TA " TypeKind"]
