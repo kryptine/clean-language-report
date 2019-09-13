@@ -20,10 +20,10 @@ clean_logo x_p y_p
 
 	# s = 0.75;
 
- 	# r1 = s*24.0;
- 	# r2 = s*37.0;
- 	# r3 = s*41.0;
- 	# r4 = s*55.0;
+	# r1 = s*24.0;
+	# r2 = s*37.0;
+	# r3 = s*41.0;
+	# r4 = s*55.0;
 
 	# size_left = 52.0;
 //	# size_right = 108.0;
@@ -354,10 +354,10 @@ draw_down_right_up_arrow x_0 x_1 y g_s
 
 	# g_s=g_s+++draw_line_to x_0 (y-2.0)
 							x_0 (y-arrow_height-2.0);
- 	# g_s=g_s+++draw_corner_first_y x_0 (y-arrow_height-2.0) corner_size (~corner_size);
+	# g_s=g_s+++draw_corner_first_y x_0 (y-arrow_height-2.0) corner_size (~corner_size);
 	# g_s=g_s+++draw_line_to (x_0+corner_size) (y-arrow_height-corner_size-2.0)
 							(x_1-corner_size) (y-arrow_height-corner_size-2.0);
- 	# g_s=g_s+++draw_corner_first_y x_1 (y-arrow_height-2.0) (~corner_size) (~corner_size);
+	# g_s=g_s+++draw_corner_first_y x_1 (y-arrow_height-2.0) (~corner_size) (~corner_size);
 	# g_s=g_s+++draw_arrow	x_1 (y-arrow_height-2.0)
 							x_1 (y-2.0);
 	= g_s;
@@ -370,8 +370,8 @@ picture_elements_down_right_up_arrow x_0 x_1 y
 		PLine (x_0, y+arrow_height),
 		path_element_corner_first_y x_0 (y+arrow_height) corner_size corner_size,
 		PLine (x_1-corner_size,y+arrow_height+corner_size),
- 		path_element_corner_first_x (x_1-corner_size) (y+arrow_height+corner_size) corner_size (~corner_size),
- 		PLine (x_1,y+arrow_height)
+		path_element_corner_first_x (x_1-corner_size) (y+arrow_height+corner_size) corner_size (~corner_size),
+		PLine (x_1,y+arrow_height)
 	  ]]
 	  ++picture_elements_arrow x_1 (y+arrow_height) x_1 y;
 
@@ -383,14 +383,14 @@ clean_svg_logo
 
  	# pi = 3.141592653589793238;
 
- 	# angle = (108.0/360.0)*pi; // (100.0/360.0)*pi;
+	# angle = (108.0/360.0)*pi; // (100.0/360.0)*pi;
 
 	# s = 0.75;
 
- 	# r1 = s*24.0;
- 	# r2 = s*37.0;
- 	# r3 = s*41.0;
- 	# r4 = s*55.0;
+	# r1 = s*24.0;
+	# r2 = s*37.0;
+	# r3 = s*41.0;
+	# r4 = s*55.0;
 
 	# size_left = 52.0;
 	# size_right = 98.0;
@@ -568,10 +568,10 @@ clean_svg_picture width height rectangles
 
 clean_svg_picture_absolute :: !Real ![PictureElement] -> {#Char};
 clean_svg_picture_absolute height rectangles
-	# s = "<div style=\"position: absolute;\">";
-	# s=s+++"<svg width=\""+++px_to_string 400.0+++"\" height=\""+++py_to_string height+++"\">\n";
+	# s = "<div style=\"position: absolute;height:"+++py_to_em_string height+++"em;width:"+++px_to_em_string 400.0+++"em\"><span>";
+	# s=s+++"<svg viewBox=\"0 0 "+++px_to_string 400.0+++" "+++py_to_string height+++"\" width=\"100%\" height=\"100%\">\n";
 	# s=s+++draw_svg_picture rectangles;
-	# s=s+++"</svg></div>\n";
+	# s=s+++"</svg></span></div>\n";
 	= s;
 
 :: DrawSVGState = {
@@ -673,6 +673,13 @@ px_to_string p
 	= toString (p*16.0/9.0);
 //	= toString p;
 
+px_to_em_string p
+	= toString (p/9.0);
+
 py_to_string p
 //	= toString (p*19.0/12.0-2.0);
 	= toString (p*18.0/12.0);
+
+py_to_em_string p
+//	= toString (p*18.0/(12.0*16.0));
+	= toString (p*6.0/64.0);
