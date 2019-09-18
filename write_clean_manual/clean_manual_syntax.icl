@@ -489,9 +489,9 @@ page_a_7 char_width_and_kerns
 		],ST2 [
 			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " " TAC "ClassName" TA " Type+ [ClassContext]",
 			 []],
-			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{DefOfFunction}+ " TABCb "}" TA "]",
+			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{FunctionDef}+ " TABCb "}" TA "] " TABCb ";",
 			 TS "// in implementation modules"],
-			[[],						[],		TS "[Special] " TABCb ";",
+			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{FunctionTypeDef}+ " TABCb "}" TA "] [Special] " TABCb ";",
 			 TS "// in definition modules"],
 			[TS "Special",				TS_E,	TSBCr "special" TA " " TABCb "{" TA "{" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list" TA " { " TABCb ";" TA " {" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list }" TABCb "}",
 			 []]

@@ -109,9 +109,9 @@ page_6_2 char_width_and_kerns
 			),ST2 [
 			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " " TAC "ClassName" TA " Type+ [ClassContext]",
 			 []],
-			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{DefOfFunction}+ " TABCb "}" TA "]",
+			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{FunctionDef}+ " TABCb "}" TA "] " TABCb ";",
 			 TS "// in implementation modules"],
-			[[],						[],		TS "[Special] " TABCb ";",
+			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{FunctionTypeDef}+ " TABCb "}" TA "] [Special] " TABCb ";",
 			 TS "// in definition modules"]
 			],PCH
 				(TS "Example of the definition of an instance of a type class " TAC "Arith" TA " for type " TAC "Int"
@@ -124,7 +124,7 @@ page_6_2 char_width_and_kerns
 				TS "instance Arith Int",
 				TS "where",
 				TS "    (+):: Int Int -> Int",
-				TS"	   (+) x y = x +^ y",
+				TS "    (+) x y = x +^ y",
 				[],
 				TS "    (-):: Int Int -> Int",
 				TS "    (-) x y = x -^ y"
@@ -561,9 +561,9 @@ page_6_8 char_width_and_kerns
 		),ST2 [
 			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " " TAC "ClassName" TA " Type+ [ClassContext]",
 			 []],
-			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{DefOfFunction}+ " TABCb "}" TA "]",
+			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{FunctionDef}+ " TABCb "}" TA "] " TABCb ";",
 			 TS "// only in implementation modules"],
-			[[],						[],		TS "[Special] " TABCb ";",
+			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{FunctionTypeDef}+ " TABCb "}" TA "] [Special] " TABCb ";",
 			 TS "// only in definition modules"],
 			[TS "Special",				TS_E,	TSBCr "special" TA " " TABCb "{" TA "{" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list" TA " { " TABCb ";" TA " {" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list }" TABCb "}",
 			 []]
