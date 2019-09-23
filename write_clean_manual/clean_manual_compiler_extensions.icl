@@ -199,12 +199,10 @@ page_d_3 char_width_and_kerns
 		,N
 
 		,SP (
-			TS ("In definition modules unused generic function dependencies for generic instances "+++
-				"can be specified by adding: ") TAC "with"
-			TA " followed by the list of dependencies, but an " TAC "_"
-			TA " for unused dependencies. The compiler uses this to optimize the generated code.")
+			TS ("Generic function definitions that depend on other generic functions, can be defined "+++
+				"by adding a ") TAC "|" TA " followed by the required generic functions, separated by commas.")
 		
-		,S "For example if the implementation module defines:"
+		,P (TS "For example, to define " TAC "h" TA " using " TAC "g1" TA " and " TAC "g2" TA ":")
 		
 		,PC (map syntax_color [
 			TS "generic g1 a :: a -> Int;",
@@ -214,8 +212,15 @@ page_d_3 char_width_and_kerns
 			TS "h{|OBJECT of {gtd_name}|} _ g1 _ (OBJECT a)",
 			TS "    = g1 a+size (gtd_name);"
 		])
+		,N
 
-		,P (TS "add: " TAC "with _ g1 _" TA " in the definition module:")
+		,SP (
+			TS ("In definition modules unused generic function dependencies for generic instances "+++
+				"can be specified by adding: ") TAC "with"
+			TA " followed by the list of dependencies, but an " TAC "_"
+			TA " for unused dependencies. The compiler uses this to optimize the generated code.")
+
+		,P (TS "For example for the previous definition add: " TAC "with _ g1 _" TA " in the definition module:")
 		
 		,PC (map syntax_color [
 			TS "derive h OBJECT of {gtd_name} with _ g1 _;"

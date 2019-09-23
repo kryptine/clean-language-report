@@ -250,7 +250,8 @@ page_7_4 char_width_and_kerns
 			[[],				TS_B,	TS "GenericCase;"],
 			[[],				TS_B,	TS "DeriveDef ;"]
 		],ST [
-			[TS "GenericDef",		TS_E,	TSBCr "generic" TA " " TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType"],
+			[TS "GenericDef",		TS_E,	TSBCr "generic" TA " " TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ [GenericDependencies] " TAT "::" TA " FunctionType"],
+			[TS "GenericDependencies",TS_E,	TST "|" TA " {" TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ }-list"],
 			[TS "GenericCase",		TS_E,	TSC "FunctionName" TA " " TAT "{|" TA "GenericTypeArg" TAT "|}" TA " {Pattern}+ " TAT "=" TA " FunctionBody"],
 			[TS "GenericTypeArg",	TS_E,	TS "GenericMarkerType [" TABCr "of" TA " Pattern]"],
 			[[],					TS_B,	TSC "TypeConstructorName"],
