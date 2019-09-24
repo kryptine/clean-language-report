@@ -371,7 +371,10 @@ page_7_5 char_width_and_kerns
 			TS "The user has to tell the compiler instances of which generic functions on which types are to be generated. This is done with the "
 			TAI "derive" TA " clause."
 		),ST [
-			[TS "DeriveDef",	TS_E,	TSBCr "derive" TA " "TAC "FunctionName" TA " {" TAC "TypeName" TA "}-list"]
+			[TS "DeriveDef",	TS_E,	TSBCr "derive" TA " "TAC "FunctionName" TA " {DerivableType}-list"],
+			[[],				TS_B,	TSBCr "derive" TA " " TABCr "class" TA " " TAC "ClassName" TA " {DerivableType}-list"],
+			[TS "DerivableType",TS_E,	TSC "TypeName"],
+			[[],				TS_B,	TS "PredefinedTypeConstructor"]
 		],PCH
 			(TS "Deriving instances of generic mapping and generic equality for List , Tree and standard list")
 			(map syntax_color [
@@ -618,13 +621,9 @@ page_7_8 char_width_and_kerns
 			TAI "derive" TA "."
 		),ST [
 			[TS "GenericExportDef",		TS_E,	TS "GenericDef " TABCb ";"],
-			[[],						TS_B,	TSBCr "derive" TA " " TAC "FunctionName" TA " {DeriveExportTypeArg}-list " TABCb ";"],
+			[[],						TS_B,	TSBCr "derive" TA " " TAC "FunctionName" TA " {DeriveExportType}-list " TABCb ";"],
+			[[],						TS_B,	TSBCr "derive" TA " " TABCr "class" TA " " TAC "ClassName" TA " {DerivableType}-list " TABCb ";"],
 			[TS "GenericDef",			TS_E,	TSBCr "generic" TA " " TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType"]
-		],ST [
-			[TS "DeriveExportTypeArg",	TS_E,	TSC "TypeName"],
-			[[],						TS_B,	TS "GenericMarkerType [" TABCr "of" TA " UsedGenericInfoFields]"],
-			[TS "UsedGenericInfoFields",TS_E,	TST "{" TA "[{" TAC "FieldName" TA "}-list]"  TAT "}"],
-			[[],						TS_B,	TSC "Variable"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -633,7 +632,14 @@ page_7_9 :: !{!CharWidthAndKerns} -> Page;
 page_7_9 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
-		[PCH
+		[ST [
+			[TS "DeriveExportType",		TS_E,	TSC "TypeName"],
+			[[],						TS_B,	TS "GenericMarkerType [" TABCr "of" TA " UsedGenericInfoFields]"],
+			[[],						TS_B,	TS "PredefinedTypeConstructor"],
+			[[],						TS_B,	TSC "TypeVariable"],
+			[TS "UsedGenericInfoFields",TS_E,	TST "{" TA "[{" TAC "FieldName" TA "}-list]"  TAT "}"],
+			[[],						TS_B,	TSC "Variable"]
+		],PCH
 			(TS "Example. Exporting of generic mapping. Definition as given in module GenMap.dcl")
 			(map color_keywords [
 			[],
