@@ -422,7 +422,7 @@ page_a_6 char_width_and_kerns
 			"A.5.1" "Types Expression"
 		,ST2 [
 			[TS "SimpleType",		TS_E,	TSC "TypeVariable",				TS "// " TAL "see A.8"],
-			[[],					TS_B,	TSC "TypeConstructorName",		[]],
+			[[],					TS_B,	TSC "TypeName",					[]],
 			[[],					TS_B,	TST "(" TA "Type" TAT ")",		[]],
 			[[],					TS_B,	TS "PredefinedType",			[]],
 			[[],					TS_B,	TS "PredefinedTypeConstructor",	[]]
@@ -504,21 +504,21 @@ page_a_7 char_width_and_kerns
 			[TS "GenericDependencies",TS_E,	TST "|" TA " {" TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ }-list"],
 			[TS "GenericCase",		TS_E,	TSC "FunctionName" TA " " TAT "{|" TA "GenericTypeArg" TAT "|}" TA " {Pattern}+ " TAT "=" TA " FunctionBody"],
 			[TS "GenericTypeArg",	TS_E,	TS "GenericMarkerType [" TABCr "of" TA " Pattern]"],
-			[[],					TS_B,	TSC "TypeConstructorName"],
+			[[],					TS_B,	TSC "TypeName"],
 			[[],					TS_B,	TSC "TypeVariable"],
 			[TS "GenericMarkerType",TS_E,	TSBCr "CONS"],
 			[[],					TS_B,	TSBCr "OBJECT"],
 			[[],					TS_B,	TSBCr "RECORD"],
 			[[],					TS_B,	TSBCr "FIELD"]
 		],ST [
-			[TS "DeriveDef",	TS_E,	TSBCr "derive" TA " "TAC "FunctionName" TA " {" TAC "TypeConstructorName" TA "}-list"]
+			[TS "DeriveDef",	TS_E,	TSBCr "derive" TA " "TAC "FunctionName" TA " {" TAC "TypeName" TA "}-list"]
 		],ST [
 			[TS "GenericAppExpression",	TS_E,	TSC "FunctionName" TA "TypeKind GraphExpr"],
 			[TS "TypeKind",				TS_E,	TST "{|* " TA "{" TAT "-> *" TA "} " TAT "|}"]
 		],ST [
 			[TS "GenericExportDef",		TS_E,	TS "GenericDef " TABCb ";"],
 			[[],						TS_B,	TSBCr "derive" TA " " TAC "FunctionName" TA " {DeriveExportTypeArg}-list " TABCb ";"],
-			[TS "DeriveExportTypeArg",	TS_E,	TSC "TypeConstructorName"],
+			[TS "DeriveExportTypeArg",	TS_E,	TSC "TypeName"],
 			[[],						TS_B,	TS "GenericMarkerType [" TABCr "of" TA " UsedGenericInfoFields]"],
 			[TS "UsedGenericInfoFields",TS_E,	TST "{" TA "[{" TAC "FieldName" TA "}-list]"  TAT "}"],
 			[[],						TS_B,	TSC "Variable"]
@@ -545,7 +545,7 @@ page_a_8 char_width_and_kerns
 			[TSC "Variable",			TS_E,TS "LowerCaseId",TS "",[],[],[]],
 			[TSC "MacroName",			TS_E,TS "LowerCaseId",TS_B,	TS "UpperCaseId",TS_B,TS "SymbolId"],
 			[TSC "FieldName",			TS_E,TS "LowerCaseId",TS "",[],[],[]],
-			[TSC "TypeConstructorName",	TS_E,[],[],					TS "UpperCaseId",TS_B,TS "SymbolId"],
+			[TSC "TypeName",			TS_E,[],[],					TS "UpperCaseId",TS_B,TS "SymbolId"],
 			[TSC "TypeVariable",		TS_E,TS "LowerCaseId",TS "",[],[],[]],
 			[TSC "UniqueTypeVariable",	TS_E,TS "LowerCaseId",TS "",[],[],[]],
 			[TSC "ClassName",			TS_E,TS "LowerCaseId",TS_B,	TS "UpperCaseId",TS_B,TS "SymbolId"],

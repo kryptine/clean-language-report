@@ -254,7 +254,7 @@ page_7_4 char_width_and_kerns
 			[TS "GenericDependencies",TS_E,	TST "|" TA " {" TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ }-list"],
 			[TS "GenericCase",		TS_E,	TSC "FunctionName" TA " " TAT "{|" TA "GenericTypeArg" TAT "|}" TA " {Pattern}+ " TAT "=" TA " FunctionBody"],
 			[TS "GenericTypeArg",	TS_E,	TS "GenericMarkerType [" TABCr "of" TA " Pattern]"],
-			[[],					TS_B,	TSC "TypeConstructorName"],
+			[[],					TS_B,	TSC "TypeName"],
 			[[],					TS_B,	TSC "TypeVariable"],
 			[TS "GenericMarkerType",	TS_E,	TSBCr "CONS"],
 			[[],						TS_B,	TSBCr "OBJECT"],
@@ -371,7 +371,7 @@ page_7_5 char_width_and_kerns
 			TS "The user has to tell the compiler instances of which generic functions on which types are to be generated. This is done with the "
 			TAI "derive" TA " clause."
 		),ST [
-			[TS "DeriveDef",	TS_E,	TSBCr "derive" TA " "TAC "FunctionName" TA " {" TAC "TypeConstructorName" TA "}-list"]
+			[TS "DeriveDef",	TS_E,	TSBCr "derive" TA " "TAC "FunctionName" TA " {" TAC "TypeName" TA "}-list"]
 		],PCH
 			(TS "Deriving instances of generic mapping and generic equality for List , Tree and standard list")
 			(map syntax_color [
@@ -499,7 +499,7 @@ page_7_7 char_width_and_kerns
 		TS ":: ComplexS  :== PAIR (FIELD Real) (FIELD Real)"
 	],ST [
 		[TS "GenericTypeArg",	TS_E,	TS "GenericMarkerType [" TABCr "of" TA " Pattern]"],
-		[[],					TS_B,	TSC "TypeConstructorName"],
+		[[],					TS_B,	TSC "TypeName"],
 		[[],					TS_B,	TSC "TypeVariable"],
 		[TS "GenericMarkerType",	TS_E,	TSBCr "CONS"],
 		[[],						TS_B,	TSBCr "OBJECT"],
@@ -621,7 +621,7 @@ page_7_8 char_width_and_kerns
 			[[],						TS_B,	TSBCr "derive" TA " " TAC "FunctionName" TA " {DeriveExportTypeArg}-list " TABCb ";"],
 			[TS "GenericDef",			TS_E,	TSBCr "generic" TA " " TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType"]
 		],ST [
-			[TS "DeriveExportTypeArg",	TS_E,	TSC "TypeConstructorName"],
+			[TS "DeriveExportTypeArg",	TS_E,	TSC "TypeName"],
 			[[],						TS_B,	TS "GenericMarkerType [" TABCr "of" TA " UsedGenericInfoFields]"],
 			[TS "UsedGenericInfoFields",TS_E,	TST "{" TA "[{" TAC "FieldName" TA "}-list]"  TAT "}"],
 			[[],						TS_B,	TSC "Variable"]
