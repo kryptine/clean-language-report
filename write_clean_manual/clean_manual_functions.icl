@@ -216,11 +216,12 @@ page_3_3 char_width_and_kerns
 			"For convenience and efficiency special syntax is provided to express pattern match on data structures of predefined type "+++
 			 "and record type. They are treated elsewhere (see below)."
 		),ST2 [
-			[TS "SpecialPattern",	TS_E,	TS "BasicValuePattern",		TS "// " TAL "see 4.1.2"],
-			[[],					TS_B,	TS "ListPattern",			TS "// " TAL "see 4.2.2"],
-			[[],					TS_B,	TS "TuplePattern",			TS "// " TAL "see 4.3.2"],
-			[[],					TS_B,	TS "ArrayPattern",			TS "// " TAL "see 4.4.2"],
-			[[],					TS_B,	TS "RecordPattern",			TS "// " TAL "see 5.2.2"]
+			[TS "SpecialPattern",	TS_E,	TS "BasicValuePattern",	TS "// " TAL "see 4.1.2"],
+			[[],					TS_B,	TS "ListPattern",		TS "// " TAL "see 4.2.2"],
+			[[],					TS_B,	TS "TuplePattern",		TS "// " TAL "see 4.3.2"],
+			[[],					TS_B,	TS "ArrayPattern",		TS "// " TAL "see 4.4.2"],
+			[[],					TS_B,	TS "RecordPattern",		TS "// " TAL "see 5.2.2"],
+			[[],					TS_B,	TS "UnitPattern",		[]]
 		],H2
 			"3.3" "Guards"
 		,ST [
@@ -248,7 +249,11 @@ page_3_3 char_width_and_kerns
 			TAI "run-time" TA " error. At compile time this cannot be detected."				
 		]
 		];
- 	= make_page pdf_i pdf_shl;
+	= make_page pdf_i pdf_shl;
+
+table_alt s = [[], TS_B, TS s, []];
+
+table_alt_link s c = [[], TS_B, TS s, TS "// " TAL c];
 
 page_3_4 :: !{!CharWidthAndKerns} -> Page;
 page_3_4 char_width_and_kerns
@@ -292,16 +297,12 @@ page_3_4 char_width_and_kerns
 			TS "The main body of a function is called the " TAI "root expression" TA ". The root expression is a graph expression."
 		),ST [
 			[TS "RootExpression",	TS_E,	TS "GraphExpr"] 
-		],let {
-			table_alt s = [[], TS_B, TS s, []];
-			table_alt_link s c = [[], TS_B, TS s, TS "// " TAL c];
-		} in ST2 [
+		],ST2 [
 			[TS "GraphExpr",	TS_E,	TS "Application",	[]],
 			[TS "Application",	TS_E,	TS "{BrackGraph}+",	[]],
 			table_alt "GraphExpr Operator GraphExpr",
 			table_alt "GenericAppExpr",
 			[TS "BrackGraph",	TS_E,	TS "GraphVariable",	[]],
-			table_alt "GraphVariable",
 			table_alt "Constructor",
 			table_alt "Function",
 			table_alt "(GraphExpr)",
@@ -382,16 +383,15 @@ page_3_5 char_width_and_kerns
 		]),S(
 			("For convenience and efficiency special syntax is provided to create expressions of data structures of predefined type "+++
 					 "and of record type that is considered as a special kind of algebraic type. They are treated in elsewhere.")
-		),let {
-			table_alt_link s c = [[], TS_B, TS s, TS "// " TAL c];
-		} in ST2 [
-				[TS "SpecialExpression",	TS_E,	TS "BasicValue", TS "// " TAL "see 4.1.1"],
-				table_alt_link "List" "see 4.2.1",
-				table_alt_link "Tuple" "see 4.3.1",
-				table_alt_link "Array" "see 4.4.1",
-				table_alt_link "ArraySelection" "see 4.4.1",
-				table_alt_link "Record" "see 5.2.1",
-				table_alt_link "RecordSelection" "see 5.2.1"
+		),ST2 [
+			[TS "SpecialExpression",	TS_E,	TS "BasicValue", TS "// " TAL "see 4.1.1"],
+			table_alt_link "List" "see 4.2.1",
+			table_alt_link "Tuple" "see 4.3.1",
+			table_alt_link "Array" "see 4.4.1",
+			table_alt_link "ArraySelection" "see 4.4.1",
+			table_alt_link "Record" "see 5.2.1",
+			table_alt_link "RecordSelection" "see 5.2.1",
+			table_alt "UnitConstructor"
 		],H3
 			"3.4.1" "Lambda Abstraction"
 		,MP [

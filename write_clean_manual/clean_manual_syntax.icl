@@ -178,7 +178,8 @@ page_a_3 char_width_and_kerns
 			[[],					TS_B,	TS "ListPattern"],
 			[[],					TS_B,	TS "TuplePattern"],
 			[[],					TS_B,	TS "ArrayPattern"],
-			[[],					TS_B,	TS "RecordPattern"]
+			[[],					TS_B,	TS "RecordPattern"],
+			[[],					TS_B,	TS "UnitPattern"]
 		],ST2 [
 			[TS "BasicValuePattern",	TS_E,	TS "BasicValue",		[]],
 			[TS "BasicValue",			TS_E,	TS "IntDenotation",		TS "// " TAL "see A.9"], 
@@ -191,13 +192,15 @@ page_a_3 char_width_and_kerns
 			[TS "LGraphPattern",	TS_E,	TS "GraphPattern",		[]],
 			[[],					TS_B,	TS "CharsDenotation",	TS "// " TAL "see A.9"]
 		],ST [
-			[TS "TuplePattern",	TS_E,	TS "(GraphPattern,{GraphPattern}-list)"]
+			[TS "TuplePattern",	TS_E,	TST "(" TA "GraphPattern" TAT "," TA "{GraphPattern}-list" TAT ")"]
 		],ST [
 			[TS "RecordPattern",	TS_E,	TST "{" TA "[TypeName " TAT "|" TA "] {" TAC "FieldName" TA " [" TAT "=" TA " GraphPattern]}-list" TAT "}"]
 		],ST [
 			[TS "ArrayPattern",	TS_E,	TST "{" TA "{GraphPattern}-list" TAT "}"],
 			[[],				TS_B,	TST "{" TA "{ArrayIndex " TAT "=" TA " " TAC "Variable" TA "}-list"++TST "}"],
 			[[],				TS_B,	TS "StringDenotation"]
+		],ST [
+			[TS "UnitPattern",	TS_E,	TST "()"]
 		],ST [
 			[TS "DynamicPattern",			TS_E,	TST "(" TA "GraphPattern " TAT "::" TA " DynamicType" TAT ")"],
 			[TS "DynamicType",				TS_E,	TS "[UniversalQuantVariables] {DynPatternType}+ [ClassContext]"],
@@ -228,7 +231,6 @@ page_a_4 char_width_and_kerns
 	# pdf_shl = make_pdf_shl pdf_i
 		[ST2 [
 			[TS "BrackGraph",	TS_E,	TS "GraphVariable"],
-			table_alt "GraphVariable",
 			table_alt "Constructor",
 			table_alt "Function",
 			table_alt "(GraphExpr)",
@@ -275,7 +277,8 @@ page_a_4 char_width_and_kerns
 			table_alt "Array",
 			table_alt "ArraySelection",
 			table_alt "Record",
-			table_alt "RecordSelection"
+			table_alt "RecordSelection",
+			table_alt "UnitConstructor"
 		],ST2 [
 			[TS "List",				TS_E,	TS "ListDenotation",						[]],
 			[[],					TS_B,	TS "DotDotExpression",						[]],
@@ -334,6 +337,8 @@ page_a_5 char_width_and_kerns
 			[TS "RecordExpr",		TS_E,	TS "GraphExpr"],
 			[TS "RecordSelection",	TS_E,	TS "RecordExpr [" TAT "." TA "TypeName]" TAT "." TAC "FieldName" TA " {Selection}"],
 			[[],					TS_B,	TS "RecordExpr [" TAT "." TA "TypeName]" TAT "!" TAC "FieldName" TA " {Selection}"]
+		],ST [
+			[TS "UnitConstructor",	TS_E,	TST "()"]
 		],ST [
 			[TS "DynamicExpression",TS_E,	TSBCr "dynamic" TA " GraphExpr [" TAT "::" TA " [UniversalQuantVariables] Type [ClassContext]]"]
 		],ST [
@@ -472,7 +477,8 @@ page_a_7 char_width_and_kerns
 			[[],								TS_B,	TST "{}",		TS "// lazy array type constructor"],
 			[[],								TS_B,	TST "{!}",		TS "// strict array type constructor"],
 			[[],								TS_B,	TST "{#}",		TS "// unboxed array type constructor"],
-			[[],								TS_B,	TST "(->)",		TS "// arrow type constructor"]
+			[[],								TS_B,	TST "(->)",		TS "// arrow type constructor"],
+			[[],								TS_B,	TST "()",		TS "// unit type constructor"]
 		],H2
 			"A.6" "Class and Generic Definitions"
 		,ST [

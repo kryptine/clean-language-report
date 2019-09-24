@@ -598,7 +598,7 @@ page_4_8 char_width_and_kerns
 			TS "An object of the predefined algebraic type " TAI "tuple"
 			TA " can be specified as pattern in a function, case expression or list generator."
 		),ST [
-			[TS "TuplePattern",	TS_E,	TS "(GraphPattern,{GraphPattern}-list)"]
+			[TS "TuplePattern",	TS_E,	TST "(" TA "GraphPattern" TAT "," TA "{GraphPattern}-list" TAT ")"]
 		],PCH
 			(TS "Example of the use of a pattern match on Tuples to access components of a Complex number.")
 			(map syntax_color [
@@ -1008,7 +1008,8 @@ page_4_13 char_width_and_kerns
 			[[],								TS_B,	TST "{}",	TS "// lazy array type constructor"],
 			[[],								TS_B,	TST "{!}",	TS "// strict array type constructor"],
 			[[],								TS_B,	TST "{#}",	TS "// unboxed array type constructor"],
-			[[],								TS_B,	TST "(->)",	TS "// arrow type constructor"]
+			[[],								TS_B,	TST "(->)",	TS "// arrow type constructor"],
+			[[],								TS_B,	TST "()",	TS "// unit type constructor"]
 		],PCH
 			(TS "So, all predefined types can be written down in prefix notation as well, as follows:")
 			[
@@ -1027,8 +1028,8 @@ page_4_13 char_width_and_kerns
 		],H2
 			"4.6" "Arrow Types"
 		,P(
-			TS "The " TAI "arrow type" TA " is a predefined type constructor used to indicate " TAI "function objects"  
-			TA "(these functions have at least arity one). One can use the Cartesian product (uncurried version) to denote the function type ("
+			TS "The " TAI "arrow type" TA " is a predefined type constructor used to indicate " TAI "function objects"
+			TA " (these functions have at least arity one). One can use the Cartesian product (uncurried version) to denote the function type ("
 			TAL "see 3.7"
 			TA ") to obtain a compact notation. Curried functions applications and types are automatically converted to their uncurried equivalent versions."
 		),ST [
