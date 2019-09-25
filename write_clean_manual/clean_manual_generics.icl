@@ -426,8 +426,12 @@ page_7_6 char_width_and_kerns
 		TAC "{|" TA " and " TAC "|}" TA (" one can specify the intended kind. The compiler then resolves overloading "+++
 			"of the selected overloaded function as usually.")
 	),ST [
-		[TS "GenericAppExpression",	TS_E,	TSC "FunctionName" TA "TypeKind GraphExpr"],
-		[TS "TypeKind",				TS_E,	TST "{|* " TA "{" TAT "-> *" TA "} " TAT "|}"]
+		[TS "GenericAppExpression",	TS_E,	TSC "FunctionName" TA " " TAT "{|" TA "TypeKind" TAT "|}" TA " GraphExpr"],
+		[TS "TypeKind",				TS_E,	TST "*"],
+		[[],						TS_B,	TS "TypeKind " TAT "->" TA " TypeKind"],
+		[[],						TS_B,	TS "IntDenotation"],
+		[[],						TS_B,	TST "(" TA "TypeKind" TAT ")"],
+		[[],						TS_B,	TST "{|" TA "TypeKind" TAT "|}"]
 	],PCH
 		(TS "Example: a generic equality operator can be defined as equality on types of kind *.")
 		(map color_keywords [
@@ -450,10 +454,10 @@ page_7_6 char_width_and_kerns
  		[
 		[],
 		TS "eqListFsts :: [(a, b)] [(a, c)] -> Bool | gEq{|*|} a",
-		TS "eqListFsts xs ys = gEq{|*->*|} (\x y -> fst x === fst y) ys",
+		TS "eqListFsts xs ys = gEq{|*->*|} (\\x y -> fst x === fst y) ys",
 		[],
 		TS "eqFsts :: (f (a, b)) (f (a, c)) -> Bool | gEq{|*->*|} f & gEq{|*|} a",
-		TS "eqFsts xs ys     = gEq{|*->*|} (\x y -> fst x === fst y) ys"
+		TS "eqFsts xs ys     = gEq{|*->*|} (\\x y -> fst x === fst y) ys"
 	],PCH
 		(TS "Examples of generic applications")
 		(map comment_blue [

@@ -204,7 +204,7 @@ page_6_3 char_width_and_kerns
 			[TS "FunctionType",			TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
 			[TS "ClassContext",			TS_E,	TST "|" TA " ClassOrGenericName-list {SimpleType}+ {" TAT "&" TA " " TAC "ClassName" TA "-list {SimpleType}+ }"],
 			[TS "ClassOrGenericName",	TS_E,	TSC "ClassName"],
-			[[],						TS_B,	TSC "FunctionName" TA " TypeKind"]
+			[[],						TS_B,	TSC "FunctionName" TA " " TAT "{|" TA "TypeKind" TAT "|}"]
 		],PCH
 			(TS "Example of the use of a class context to impose a restriction on the instantiation of a type variable. The function "
 			 TAC "add" TA" can be applied on arguments of any type under the condition that an instance of the class "

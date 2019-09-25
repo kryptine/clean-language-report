@@ -143,7 +143,7 @@ page_a_2 char_width_and_kerns
 			[TS "ClassContext",			TS_E,	TST "|" TA " ClassOrGenericName-list {SimpleType}+ {" TAT "&" TA " " TAC "ClassName" TA "-list {SimpleType}+ }"],
 			[TS "UnqTypeUnEqualities",	TS_E,	TS "{{" TAC "UniqueTypeVariable" TA "}+ " TAT "<=" TA " " TAC "UniqueTypeVariable" TA "}-list"],
 			[TS "ClassOrGenericName",	TS_E,	TSC "ClassName"],
-			[[],						TS_B,	TSC "FunctionName" TA " TypeKind"]
+			[[],						TS_B,	TSC "FunctionName" TA " " TAT "{|" TA "TypeKind" TAT "|}"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -522,8 +522,12 @@ page_a_7 char_width_and_kerns
 			[TS "DerivableType",TS_E,	TSC "TypeName"],
 			[[],				TS_B,	TS "PredefinedTypeConstructor"]
 		],ST [
-			[TS "GenericAppExpression",	TS_E,	TSC "FunctionName" TA "TypeKind GraphExpr"],
-			[TS "TypeKind",				TS_E,	TST "{|* " TA "{" TAT "-> *" TA "} " TAT "|}"]
+			[TS "GenericAppExpression",	TS_E,	TSC "FunctionName" TA " " TAT "{|" TA "TypeKind" TAT "|}" TA " GraphExpr"],
+			[TS "TypeKind",				TS_E,	TST "*"],
+			[[],						TS_B,	TS "TypeKind " TAT "->" TA " TypeKind"],
+			[[],						TS_B,	TS "IntDenotation"],
+			[[],						TS_B,	TST "(" TA "TypeKind" TAT ")"],
+			[[],						TS_B,	TST "{|" TA "TypeKind" TAT "|}"]
 		],ST [
 			[TS "GenericExportDef",		TS_E,	TS "GenericDef " TABCb ";"],
 			[[],						TS_B,	TSBCr "derive" TA " " TAC "FunctionName" TA " {DeriveExportType}-list " TABCb ";"],
@@ -534,10 +538,6 @@ page_a_7 char_width_and_kerns
 			[[],						TS_B,	TSC "TypeVariable"],
 			[TS "UsedGenericInfoFields",TS_E,	TST "{" TA "[{" TAC "FieldName" TA "}-list]"  TAT "}"],
 			[[],						TS_B,	TSC "Variable"]
-		],H2
-			"A.7" "Foreign Export Definition"
-		,ST [
-			[TS "ForeignExportDef",	TS_E,	TSBCr "foreign export" TA " [ " TABCr "ccall" TA " | " TABCr "stdcall" TA " ] " TAC "FunctionName" TA " " TABCb";"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -547,6 +547,10 @@ page_a_8 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
 		[H2
+			"A.7" "Foreign Export Definition"
+		,ST [
+			[TS "ForeignExportDef",	TS_E,	TSBCr "foreign export" TA " [ " TABCr "ccall" TA " | " TABCr "stdcall" TA " ] " TAC "FunctionName" TA " " TABCb";"]
+		],H2
 			"A.8" "Names"
 		,ST [
 			[TSC "ModuleName",			TS_E,TS "LowerCaseId",TS_B, TS "UpperCaseId",TS_B,TS "ModuleDirectoryName " TAT "." TA " ModuleName"],
