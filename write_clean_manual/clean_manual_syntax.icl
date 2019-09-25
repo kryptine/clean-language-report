@@ -530,7 +530,7 @@ page_a_7 char_width_and_kerns
 			[[],						TS_B,	TST "{|" TA "TypeKind" TAT "|}"]
 		],ST [
 			[TS "GenericExportDef",		TS_E,	TS "GenericDef " TABCb ";"],
-			[[],						TS_B,	TSBCr "derive" TA " " TAC "FunctionName" TA " {DeriveExportType}-list " TABCb ";"],
+			[[],						TS_B,	TSBCr "derive" TA " " TAC "FunctionName" TA " {DeriveExportType [UsedGenericDependencies]}-list " TABCb ";"],
 			[[],						TS_B,	TSBCr "derive" TA " " TABCr "class" TA " " TAC "ClassName" TA " {DerivableType}-list " TABCb ";"],
 			[TS "DeriveExportType",		TS_E,	TSC "TypeName"],
 			[[],						TS_B,	TS "GenericMarkerType [" TABCr "of" TA " UsedGenericInfoFields]"],
@@ -546,7 +546,11 @@ page_a_8 :: !{!CharWidthAndKerns} -> Page;
 page_a_8 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
-		[H2
+		[ST [
+			[TS "UsedGenericDependencies",TS_E,	TSBCr "with" TA " {UsedGenericDependency}"],
+			[TS "UsedGenericDependency",TS_E,	TSC "Variable"],
+			[[],						TS_B,	TST "_"]
+		],H2
 			"A.7" "Foreign Export Definition"
 		,ST [
 			[TS "ForeignExportDef",	TS_E,	TSBCr "foreign export" TA " [ " TABCr "ccall" TA " | " TABCr "stdcall" TA " ] " TAC "FunctionName" TA " " TABCb";"]
@@ -578,9 +582,8 @@ page_a_8 char_width_and_kerns
 			[TS "UpperCaseChar",TS_E]++separate_by TS_B [TST (toString c) \\ c<-['A'..'J']],
 			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['K'..'T']],
 			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['U'..'Z']]++repeatn 8 [],
-			[TS "SymbolChar",	TS_E,TST "~",TS_B,TST "@",TS_B,TST "#",TS_B,TST "$",TS_B,TST "%",TS_B,TST "^",TS_B,TST "?",TS_B,TST "!",[],[],[],[]],
+			[TS "SymbolChar",	TS_E,TST "~",TS_B,TST "@",TS_B,TST "#",TS_B,TST "$",TS_B,TST "%",TS_B,TST "^",TS_B,TST "?",TS_B,TST "!",TS_B,TST ":",[],[]],
 			[[],				TS_B,TST "+",TS_B,TST "-",TS_B,TST "*",TS_B,TST "<",TS_B,TST ">",TS_B,TST"\\",TS_B,TST "/",TS_B,TST "|",TS_B,TST "&",TS_B,TST "="],
-			[[],				TS_B,TST ":"]++repeatn 18 [],
 			[TS "IdChar",		TS_E,TS "LowerCaseChar"]++repeatn 18 [],
 			[[],				TS_B,TS "UpperCaseChar"]++repeatn 18 [],
 			[[],				TS_B,TS "Digit",[],[],[],[],[],[],[],[],[],[],[],[],TST "// " TAL "see A.9",[],[],[],[],[]],

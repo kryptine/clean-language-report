@@ -625,7 +625,7 @@ page_7_8 char_width_and_kerns
 			TAI "derive" TA "."
 		),ST [
 			[TS "GenericExportDef",		TS_E,	TS "GenericDef " TABCb ";"],
-			[[],						TS_B,	TSBCr "derive" TA " " TAC "FunctionName" TA " {DeriveExportType}-list " TABCb ";"],
+			[[],						TS_B,	TSBCr "derive" TA " " TAC "FunctionName" TA " {DeriveExportType [UsedGenericDependencies]}-list " TABCb ";"],
 			[[],						TS_B,	TSBCr "derive" TA " " TABCr "class" TA " " TAC "ClassName" TA " {DerivableType}-list " TABCb ";"],
 			[TS "GenericDef",			TS_E,	TSBCr "generic" TA " " TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType"]
 		]
@@ -642,7 +642,10 @@ page_7_9 char_width_and_kerns
 			[[],						TS_B,	TS "PredefinedTypeConstructor"],
 			[[],						TS_B,	TSC "TypeVariable"],
 			[TS "UsedGenericInfoFields",TS_E,	TST "{" TA "[{" TAC "FieldName" TA "}-list]"  TAT "}"],
-			[[],						TS_B,	TSC "Variable"]
+			[[],						TS_B,	TSC "Variable"],
+			[TS "UsedGenericDependencies",TS_E,	TSBCr "with" TA " {UsedGenericDependency}"],
+			[TS "UsedGenericDependency",TS_E,	TSC "Variable"],
+			[[],						TS_B,	TST "_"]
 		],PCH
 			(TS "Example. Exporting of generic mapping. Definition as given in module GenMap.dcl")
 			(map color_keywords [
