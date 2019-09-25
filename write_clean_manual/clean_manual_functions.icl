@@ -580,7 +580,7 @@ page_3_7 char_width_and_kerns
 			(TS "Example of a let expression used within a list comprehension.")
 			(map color_keywords [
 			[],
-			TS "doublefibs n = [let a = fib i in (a, a) \\ i <- [0..n]]"
+			TS "doublefibs n = [let a = fib i in (a, a) \\\\ i <- [0..n]]"
 		]),H3
 			"3.5.2" "Where Block: Local Definitions in a Function Alternative"
 		,P(
