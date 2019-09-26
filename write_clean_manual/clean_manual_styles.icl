@@ -1266,6 +1266,7 @@ program_headings_code headings lines pdf_i g_s pdf_s
 count_n_nil_elements_at_begining [[]:l] = 1+count_n_nil_elements_at_begining l;
 count_n_nil_elements_at_begining _ = 0;
 
+print_html_table :: [[[Text]]] [Int] -> {#Char};
 print_html_table [row:rows] column_widths
 //	# table_width = 495.0 - toReal (10*(length row-1));
 	# table_width = 495.0;
@@ -1286,28 +1287,34 @@ print_html_table_with_border [row:rows] is_first_row column_widths
 print_html_table_with_border [] is_first_row column_widths
 	= "";
 
+print_html_row :: [[Text]] [Int] Real Real -> ({#Char},Real);
 print_html_row [cell:cells=:[[]:cells2]] [column_width:column_widths] table_width sum_widths
 	# n_cells = 1+count_n_nil_elements_at_begining cells2;
 //	= "<td colspan=\""+++toString (1+n_cells)+++"\">"
 //	= "<td style=\"width:"+++toString (toReal ((column_width+sum (take n_cells column_widths))*font_size)/1000.0*2.0)+++"px'\" colspan=\""+++toString (1+n_cells)+++"\">"
-	# width = (100.0/table_width)*(toReal ((column_width+sum (take n_cells column_widths))*font_size)/1000.0);
+	# width = (100.0/table_width)*(toReal (10*n_cells)+(toReal ((column_width+sum (take n_cells column_widths))*font_size)/1000.0));
 	# sum_widths=sum_widths+width;
-
-	# (r_s,sum_widths) = print_html_row (drop n_cells cells) (drop n_cells column_widths) table_width sum_widths;
-
-	= ("<td style=\"width:"+++toString width+++"%px'\" colspan=\""+++toString (1+n_cells)+++"\">"
-		+++convert_reserved_chars_t cell+++print_n_html_cells n_cells cells+++"</td>"
-		+++r_s,sum_widths);
+	# remaining_cells = drop n_cells cells
+	# (r_s,sum_widths) = print_html_row remaining_cells (drop n_cells column_widths) table_width sum_widths;
+	# table_element
+		= "<td style=\"width:"+++toString width+++"%;padding:0 0 4px 0;\" colspan=\""+++toString (1+n_cells+n_cells)+++"\">"
+			+++convert_reserved_chars_t cell+++print_n_html_cells n_cells cells+++"</td>";
+	| remaining_cells=:[]
+		= (table_element+++r_s,sum_widths);
+		# column_spacing_width = (100.0/table_width)*10.0;
+		= (table_element+++"<td style=\"width:"+++toString column_spacing_width+++"%;padding:0 0 4px 0;\"></td>"+++r_s,sum_widths);
 print_html_row [cell:cells] [column_width:column_widths] table_width sum_widths
 //	= "<td>"+++convert_reserved_chars_t cell+++"</td>"+++print_html_row cells column_widths;
 //	= "<td style=\"width:"+++toString (toReal (column_width*font_size)/1000.0*2.0)+++"px;\">"+++convert_reserved_chars_t cell+++"</td>"+++print_html_row cells column_widths;
 	# width = (100.0/table_width)*(toReal (column_width*font_size)/1000.0);
 	# sum_widths=sum_widths+width;
-
 	# (r_s,sum_widths) = print_html_row cells column_widths table_width sum_widths;
-
-	= ("<td style=\"width:"+++toString width+++"%;\">"+++convert_reserved_chars_t cell+++"</td>"
-		+++r_s,sum_widths);
+	# table_element
+		= "<td style=\"width:"+++toString width+++"%;padding:0 0 4px 0;\">"+++convert_reserved_chars_t cell+++"</td>";
+	| cells=:[]
+		= (table_element+++r_s,sum_widths);
+		# column_spacing_width = (100.0/table_width)*10.0;
+		= (table_element+++"<td style=\"width:"+++toString column_spacing_width+++"%;padding:0 0 4px 0;\"></td>"+++r_s,sum_widths);
 print_html_row [] [] table_width sum_widths
 	= ("",sum_widths);
 
@@ -1319,9 +1326,9 @@ print_html_row_with_border [cell:cells=:[[]:cells2]] [column_width:column_widths
 		= print_html_row_with_border (drop n_cells cells) (drop n_cells column_widths) False table_width sum_widths;
 	# s=convert_reserved_chars_t cell+++print_n_html_cells n_cells cells+++"</td>"+++r_s;
 	| is_first_column
-		= ("<td style=\"width:"+++toString width+++"%px'\" colspan=\""+++toString (1+n_cells)+++"\">"+++s,sum_widths);
-//		= ("<td style=\"border-left:1px solid black;width:"+++toString width+++"%px'\" colspan=\""+++toString (1+n_cells)+++"\">"+++s,sum_widths);
-		= ("<td style=\"border-left:1px solid #"+++html_color TableBorderColor+++";width:"+++toString width+++"%px'\" colspan=\""+++toString (1+n_cells)+++"\">"+++s,sum_widths);
+		= ("<td style=\"width:"+++toString width+++"%;\" colspan=\""+++toString (1+n_cells)+++"\">"+++s,sum_widths);
+//		= ("<td style=\"border-left:1px solid black;width:"+++toString width+++"%'\" colspan=\""+++toString (1+n_cells)+++"\">"+++s,sum_widths);
+		= ("<td style=\"border-left:1px solid #"+++html_color TableBorderColor+++";width:"+++toString width+++"%\" colspan=\""+++toString (1+n_cells)+++"\">"+++s,sum_widths);
 print_html_row_with_border [cell:cells] [column_width:column_widths] is_first_column table_width sum_widths
 	# width = (100.0/table_width)*(toReal (column_width*font_size)/1000.0);
 	# sum_widths=sum_widths+width;
@@ -1354,12 +1361,12 @@ show_table_min_widths table table_min_widths column_space font_size font_n line_
 	  max_column_widths = compute_table_widths_with_min_widths table table_min_widths column_space font_size font_n char_width_and_kerns;
 	  (table_s,new_link_l) = print_table table max_column_widths column_space font_size font_n char_width_and_kerns;
 
-	  table_width = 495.0;// - toReal (10*(n_table_rows-1));
+	  table_width = 495.0 - toReal (10*(length max_column_widths-1));
 
 	  max_column_widths = adjust_last_column_width max_column_widths table_width;
 
 //	  h_s=h_s+++"<table>";
-	  h_s=h_s+++"<table style=\"background-color:#"+++html_color SyntaxColor+++";\">";
+	  h_s=h_s+++"<table style=\"background-color:#"+++html_color SyntaxColor+++";width:100%;\" cellspacing=\"0\" cellpadding=\"0\">";
 //	  h_s=h_s+++"<table style=\"width:100%;table-layout:fixed;background-color:#"+++html_color SyntaxColor+++";\">";
 //	  h_s=h_s+++"<table style=\"width:100%;border-spacing:10pt 0;background-color:#"+++html_color SyntaxColor+++";\">";
 	  h_s=h_s+++print_html_table table max_column_widths;
