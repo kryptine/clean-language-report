@@ -286,7 +286,7 @@ page_9_4 char_width_and_kerns
 			 ++dummy_columns,
 			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {ArgType}",
 			 []]++dummy_columns,
-			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [Fix][Prec] {ArgType}",
+			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [FixPrec] {ArgType}",
 			 []]++dummy_columns
 		],ST [
 			[TS "TypeLhs",					TS_E,	TS "[" TAT "*" TA "]TypeConstructor {TypeVariable}"],

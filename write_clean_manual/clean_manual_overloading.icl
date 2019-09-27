@@ -78,7 +78,7 @@ page_6_2 char_width_and_kerns
 			[TS "TypeClassDef",	TS_E,	TSBCr "class" TA " ClassName TypeVariable+ [ClassContext]"],
 		    [[],				[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA " {ClassMemberDef}+ " TABCb "}" TA "] " TABCb ";"],
 			[[],				TS_B,	TSBCr "class" TA " FunctionName TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"],
-			[[],				TS_B,	TSBCr "class" TA " (FunctionName) [Fix][Prec] TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"]
+			[[],				TS_B,	TSBCr "class" TA " (FunctionName) [FixPrec] TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"]
 			],ST [
 				[TS "ClassMemberDef",	TS_E,	TS "FunctionTypeDef"],
 				[[],					[],		TS "[MacroDef]"]
@@ -498,7 +498,7 @@ page_6_7 char_width_and_kerns
 			[TS "TypeClassDef",	TS_E,	TSBCr "class" TA " ClassName TypeVariable+ [ClassContext]"],
 		    [[],				[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA " {ClassMemberDef}+ " TABCb "}" TA "] " TABCb ";"],
 			[[],				TS_B,	TSBCr "class" TA " FunctionName TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"],
-			[[],				TS_B,	TSBCr "class" TA " (FunctionName) [Fix][Prec] TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"]
+			[[],				TS_B,	TSBCr "class" TA " (FunctionName) [FixPrec] TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"]
 		],PCH
 			(TS "Example of an overloaded function/operator.")
 			(map color_keywords [

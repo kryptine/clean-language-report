@@ -140,9 +140,9 @@ page_10_2 char_width_and_kerns
 			[TS "",						TSC ">2",		TSC "8  + 4*n",				TSC "4 + size node",			TS ""],
 			[TSC "Pointer to node",		TSC "-",		TSC "4",					TSC "4",						TS ""],
 			[TSC "Function",			TSC "0,1,2",	TSC "12",					TSC "-",						TS ""],
-			[TS "",						TSC ">2",		TSC "4  + 4*n",				TSC "-",						TS ""]   
+			[TS "",						TSC ">2",		TSC "4  + 4*n",				TSC "-",						TS ""]
 		]
-			];
+		];
 	= make_page pdf_i pdf_shl;
 
 page_10_3 :: !{!CharWidthAndKerns} -> Page;
@@ -279,7 +279,7 @@ page_10_4 char_width_and_kerns
 		],ST [
 			[TS "MacroDef",			TS_E,	TS "[MacroFixityDef]"],
 			[[],					[],	    TS "DefOfMacro"],
-			[TS "MacroFixityDef",	TS_E,	TST "(" TAC "FunctionName" TAT ")" TA " [Fix][Prec] " TABCb ";"],
+			[TS "MacroFixityDef",	TS_E,	TST "(" TAC "FunctionName" TAT ")" TA " [FixPrec] " TABCb ";"],
 			[TS "DefOfMacro",		TS_E,	TS "Function {Variable} " TAT ":==" TA " FunctionBody " TABCb ";"],
 			[[],					[],		TS "[LocalFunctionAltDefs]"]
 		],S(

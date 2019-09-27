@@ -138,7 +138,7 @@ page_a_2 char_width_and_kerns
 			"A.3.1" "Types of Functions"
 		,ST [
 			[TS "FunctionTypeDef",		TS_E,	TSC "FunctionName" TA " " TAT "::" TA " FunctionType " TABCb ";"],
-			[[],						TS_B,	TST "(" TAC "FunctionName" TAT ")" TA " [Fix][Prec] [" TAT "::" TA" FunctionType] " TABCb ";"],
+			[[],						TS_B,	TST "(" TAC "FunctionName" TAT ")" TA " [FixPrec] [" TAT "::" TA" FunctionType] " TABCb ";"],
 			[TS "FunctionType",			TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
 			[TS "ClassContext",			TS_E,	TST "|" TA " ClassOrGenericName-list {SimpleType}+ {" TAT "&" TA " ClassOrGenericName-list {SimpleType}+}"],
 			[TS "UnqTypeUnEqualities",	TS_E,	TS "{{" TAC "UniqueTypeVariable" TA "}+ " TAT "<=" TA " " TAC "UniqueTypeVariable" TA "}-list"],
@@ -154,7 +154,7 @@ page_a_3 char_width_and_kerns
 	# pdf_shl = make_pdf_shl pdf_i
 		[ST [
 			[TS "FunctionExportTypeDef",TS_E,	TSC "FunctionName" TA " " TAT "::" TA " FunctionType [Special] " TABCb ";"],
-			[[],						TS_B,	TST "(" TAC "FunctionName" TAT ")" TA " [Fix][Prec] " TAT "::" TA" FunctionType [Special] " TABCb ";"]
+			[[],						TS_B,	TST "(" TAC "FunctionName" TAT ")" TA " [FixPrec] " TAT "::" TA" FunctionType [Special] " TABCb ";"]
 		],H3 "A.3.2" "Patterns"
 		,ST [
 			[TS "Pattern",			TS_E,	TS "[" TAC "Variable" TA " " TAT "=:" TA "] BrackPattern"],
@@ -349,7 +349,7 @@ page_a_5 char_width_and_kerns
 		,ST [
 			[TS "MacroDef",			TS_E,	TS "[MacroFixityDef]"],
 			[[],					[],	    TS "DefOfMacro"],
-			[TS "MacroFixityDef",	TS_E,	TST "(" TAC "FunctionName" TAT ")" TA " [Fix][Prec] " TABCb ";"],
+			[TS "MacroFixityDef",	TS_E,	TST "(" TAC "FunctionName" TAT ")" TA " [FixPrec] " TABCb ";"],
 			[TS "DefOfMacro",		TS_E,	TS "Function {" TAC "Variable" TA "} " TAT ":==" TA " FunctionBody " TABCb ";"],
 			[[],					[],		TS "[LocalFunctionAltDefs]"]
 		],H2
@@ -372,7 +372,7 @@ page_a_5 char_width_and_kerns
 			 ++dummy_columns,
 			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {ArgType}",
 			 []]++dummy_columns,
-			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [Fix][Prec] {ArgType}",
+			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [FixPrec] {ArgType}",
 			 []]++dummy_columns
 		]),ST [
 			[TS "TypeLhs",	TS_E,	TS "[" TAT "*" TA "] TypeConstructor",	TS "// " TAL "see A.8"],
@@ -380,9 +380,9 @@ page_a_5 char_width_and_kerns
 		],ST [
 			[TS "ExistentalQuantVariables",	TS_E,	TST "E." TA "{" TAC "TypeVariable" TA " }+" TAT ":"]
 		],ST [
-			[TS "Fix",	TS_E,	TSBCr "infixl"],
-			[[],		TS_B,	TSBCr "infixr"],
-			[[],		TS_B,	TSBCr "infix"]
+			[TS "FixPrec",	TS_E,	TSBCr "infixl" TA " [Prec]"],
+			[[],			TS_B,	TSBCr "infixr" TA " [Prec]"],
+			[[],			TS_B,	TSBCr "infix" TA " [Prec]"]
 		],ST [
 			[TS "Prec",	TS_E,	TS "Digit",	TS "// " TAL "see A.8"]
 		]
@@ -488,7 +488,7 @@ page_a_7 char_width_and_kerns
 			[TS "TypeClassDef",	TS_E,	TSBCr "class" TA " " TAC "ClassName" TA " " TAC "TypeVariable" TA "+ [ClassContext]"],
 		    [[],				[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA " {ClassMemberDef}+ " TABCb "}" TA "] " TABCb ";"],
 			[[],				TS_B,	TSBCr "class" TA " " TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType" TABCb ";"],
-			[[],				TS_B,	TSBCr "class" TA " (" TAC "FunctionName" TA ") [Fix][Prec] " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType" TABCb ";"]
+			[[],				TS_B,	TSBCr "class" TA " (" TAC "FunctionName" TA ") [FixPrec] " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType" TABCb ";"]
 		],ST [
 			[TS "ClassMemberDef",	TS_E,	TS "FunctionTypeDef"],
 			[[],					[],		TS "[MacroDef]"]
