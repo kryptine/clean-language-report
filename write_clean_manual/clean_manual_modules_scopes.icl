@@ -70,18 +70,16 @@ page_2_1 char_width_and_kerns
 			[TS "UpperCaseId",	TS_E, TS "UpperCaseChar~{IdChar}"],
 			[TS "SymbolId",		TS_E, TS "{SymbolChar}+"]
 		],ST [
-			[TS "LowerCaseChar",TS_E]++separate_by TS_B [TST (toString c) \\ c<-['a'..'j']],
-			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['k'..'t']],
-			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['u'..'z']]++repeatn 8 [],
-			[TS "UpperCaseChar",TS_E]++separate_by TS_B [TST (toString c) \\ c<-['A'..'J']],
-			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['K'..'T']],
-			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['U'..'Z']]++repeatn 8 [],
-			[TS "SymbolChar",	TS_E,TST "~",TS_B,TST "@",TS_B,TST "#",TS_B,TST "$",TS_B,TST "%",TS_B,TST "^",TS_B,TST "?",TS_B,TST "!",TS_B,TST ":",[],[]],
-			[[],				TS_B,TST "+",TS_B,TST "-",TS_B,TST "*",TS_B,TST "<",TS_B,TST ">",TS_B,TST"\\",TS_B,TST "/",TS_B,TST "|",TS_B,TST "&",TS_B,TST "="],
-			[TS "IdChar",		TS_E,TS "LowerCaseChar"]++repeatn 18 [],
-			[[],				TS_B,TS "UpperCaseChar"]++repeatn 18 [],
-			[[],				TS_B,TS "Digit"]++repeatn 18 [],
-			[[],				TS_B,TST "_",TS_B,TST "`"]++repeatn 16 []
+			[TS "LowerCaseChar",TS_E]++separate_by TS_B [TST (toString c) \\ c<-['a'..'m']],
+			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['n'..'z']],
+			[TS "UpperCaseChar",TS_E]++separate_by TS_B [TST (toString c) \\ c<-['A'..'M']],
+			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['N'..'Z']],
+			[TS "SymbolChar",	TS_E]++separate_by TS_B [TST (toString c) \\ c<-:"~@#$%^?!:"]++repeatn 8 [],
+			[[],				TS_B]++separate_by TS_B [TST (toString c) \\ c<-:"+-*<>\\/|&="]++repeatn 6 [],
+			[TS "IdChar",		TS_E,TS "LowerCaseChar"]++repeatn 24 [],
+			[[],				TS_B,TS "UpperCaseChar"]++repeatn 24 [],
+			[[],				TS_B,TS "Digit"]++repeatn 24 [],
+			[[],				TS_B,TST "_",TS_B,TST "`"]++repeatn 22 []
 		]
 	];
 	= make_page pdf_i pdf_shl;

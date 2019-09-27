@@ -687,7 +687,7 @@ page_4_9 char_width_and_kerns
 			[[],					TS_B,	TS "StringDenotation"]
 		],ST [
 			[TS "StringDenotation",	TS_E,	TS "StringDel{AnyChar/StringDel}StringDel"],
-			[TS "StrignDel",		TS_E,	TST "\""]
+			[TS "StringDel",		TS_E,	TST "\""]
 		],MP [
 			[],
 			TS ("By default this array denotation is overloaded. The type determines "+++
