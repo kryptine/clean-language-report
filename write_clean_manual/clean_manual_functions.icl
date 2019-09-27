@@ -985,7 +985,7 @@ page_3_12 char_width_and_kerns
 			[TS "Prec",						TS_E,	TS "Digit"],
 			[TS "FunctionType",				TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
 			[TS "ArgType",					TS_E,	TS "BrackType"],
-			[[],							TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type" TA ")"],
+			[[],							TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type [ClassContext]" TAT ")"],
 			[TS "Type",						TS_E,	TS "{BrackType}+"],
 			[TS "BrackType",				TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"],
 			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{TypeVariable }+" TAT ":"]
@@ -1125,9 +1125,10 @@ page_3_14 char_width_and_kerns
 			TS "map f []     =   []",
 			TS "map f [x:xs] =   [f x : map f xs]"
 		],PCH
-			(TSB "Counter Example." TA " The same function " TAC "map" TA (" again, but now the implicit assumed universal quantifier has been made "+++
-							  "visible. It shows the meaning of the specified type more precisely, but is makes the type definition a bit longer as well. ")
-							  ++orange_bold_s "The current version of Clean does not yet allow universal quantifiers on the topmost level !!")
+			(TSB "Counter Example." TA " The same function " TAC "map"
+			TA (" again, but now the implicit assumed universal quantifier has been made visible. "+++
+				"It shows the meaning of the specified type more precisely, but it makes the type definition a bit longer as well. ")
+			++orange_bold_s "The current version of Clean does not yet allow universal quantifiers on the topmost level !!")
 			[
 			[],
 			TS "map:: A.a b: (a->b) [a] -> [b]",
@@ -1141,7 +1142,7 @@ page_3_14 char_width_and_kerns
 		),ST [
 			[TS "FunctionType",				TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
 			[TS "ArgType",					TS_E,	TS "BrackType"],
-			[[],							TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type" TA ")"],
+			[[],							TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type [ClassContext]" TAT ")"],
 			[TS "Type",						TS_E,	TS "{BrackType}+"],
 			[TS "BrackType",				TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"],
 			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{TypeVariable }+" TAT ":"]

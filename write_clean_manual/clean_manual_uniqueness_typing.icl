@@ -297,7 +297,7 @@ page_9_4 char_width_and_kerns
 		],ST [
 			[TS "BrackType",		TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"],
 			[TS "ArgType",			TS_E,	TS "BrackType"],
-			[[],					TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type" TA ")"],
+			[[],					TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type [ClassContext]" TAT ")"],
 			[TS "UnqTypeAttrib",	TS_E,	TST "*"],
 			[[],					TS_B,	TS "UniqueTypeVariable" TAT ":"],
 			[[],					TS_B,	TST "."]

@@ -202,7 +202,7 @@ page_6_3 char_width_and_kerns
 				"additional restriction imposed on a type variable, introducing a kind of ") TAI "bounded polymorphism" TA "."
 		),ST [
 			[TS "FunctionType",			TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
-			[TS "ClassContext",			TS_E,	TST "|" TA " ClassOrGenericName-list {SimpleType}+ {" TAT "&" TA " " TAC "ClassName" TA "-list {SimpleType}+ }"],
+			[TS "ClassContext",			TS_E,	TST "|" TA " ClassOrGenericName-list {SimpleType}+ {" TAT "&" TA " ClassOrGenericName-list {SimpleType}+}"],
 			[TS "ClassOrGenericName",	TS_E,	TSC "ClassName"],
 			[[],						TS_B,	TSC "FunctionName" TA " " TAT "{|" TA "TypeKind" TAT "|}"]
 		],PCH
