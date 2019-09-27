@@ -140,7 +140,8 @@ page_a_2 char_width_and_kerns
 			[TS "FunctionTypeDef",		TS_E,	TSC "FunctionName" TA " " TAT "::" TA " FunctionType " TABCb ";"],
 			[[],						TS_B,	TST "(" TAC "FunctionName" TAT ")" TA " [FixPrec] [" TAT "::" TA" FunctionType] " TABCb ";"],
 			[TS "FunctionType",			TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
-			[TS "ClassContext",			TS_E,	TST "|" TA " ClassOrGenericName-list {SimpleType}+ {" TAT "&" TA " ClassOrGenericName-list {SimpleType}+}"],
+			[TS "ClassContext",			TS_E,	TST "|" TA " ClassConstraints {" TAT "&" TA " ClassConstraints}"],
+			[TS "ClassConstraints",		TS_E,	TS "ClassOrGenericName-list {SimpleType}+"],
 			[TS "UnqTypeUnEqualities",	TS_E,	TS "{{" TAC "UniqueTypeVariable" TA "}+ " TAT "<=" TA " " TAC "UniqueTypeVariable" TA "}-list"],
 			[TS "ClassOrGenericName",	TS_E,	TSC "ClassName"],
 			[[],						TS_B,	TSC "FunctionName" TA " " TAT "{|" TA "TypeKind" TAT "|}"]
@@ -203,7 +204,7 @@ page_a_3 char_width_and_kerns
 			[TS "UnitPattern",	TS_E,	TST "()"]
 		],ST [
 			[TS "DynamicPattern",			TS_E,	TST "(" TA "GraphPattern " TAT "::" TA " DynamicType" TAT ")"],
-			[TS "DynamicType",				TS_E,	TS "[UniversalQuantVariables] {DynPatternType}+ [ClassContext]"],
+			[TS "DynamicType",				TS_E,	TS "[UnivQuantVariables] {DynPatternType}+ [ClassContext]"],
 			[TS "DynPatternType",			TS_E,	TS "Type"],
 			[[],							TS_B,	TS "TypePatternVariable"],
 			[[],							TS_B,	TS "OverloadedTypePatternVariable"],
@@ -340,7 +341,7 @@ page_a_5 char_width_and_kerns
 		],ST [
 			[TS "UnitConstructor",	TS_E,	TST "()"]
 		],ST [
-			[TS "DynamicExpression",TS_E,	TSBCr "dynamic" TA " GraphExpr [" TAT "::" TA " [UniversalQuantVariables] Type [ClassContext]]"]
+			[TS "DynamicExpression",TS_E,	TSBCr "dynamic" TA " GraphExpr [" TAT "::" TA " [UnivQuantVariables] Type [ClassContext]]"]
 		],ST [
 			[TS "MatchesPatternExpr",	TS_E,	TS "GraphExpr" TA " " TAT "=:" TA " " TAC "ConstructorName" TA " { " TAT "_" TA " }"],
 			[[],						TS_B,	TS "GraphExpr" TA " " TAT "=:" TA " BrackPattern"]
@@ -365,20 +366,20 @@ page_a_5 char_width_and_kerns
 		],ST (let {
 				dummy_columns = repeatn 6 [];
 			} in [
-			[TS "AlgebraicTypeDef",			TS_E,	TST "::" TA "TypeLhs",
+			[TS "AlgebraicTypeDef",		TS_E,	TST "::" TA "TypeLhs",
 			 TST "=" TA " ConstructorDef"]++dummy_columns,
-			[[],							[],		[],
+			[[],						[],		[],
 			 TS "{" TAT "|" TA " ConstructorDef} " TABCb ";"]
 			 ++dummy_columns,
-			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {ArgType}",
+			[TS "ConstructorDef",		TS_E,	TS "[ExistQuantVariables] " TAC "ConstructorName" TA " {ArgType} {" TAT "&" TA " ClassConstraints}",
 			 []]++dummy_columns,
-			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [FixPrec] {ArgType}",
+			[[],						TS_B,	TS "[ExistQuantVariables] " TAT "(" TAC "ConstructorName" TAT ")" TA " [FixPrec] {ArgType} {" TAT "&" TA " ClassConstraints}",
 			 []]++dummy_columns
 		]),ST [
 			[TS "TypeLhs",	TS_E,	TS "[" TAT "*" TA "] TypeConstructor",	TS "// " TAL "see A.8"],
 			[[],			[],		TS "{" TAC "TypeVariable" TA "}",		[]]
 		],ST [
-			[TS "ExistentalQuantVariables",	TS_E,	TST "E." TA "{" TAC "TypeVariable" TA " }+" TAT ":"]
+			[TS "ExistQuantVariables",	TS_E,	TST "E." TA "{" TAC "TypeVariable" TA " }+" TAT ":"]
 		],ST [
 			[TS "FixPrec",	TS_E,	TSBCr "infixl" TA " [Prec]"],
 			[[],			TS_B,	TSBCr "infixr" TA " [Prec]"],
@@ -404,15 +405,15 @@ page_a_6 char_width_and_kerns
 		],ST [
 			[TS "Type",				TS_E,	TS "{BrackType}+"],
 			[TS "ArgType",			TS_E,	TS "BrackType"],
-			[[],					TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type [ClassContext]" TAT ")"]
+			[[],					TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UnivQuantVariables Type [ClassContext]" TAT ")"]
 		],ST [
-			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{" TAC "TypeVariable" TA " }+" TAT ":"]
+			[TS "UnivQuantVariables",	TS_E,	TST "A." TA "{" TAC "TypeVariable" TA " }+" TAT ":"]
 		],ST [
 			[TS "RecordTypeDef",	TS_E,
-			 TST "::" TA "TypeLhs " TAT "=" TA " [ExistentalQuantVariables] [Strict] " TAT "{" TA "{" TAC "FieldName" TA " " TAT "::" TA " FieldType}-list" TAT "}" TA " " TABCb ";"],
+			 TST "::" TA "TypeLhs " TAT "=" TA " [ExistQuantVariables] [Strict] " TAT "{" TA "{" TAC "FieldName" TA " " TAT "::" TA " FieldType}-list" TAT "}" TA " " TABCb ";"],
 			[TS "FieldType",		TS_E,	TS "[Strict] Type"],
-			[[],					TS_B,	TS "UniversalQuantVariables [Strict] Type"],
-			[[],					TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type" TA ")"]
+			[[],					TS_B,	TS "UnivQuantVariables [Strict] Type"],
+			[[],					TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UnivQuantVariables Type" TA ")"]
 		],ST [
 			[TS "SynonymTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT ":==" TA " Type " TABCb ";"]
 		],ST [

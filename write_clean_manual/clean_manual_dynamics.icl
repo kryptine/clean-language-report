@@ -100,7 +100,7 @@ page_8_2 char_width_and_kerns
 			"encoding of its static type, are packed into a dynamic. At run-time, the contents of a dynamic (the value of the expression "+++
 			"as well the encoded type) can be inspected via a dynamic pattern match (") TAL "see 8.2" TA ")."
 	),ST [
-		[TS "DynamicExpression"	,	TS_E,	TSBCr "dynamic" TA " GraphExpr [" TAT "::" TA " [UniversalQuantVariables] Type [ClassContext]]"]
+		[TS "DynamicExpression"	,	TS_E,	TSBCr "dynamic" TA " GraphExpr [" TAT "::" TA " [UnivQuantVariables] Type [ClassContext]]"]
 	],PCH
 		(TS "Example showing how one can pack an expression into a " TAC "Dynamic"
 		 TA ". Optionally, the static type of the expression one wants to pack into a Dynamic can be specified.")
@@ -327,7 +327,7 @@ page_8_5 char_width_and_kerns
 				"in which the pattern match fails due to a non-matching dynamic type.")
 		),ST [
 			[TS "DynamicPattern",			TS_E,	TST "(" TA "GraphPattern " TAT "::" TA " DynamicType" TAT ")"],
-			[TS "DynamicType",				TS_E,	TS "[UniversalQuantVariables] {DynPatternType}+ [ClassContext]"],
+			[TS "DynamicType",				TS_E,	TS "[UnivQuantVariables] {DynPatternType}+ [ClassContext]"],
 			[TS "DynPatternType",			TS_E,	TS "Type"],
 			[[],							TS_B,	TS "TypePatternVariable"],
 			[[],							TS_B,	TS "OverloadedTypePatternVariable"],

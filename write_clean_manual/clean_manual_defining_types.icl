@@ -52,20 +52,20 @@ page_5_1 char_width_and_kerns
 			[TS "AlgebraicTypeDef",	TS_E,	TST "::" TA "TypeLhs",	TST "=" TA " ConstructorDef"], 
 			[[],					[],		[],						TS "{" TAT "|" TA " ConstructorDef} " TABCb ";"]
 		],ST [
-			[TS "TypeLhs",					TS_E,	TS "[" TAT "*" TA "] TypeConstructor {TypeVariable}"],
-			[TS "TypeConstructor",			TS_E,	TSC "TypeName"],
-			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {ArgType}"],
-			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [FixPrec] {ArgType}"],
-			[TS "FixPrec",					TS_E,	TSBCr "infixl" TA " [Prec]"],
-			[[],							TS_B,	TSBCr "infixr" TA " [Prec]"],
-			[[],							TS_B,	TSBCr "infix" TA " [Prec]"],
-			[TS "Prec",						TS_E,	TS "Digit"],
-			[[],							[],		[]],
-			[TS "BrackType",				TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"],
-			[TS "ArgType",					TS_E,	TS "BrackType"],
-			[[],							TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type [ClassContext]" TAT ")"],
-			[TS "ExistentalQuantVariables",	TS_E,	TST "E." TA "{TypeVariable }+" TAT ":"],
-			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{TypeVariable }+" TAT ":"] 
+			[TS "TypeLhs",				TS_E,	TS "[" TAT "*" TA "] TypeConstructor {TypeVariable}"],
+			[TS "TypeConstructor",		TS_E,	TSC "TypeName"],
+			[TS "ConstructorDef",		TS_E,	TS "[ExistQuantVariables] " TAC "ConstructorName" TA " {ArgType} {" TAT "&" TA " ClassConstraints}"],
+			[[],						TS_B,	TS "[ExistQuantVariables] " TAT "(" TAC "ConstructorName" TAT ")" TA " [FixPrec] {ArgType} {" TAT "&" TA " ClassConstraints}"],
+			[TS "FixPrec",				TS_E,	TSBCr "infixl" TA " [Prec]"],
+			[[],						TS_B,	TSBCr "infixr" TA " [Prec]"],
+			[[],						TS_B,	TSBCr "infix" TA " [Prec]"],
+			[TS "Prec",					TS_E,	TS "Digit"],
+			[[],						[],		[]],
+			[TS "BrackType",			TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"],
+			[TS "ArgType",				TS_E,	TS "BrackType"],
+			[[],						TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UnivQuantVariables Type [ClassContext]" TAT ")"],
+			[TS "ExistQuantVariables",	TS_E,	TST "E." TA "{TypeVariable }+" TAT ":"],
+			[TS "UnivQuantVariables",	TS_E,	TST "A." TA "{TypeVariable }+" TAT ":"] 
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -230,16 +230,16 @@ page_5_3 char_width_and_kerns
 		),let {
 			dummy_columns = repeatn 6 [];
 		} in ST [
-			[TS "AlgebraicTypeDef",			TS_E,	TST "::" TA "TypeLhs",
+			[TS "AlgebraicTypeDef",		TS_E,	TST "::" TA "TypeLhs",
 			 TST "=" TA " ConstructorDef"]++dummy_columns,
-			[[],							[],		[],
+			[[],						[],		[],
 			 TS "{" TAT "|" TA " ConstructorDef} " TABCb ";"]
 			 ++dummy_columns,
-			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {ArgType}",
+			[TS "ConstructorDef",		TS_E,	TS "[ExistQuantVariables] " TAC "ConstructorName" TA " {ArgType} {" TAT "&" TA " ClassConstraints}",
 			 []]++dummy_columns,
-			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [FixPrec] {ArgType}",
+			[[],						TS_B,	TS "[ExistQuantVariables] " TAT "(" TAC "ConstructorName" TAT ")" TA " [FixPrec] {ArgType} {" TAT "&" TA " ClassConstraints}",
 			 []]++dummy_columns,
-			[TS "ExistentalQuantVariables",	TS_E,	TST "E." TA "{TypeVariable}+" TAT ":",
+			[TS "ExistQuantVariables",	TS_E,	TST "E." TA "{TypeVariable}+" TAT ":",
 			 []]++dummy_columns
 		]
 		];
@@ -306,22 +306,22 @@ page_5_4 char_width_and_kerns
 		),let {
 			dummy_columns = repeatn 6 [];
 		} in ST [
-			[TS "AlgebraicTypeDef",			TS_E,	TST "::" TA "TypeLhs",
+			[TS "AlgebraicTypeDef",		TS_E,	TST "::" TA "TypeLhs",
 			 TST "=" TA " ConstructorDef"]++dummy_columns,
-			[[],							[],		[],
+			[[],						[],		[],
 			 TS "{" TAT "|" TA " ConstructorDef} " TABCb ";"]
 			 ++dummy_columns,
-			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {ArgType}",
+			[TS "ConstructorDef",		TS_E,	TS "[ExistQuantVariables] " TAC "ConstructorName" TA " {ArgType} {" TAT "&" TA " ClassConstraints}",
 			 []]++dummy_columns,
-			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [FixPrec] {ArgType}",
+			[[],						TS_B,	TS "[ExistQuantVariables] " TAT "(" TAC "ConstructorName" TAT ")" TA " [FixPrec] {ArgType} {" TAT "&" TA " ClassConstraints}",
 			 []]++dummy_columns,
-			[TS "BrackType",				TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType",
+			[TS "BrackType",			TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType",
 			 []]++dummy_columns,
-			[TS "ArgType",					TS_E,	TS "BrackType",
+			[TS "ArgType",				TS_E,	TS "BrackType",
 			 []]++dummy_columns,
-			[[],							TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type" TA ")",
+			[[],						TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UnivQuantVariables Type" TA ")",
 			 []]++dummy_columns,
-			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{TypeVariable}+" TAT ":",
+			[TS "UnivQuantVariables",	TS_E,	TST "A." TA "{TypeVariable}+" TAT ":",
 			 []]++dummy_columns
 		],PCH
 			(TSB "Counter Example" TA ". The following program is ill typed. Although an identity function is stored in "
@@ -373,16 +373,16 @@ page_5_5 char_width_and_kerns
 		let {
 			dummy_columns = repeatn 6 [];
 		} in [
-			[TS "AlgebraicTypeDef",			TS_E,	TST "::" TA "TypeLhs",
+			[TS "AlgebraicTypeDef",	TS_E,	TST "::" TA "TypeLhs",
 			 TST "=" TA " ConstructorDef"]++dummy_columns,
-			[[],							[],		[],
+			[[],					[],		[],
 			 TS "{" TAT "|" TA " ConstructorDef} " TABCb ";"]
 			 ++dummy_columns,
-			[TS "ConstructorDef",			TS_E,	TS "[ExistentalQuantVariables] " TAC "ConstructorName" TA " {ArgType}",
+			[TS "ConstructorDef",	TS_E,	TS "[ExistQuantVariables] " TAC "ConstructorName" TA " {ArgType} {" TAT "&" TA " ClassConstraints}",
 			 []]++dummy_columns,
-			[[],							TS_B,	TS "[ExistentalQuantVariables] (" TAC "ConstructorName" TA ") [FixPrec] {ArgType}",
+			[[],					TS_B,	TS "[ExistQuantVariables] " TAT "(" TAC "ConstructorName" TAT ")" TA " [FixPrec] {ArgType} {" TAT "&" TA " ClassConstraints}",
 			 []]++dummy_columns,
-			[TS "Strict",					TS_E,	TST "!",
+			[TS "Strict",			TS_E,	TST "!",
 			 []]++dummy_columns
 		],MP [
 			[],
@@ -523,10 +523,10 @@ page_5_7 char_width_and_kerns
 			TAL "see 10.1" TA "). The optional uniqueness attributes are treated in " TAL "Chapter 9" TA "."
 		),ST [
 			[TS "RecordTypeDef",	TS_E,
-			 TST "::" TA "TypeLhs " TAT "=" TA " [ExistentalQuantVariables] [Strict] " TAT "{" TA "{" TAC "FieldName" TA " " TAT "::" TA "FieldType}-list" TAT "}" TA " " TABCb ";"],
+			 TST "::" TA "TypeLhs " TAT "=" TA " [ExistQuantVariables] [Strict] " TAT "{" TA "{" TAC "FieldName" TA " " TAT "::" TA "FieldType}-list" TAT "}" TA " " TABCb ";"],
 			[TS "FieldType",		TS_E,	TS "[Strict] Type"],
-			[[],					TS_B,	TS "UniversalQuantVariables [Strict] Type"],
-			[[],					TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type" TA ")"]
+			[[],					TS_B,	TS "UnivQuantVariables [Strict] Type"],
+			[[],					TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UnivQuantVariables Type" TA ")"]
 		],S(
 			"As data constructor for a record the name of the record type is used internally."
 		),MSP [

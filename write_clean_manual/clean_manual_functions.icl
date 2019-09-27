@@ -974,21 +974,21 @@ page_3_12 char_width_and_kerns
 		TAC "infer" TA " the type) the explicit specification of the type is " TAC "highly recommended"
 		TA " to increase the readability of the program."
 	),ST [
-			[TS "FunctionDef",				TS_E,	TS "[FunctionTypeDef]"],
-			[[],							[],		TS "DefOfFunction"],
-			[[],							[],		[]],
-			[TS "FunctionTypeDef",			TS_E,	TSC "FunctionName" TA " " TAT "::" TA " FunctionType " TABCb ";"],
-			[[],							TS_B,	TST "(" TAC "FunctionName" TAT ")" TA " [FixPrec] [" TAT "::" TA" FunctionType] " TABCb ";"],
-			[TS "FixPrec",					TS_E,	TSBCr "infixl" TA " [Prec]"],
-			[[],							TS_B,	TSBCr "infixr" TA " [Prec]"],
-			[[],							TS_B,	TSBCr "infix" TA " [Prec]"],
-			[TS "Prec",						TS_E,	TS "Digit"],
-			[TS "FunctionType",				TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
-			[TS "ArgType",					TS_E,	TS "BrackType"],
-			[[],							TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type [ClassContext]" TAT ")"],
-			[TS "Type",						TS_E,	TS "{BrackType}+"],
-			[TS "BrackType",				TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"],
-			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{TypeVariable }+" TAT ":"]
+			[TS "FunctionDef",			TS_E,	TS "[FunctionTypeDef]"],
+			[[],						[],		TS "DefOfFunction"],
+			[[],						[],		[]],
+			[TS "FunctionTypeDef",		TS_E,	TSC "FunctionName" TA " " TAT "::" TA " FunctionType " TABCb ";"],
+			[[],						TS_B,	TST "(" TAC "FunctionName" TAT ")" TA " [FixPrec] [" TAT "::" TA" FunctionType] " TABCb ";"],
+			[TS "FixPrec",				TS_E,	TSBCr "infixl" TA " [Prec]"],
+			[[],						TS_B,	TSBCr "infixr" TA " [Prec]"],
+			[[],						TS_B,	TSBCr "infix" TA " [Prec]"],
+			[TS "Prec",					TS_E,	TS "Digit"],
+			[TS "FunctionType",			TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
+			[TS "ArgType",				TS_E,	TS "BrackType"],
+			[[],						TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UnivQuantVariables Type [ClassContext]" TAT ")"],
+			[TS "Type",					TS_E,	TS "{BrackType}+"],
+			[TS "BrackType",			TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"],
+			[TS "UnivQuantVariables",	TS_E,	TST "A." TA "{TypeVariable }+" TAT ":"]
 	],MP [
 		[],
 		TS "An explicit specification is " TAC "required"
@@ -1140,12 +1140,12 @@ page_3_14 char_width_and_kerns
 				"A. (for all) direct after the :: in the type definition of a function. In this way one can explicitly introduce the type variables used in the "+++
 				"type definition of the function. As usual, the type variables thus introduced have the whole function type definition as scope.")
 		),ST [
-			[TS "FunctionType",				TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
-			[TS "ArgType",					TS_E,	TS "BrackType"],
-			[[],							TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UniversalQuantVariables Type [ClassContext]" TAT ")"],
-			[TS "Type",						TS_E,	TS "{BrackType}+"],
-			[TS "BrackType",				TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"],
-			[TS "UniversalQuantVariables",	TS_E,	TST "A." TA "{TypeVariable }+" TAT ":"]
+			[TS "FunctionType",			TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
+			[TS "ArgType",				TS_E,	TS "BrackType"],
+			[[],						TS_B,	TS "[Strict] [UnqTypeAttrib] " TAT "(" TA "UnivQuantVariables Type [ClassContext]" TAT ")"],
+			[TS "Type",					TS_E,	TS "{BrackType}+"],
+			[TS "BrackType",			TS_E,	TS "[Strict] [UnqTypeAttrib] SimpleType"],
+			[TS "UnivQuantVariables",	TS_E,	TST "A." TA "{TypeVariable }+" TAT ":"]
 		],MP [
 			[],
 			TS ("CLEAN offers Rank 2 polymorphism: it is possible to specify the universal quantifier with as scope "+++
