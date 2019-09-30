@@ -590,15 +590,15 @@ page_a_8 char_width_and_kerns
 		],H2
 			"A.9" "Denotations"
 		,ST2 [
-			[TS "IntDenotation",	TS_E,	TS "[Sign]{Digit}+",							TS "// decimal number"],
-			[[],					TS_B,	TS "[Sign]0{OctDigit}+",						TS "// octal number"],
-			[[],					TS_B,	TS "[Sign]0x{HexDigit}+",						TS "// hexadecimal number"],
-			[TS "Sign",				TS_B,	TS "+ | -",										[]],
-			[TS "RealDenotation",	TS_E,	TS "[Sign]{Digit}+.{Digit}+[E[Sign]{Digit}+]",	TS ""],
-			[TS "BoolDenotation",	TS_E,	TS "True | False",								[]],
-			[TS "CharDenotation",	TS_E,	TS "CharDel AnyChar/CharDel CharDel",			[]],
-			[TS "StringDenotation",	TS_E,	TS "StringDel{AnyChar/StringDel}StringDel",		[]],
-			[TS "CharsDenotation",	TS_E,	TS "CharDel {AnyChar/CharDel}+ CharDel",		[]]
+			[TS "IntDenotation",	TS_E,TS "[Sign]{Digit}+",														TS "// decimal number"],
+			[[],					TS_B,TS "[Sign]" TAT "0" TA "{OctDigit}+",										TS "// octal number"],
+			[[],					TS_B,TS "[Sign]" TAT "0x" TA "{HexDigit}+",										TS "// hexadecimal number"],
+			[TS "Sign",				TS_E,TST "+" TA " | " TAT "-",													[]],
+			[TS "RealDenotation",	TS_E,TS "[Sign]{Digit}+" TAT "." TA "{Digit}+[" TAT "E" TA "[Sign]{Digit}+]",	TS ""],
+			[TS "BoolDenotation",	TS_E,TST "True" TA " | " TAT "False",											[]],
+			[TS "CharDenotation",	TS_E,TS "CharDel AnyChar/CharDel CharDel",										[]],
+			[TS "StringDenotation",	TS_E,TS "StringDel{AnyChar/StringDel}StringDel",								[]],
+			[TS "CharsDenotation",	TS_E,TS "CharDel {AnyChar/CharDel}+ CharDel",									[]]
 		],ST (let {
 			n_extra_columns = 6;
 			} in [
