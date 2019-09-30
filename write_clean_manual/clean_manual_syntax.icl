@@ -183,15 +183,15 @@ page_a_3 char_width_and_kerns
 			[[],					TS_B,	TS "UnitPattern"]
 		],ST2 [
 			[TS "BasicValuePattern",	TS_E,	TS "BasicValue",		[]],
-			[TS "BasicValue",			TS_E,	TS "IntDenotation",		TS "// " TAL "see A.9"], 
-			[[],						TS_B,	TS "RealDenotation",	TS "// " TAL "see A.9"],
-			[[],						TS_B,	TS "BoolDenotation",	TS "// " TAL "see A.9"],
-			[[],						TS_B,	TS "CharDenotation",	TS "// " TAL "see A.9"]
+			[TS "BasicValue",			TS_E,	TS "IntDenotation",		TS "// " TAL "see B.3"], 
+			[[],						TS_B,	TS "RealDenotation",	TS "// " TAL "see B.3"],
+			[[],						TS_B,	TS "BoolDenotation",	TS "// " TAL "see B.3"],
+			[[],						TS_B,	TS "CharDenotation",	TS "// " TAL "see B.3"]
 		],ST2 [
 			[TS "ListPattern",		TS_E,	TST "[" TA "[ListKind][{LGraphPattern}-list [" TAT ":" TA " GraphPattern]] [SpineStrictness]" TAT "]",
 																	[]],
 			[TS "LGraphPattern",	TS_E,	TS "GraphPattern",		[]],
-			[[],					TS_B,	TS "CharsDenotation",	TS "// " TAL "see A.9"]
+			[[],					TS_B,	TS "CharsDenotation",	TS "// " TAL "see B.3"]
 		],ST [
 			[TS "TuplePattern",	TS_E,	TST "(" TA "GraphPattern" TAT "," TA "{GraphPattern}-list" TAT ")"]
 		],ST [
@@ -287,7 +287,7 @@ page_a_4 char_width_and_kerns
 			[TS "ListDenotation",	TS_E,	TST "[" TA "[ListKind] [{LGraphExpr}-list [" TAT ":" TA " GraphExpr]] [SpineStrictness] " TAT "]",
 																						[]],
 			[TS "LGraphExpr",		TS_E,	TS "GraphExpr",								[]],
-			[[],					TS_B,	TS "CharsDenotation",						TS "// " TAL "see A.9"],
+			[[],					TS_B,	TS "CharsDenotation",						TS "// " TAL "see B.3"],
 			[TS "DotDotExpression",	TS_E,	TST "[" TA "[ListKind] GraphExpr [" TAT "," TA "GraphExpr]" TAT ".." TA "[GraphExpr] [SpineStrictness] " ++ TST "]",
 																						[]],
 			[TS "ZF-expression",	TS_E,	TST "[" TA "[ListKind] GraphExpr " TAT "\\" TA "{Qualifier}-list [SpineStrictness]" TAT "]",
@@ -318,7 +318,7 @@ page_a_5 char_width_and_kerns
 			[[],					TS_B,	TS "ArrayComprehension",								[]],
 			[[],					TS_B,	TS "ArraySelection",									[]],
 			[TS "ArrayDenotation",	TS_E,	TST "{" TA "[ArrayKind] {GraphExpr}-list" TAT "}",		[]],
-			[[],					TS_B,	TS "StringDenotation",									TS "// " TAL "see A.9"],
+			[[],					TS_B,	TS "StringDenotation",									TS "// " TAL "see B.3"],
 			[TS "ArrayUpdate",		TS_E,	TST "{" TA " ArrayExpr " TAT "&" TA " {ArrayIndex {Selection} " TAT "=" TA " GraphExpr}-list [" TAT "\\\\" TA " {Qualifier}-list]" TAT "}",
 																									[]],
 			[TS "ArrayComprehension",TS_E,	TST "{" TA "[ArrayKind] GraphExpr " TAT "\\\\" TA " {Qualifier}-list" TAT "}",
@@ -585,46 +585,8 @@ page_a_8 char_width_and_kerns
 			[[],				TS_B]++separate_by TS_B [TST (toString c) \\ c<-:"+-*<>\\/|&="]++repeatn 6 [],
 			[TS "IdChar",		TS_E,TS "LowerCaseChar"]++repeatn 24 [],
 			[[],				TS_B,TS "UpperCaseChar"]++repeatn 24 [],
-			[[],				TS_B,TS "Digit"]++repeatn 10 []++[TS "// " TAL "see A.9"]++repeatn 13 [],
+			[[],				TS_B,TS "Digit"]++repeatn 10 []++[TS "// " TAL "see B.3"]++repeatn 13 [],
 			[[],				TS_B,TST "_",TS_B,TST "`"]++repeatn 22 []
-		],H2
-			"A.9" "Denotations"
-		,ST2 [
-			[TS "IntDenotation",	TS_E,TS "[Sign]{Digit}+",														TS "// decimal number"],
-			[[],					TS_B,TS "[Sign]" TAT "0" TA "{OctDigit}+",										TS "// octal number"],
-			[[],					TS_B,TS "[Sign]" TAT "0x" TA "{HexDigit}+",										TS "// hexadecimal number"],
-			[TS "Sign",				TS_E,TST "+" TA " | " TAT "-",													[]],
-			[TS "RealDenotation",	TS_E,TS "[Sign]{Digit}+" TAT "." TA "{Digit}+[" TAT "E" TA "[Sign]{Digit}+]",	TS ""],
-			[TS "BoolDenotation",	TS_E,TST "True" TA " | " TAT "False",											[]],
-			[TS "CharDenotation",	TS_E,TS "CharDel AnyChar/CharDel CharDel",										[]],
-			[TS "StringDenotation",	TS_E,TS "StringDel{AnyChar/StringDel}StringDel",								[]],
-			[TS "CharsDenotation",	TS_E,TS "CharDel {AnyChar/CharDel}+ CharDel",									[]]
-		],ST (let {
-			n_extra_columns = 6;
-			} in [
-				[TS "AnyChar",		TS_E,concat_with_separator (TS " | ") [TS "IdChar",TS "ReservedChar",TS "SpecialChar"]]++repeatn (16+n_extra_columns) [],
-				[TS "ReservedChar",	TS_E]++separate_by TS_B (map TST ["(",")","{","}","[","]",";",",","."])++repeatn n_extra_columns [],
-				[TS "SpecialChar",	TS_E]++separate_by TS_B (map TST ["\\n","\\r","\\f","\\b"])++repeatn 3 []
-				++[TS "// newline,return,formf,backspace"]++repeatn (6+n_extra_columns) [],
-				[[],				TS_B]++separate_by TS_B [TST "\\t",TST "\\\\",TST "\\" TA "CharDel"]++repeatn 5 []
-				++[TS "// tab,backslash,character delimiter"]++repeatn (6+n_extra_columns) [],
-				[[],				TS_B,	TST "\\" TA "StringDel"]++repeatn 9 []
-				++[TS "// string delimiter"]++repeatn (6+n_extra_columns) [],
-				[[],				TS_B,	TST "\\" TA "{OctDigit}+"]++repeatn 9 []
-				++[TS "// octal number "]++repeatn (6+n_extra_columns) [],
-				[[],				TS_B,	TST "\\x" TA "{HexDigit}+"]++repeatn 9 []
-				++[TS "// hexadecimal number "]++repeatn (6+n_extra_columns) [],
-				[[],				TS_B,	TST "\\" TA "\IdChar"]++repeatn 9 []
-				++[TS "// escape any other character "]++repeatn (6+n_extra_columns) []
-		]),ST [
-			[TS "Digit",	TS_E]++separate_by TS_B [TST (toString c) \\ c<-['0'..'9']],
-			[TS "OctDigit",	TS_E]++separate_by TS_B [TST (toString c) \\ c<-['0'..'7']]++repeatn 4 [],
-			[TS "HexDigit",	TS_E]++separate_by TS_B [TST (toString c) \\ c<-['0'..'9']],
-			[[],			TS_B]++separate_by TS_B [TST (toString c) \\ c<-['A'..'F']]++repeatn 8 [],
-			[[],			TS_B]++separate_by TS_B [TST (toString c) \\ c<-['a'..'f']]++repeatn 8 []
-		 ],ST [
-			[TS "CharDel",		TS_E,	TST "'"],
-			[TS "StringDel",	TS_E,	TST "\""]
 		]
 		];
 	= make_page pdf_i pdf_shl;
