@@ -32,9 +32,9 @@ page_b_1 char_width_and_kerns
 			[[],				TS_B,	TS "ReservedChar",					TS "// " TAL "see Section B.3"],
 			[[],				TS_B,	TS "Literal",						[]],
 			[[],				TS_B,	TS "Identifier",					[]],
-			[TS "Identifier",	TS_E,	TS "LowerCaseId",					TS "// " TAL "see A.8"],
-			[[],				TS_B,	TS "UpperCaseId",					TS "// " TAL "see A.8"],
-			[[],				TS_B,	TS "SymbolId",						TS "// " TAL "see A.8"],
+			[TS "Identifier",	TS_E,	TS "LowerCaseId",					TS "// " TAL "see A.9"],
+			[[],				TS_B,	TS "UpperCaseId",					TS "// " TAL "see A.9"],
+			[[],				TS_B,	TS "SymbolId",						TS "// " TAL "see A.9"],
 			[TS "Literal",		TS_E,	TS "IntDenotation",					TS "// " TAL "see B.3"],
 			[[],				TS_B,	TS "RealDenotation",				TS "// " TAL "see B.3"],
 			[[],				TS_B,	TS "BoolDenotation",				TS "// " TAL "see B.3"],
@@ -58,7 +58,7 @@ page_b_1 char_width_and_kerns
 			[TS "AnythingTillNL",	TS_E,	TS "{AnyChar/ newline}",		TS "// no newline"],
 			[TS "AnythingTill/*",	TS_E,	TS "{AnyChar/ /*}",				TS "// no \"/*\""],
 			[TS "AnythingTill*/",	TS_E,	TS "{AnyChar/ */}",				TS "// no \"*/\""],
-			[TS "AnyChar",			TS_E,	TS "IdChar",					TS "// " TAL "see A.8"],
+			[TS "AnyChar",			TS_E,	TS "IdChar",					TS "// " TAL "see A.9"],
 			[[],					TS_B,	TS "ReservedChar",				[]],
 			[[],					TS_B,	TS "SpecialChar",				[]]
 		],H2

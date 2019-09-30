@@ -54,14 +54,14 @@ page_a_1 char_width_and_kerns
 			[[],					TS_B,TS "TypeDef",			TS "// " TAL "see A.5"],
 			[[],					TS_B,TS "ClassDef",			TS "// " TAL "see A.6"],
 			[[],					TS_B,TS "GenericsDef",		TS "// " TAL "see A.7"],
-			[[],					TS_B,TS "ForeignExportDef",	TS "// " TAL "see A.7"]
+			[[],					TS_B,TS "ForeignExportDef",	TS "// " TAL "see A.8"]
 		],ST2 [
 			[TS "DefDefinition",	TS_E,TS "ImportDef",					TS "// " TAL "see A.2"],
 			[[],					TS_B,TS "FunctionExportTypeDef",		TS "// " TAL "see A.3"],
 			[[],					TS_B,TS "MacroDef",						TS "// " TAL "see A.4"],
 			[[],					TS_B,TS "TypeDef",						TS "// " TAL "see A.5"],
 			[[],					TS_B,TS "ClassDef",						TS "// " TAL "see A.6"],
-			[[],					TS_B,TS "GenericExportDef",				TS "// " TAL "see A.6"]
+			[[],					TS_B,TS "GenericExportDef",				TS "// " TAL "see A.7"]
 		],H2 "A.2" "Import Definition"
 		,ST [
 			[TS "ImportDef",TS_E,TS "ImplicitImportDef"],
@@ -218,8 +218,8 @@ page_a_3 char_width_and_kerns
 			[TS "Application",	TS_E,	TS "{BrackGraph}+",					[]],
 			[[],				TS_B,	TS "GraphExpr Operator GraphExpr",	[]],
 			[[],				TS_B,	TS "GenericAppExpr",				[]],
-			[TS "Operator",		TS_E,	TSC "FunctionName",					TS "// " TAL "see A.8"],
-			[[],				TS_B,	TSC "ConstructorName",				TS "// " TAL "see A.8"]
+			[TS "Operator",		TS_E,	TSC "FunctionName",					TS "// " TAL "see A.9"],
+			[[],				TS_B,	TSC "ConstructorName",				TS "// " TAL "see A.9"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -242,8 +242,8 @@ page_a_4 char_width_and_kerns
 			table_alt "DynamicExpression",
 			table_alt "MatchesPatternExpr"
 		],ST2 [
-			[TS "GraphVariable",TS_E,	TSC "Variable",			TS "// " TAL "see A.8"],
-			[[],				TS_B,	TSC "SelectorVariable",	TS "// " TAL "see A.8"]
+			[TS "GraphVariable",TS_E,	TSC "Variable",			TS "// " TAL "see A.9"],
+			[[],				TS_B,	TSC "SelectorVariable",	TS "// " TAL "see A.9"]
 		],ST [
 			[TS "LambdaAbstr",		TS_E,	TST "\\" TA " {Pattern}+ {LambdaGuardAlt} {LetBeforeExpression} LambdaResult"],
 			[TS "LambdaResult",		TS_E,	TST "= " TA " GraphExpr"],
@@ -375,7 +375,7 @@ page_a_5 char_width_and_kerns
 			[[],						TS_B,	TS "[ExistQuantVariables] " TAT "(" TAC "ConstructorName" TAT ")" TA " [FixPrec] {ArgType} {" TAT "&" TA " ClassConstraints}",
 			 []]++dummy_columns
 		]),ST [
-			[TS "TypeLhs",	TS_E,	TS "[" TAT "*" TA "] TypeConstructor",	TS "// " TAL "see A.8"],
+			[TS "TypeLhs",	TS_E,	TS "[" TAT "*" TA "] TypeConstructor",	TS "// " TAL "see A.9"],
 			[[],			[],		TS "{" TAC "TypeVariable" TA "}",		[]]
 		],ST [
 			[TS "ExistQuantVariables",	TS_E,	TST "E." TA "{" TAC "TypeVariable" TA " }+" TAT ":"]
@@ -384,7 +384,7 @@ page_a_5 char_width_and_kerns
 			[[],			TS_B,	TSBCr "infixr" TA " [Prec]"],
 			[[],			TS_B,	TSBCr "infix" TA " [Prec]"]
 		],ST [
-			[TS "Prec",	TS_E,	TS "Digit",	TS "// " TAL "see A.8"]
+			[TS "Prec",	TS_E,	TS "Digit",	TS "// " TAL "see A.9"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -399,7 +399,7 @@ page_a_6 char_width_and_kerns
 			[TS "Strict",	TS_E,	TST "!"]
 		],ST [
 			[TS "UnqTypeAttrib",	TS_E,	TST "*",							[]],
-			[[],					TS_B,	TSC "UniqueTypeVariable" TAT ":",	TS "// " TAL "see A.8"],
+			[[],					TS_B,	TSC "UniqueTypeVariable" TAT ":",	TS "// " TAL "see A.9"],
 			[[],					TS_B,	TST ".",							[]]
 		],ST [
 			[TS "Type",				TS_E,	TS "{BrackType}+"],
@@ -426,7 +426,7 @@ page_a_6 char_width_and_kerns
 		],H3
 			"A.5.1" "Types Expression"
 		,ST2 [
-			[TS "SimpleType",		TS_E,	TSC "TypeVariable",				TS "// " TAL "see A.8"],
+			[TS "SimpleType",		TS_E,	TSC "TypeVariable",				TS "// " TAL "see A.9"],
 			[[],					TS_B,	TSC "TypeName",					[]],
 			[[],					TS_B,	TST "(" TA "Type" TAT ")",		[]],
 			[[],					TS_B,	TS "PredefinedType",			[]],
@@ -480,7 +480,7 @@ page_a_7 char_width_and_kerns
 			[[],								TS_B,	TST "(->)",		TS "// arrow type constructor"],
 			[[],								TS_B,	TST "()",		TS "// unit type constructor"]
 		],H2
-			"A.6" "Class and Generic Definitions"
+			"A.6" "Class and Instance Definitions"
 		,ST [
 			[TS "ClassDef",	TS_E,	TS "TypeClassDef"],
 			[[],			TS_B,	TS "TypeClassInstanceDef"]
@@ -501,7 +501,9 @@ page_a_7 char_width_and_kerns
 			 TS "// in definition modules"],
 			[TS "Special",				TS_E,	TSBCr "special" TA " " TABCb "{" TA "{" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list" TA " { " TABCb ";" TA " {" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list }" TABCb "}",
 			 []]
-		],ST [
+		],H2
+			"A.7" "Generic Definitions"
+		,ST [
 			[TS "GenericsDef",	TS_E,	TS "GenericDef ;"],
 			[[],				TS_B,	TS "GenericCase;"],
 			[[],				TS_B,	TS "DeriveDef ;"]
@@ -528,16 +530,6 @@ page_a_7 char_width_and_kerns
 			[[],						TS_B,	TS "IntDenotation"],
 			[[],						TS_B,	TST "(" TA "TypeKind" TAT ")"],
 			[[],						TS_B,	TST "{|" TA "TypeKind" TAT "|}"]
-		],ST [
-			[TS "GenericExportDef",		TS_E,	TS "GenericDef " TABCb ";"],
-			[[],						TS_B,	TSBCr "derive" TA " " TAC "FunctionName" TA " {DeriveExportType [UsedGenericDependencies]}-list " TABCb ";"],
-			[[],						TS_B,	TSBCr "derive" TA " " TABCr "class" TA " " TAC "ClassName" TA " {DerivableType}-list " TABCb ";"],
-			[TS "DeriveExportType",		TS_E,	TSC "TypeName"],
-			[[],						TS_B,	TS "GenericMarkerType [" TABCr "of" TA " UsedGenericInfoFields]"],
-			[[],						TS_B,	TS "PredefinedTypeConstructor"],
-			[[],						TS_B,	TSC "TypeVariable"],
-			[TS "UsedGenericInfoFields",TS_E,	TST "{" TA "[{" TAC "FieldName" TA "}-list]"  TAT "}"],
-			[[],						TS_B,	TSC "Variable"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -547,15 +539,26 @@ page_a_8 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
 		[ST [
+			[TS "GenericExportDef",		TS_E,	TS "GenericDef " TABCb ";"],
+			[[],						TS_B,	TSBCr "derive" TA " " TAC "FunctionName" TA " {DeriveExportType [UsedGenericDependencies]}-list " TABCb ";"],
+			[[],						TS_B,	TSBCr "derive" TA " " TABCr "class" TA " " TAC "ClassName" TA " {DerivableType}-list " TABCb ";"]
+		],ST [
+			[TS "DeriveExportType",		TS_E,	TSC "TypeName"],
+			[[],						TS_B,	TS "GenericMarkerType [" TABCr "of" TA " UsedGenericInfoFields]"],
+			[[],						TS_B,	TS "PredefinedTypeConstructor"],
+			[[],						TS_B,	TSC "TypeVariable"],
+			[TS "UsedGenericInfoFields",TS_E,	TST "{" TA "[{" TAC "FieldName" TA "}-list]"  TAT "}"],
+			[[],						TS_B,	TSC "Variable"]
+		],ST [
 			[TS "UsedGenericDependencies",TS_E,	TSBCr "with" TA " {UsedGenericDependency}"],
 			[TS "UsedGenericDependency",TS_E,	TSC "Variable"],
 			[[],						TS_B,	TST "_"]
 		],H2
-			"A.7" "Foreign Export Definition"
+			"A.8" "Foreign Export Definition"
 		,ST [
 			[TS "ForeignExportDef",	TS_E,	TSBCr "foreign export" TA " [ " TABCr "ccall" TA " | " TABCr "stdcall" TA " ] " TAC "FunctionName" TA " " TABCb";"]
 		],H2
-			"A.8" "Names"
+			"A.9" "Names"
 		,ST [
 			[TSC "ModuleName",			TS_E,TS "LowerCaseId",TS_B, TS "UpperCaseId",TS_B,TS "ModuleDirectoryName " TAT "." TA " ModuleName"],
 			[TSC "ModuleDirectoryName",	TS_E,TS "LowerCaseId",TS_B, TS "UpperCaseId",[],[]],
