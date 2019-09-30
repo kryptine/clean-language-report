@@ -375,7 +375,7 @@ page_9_5 char_width_and_kerns
 			(TS "Another " TAC "Tree" TA " variant.")
 			[
 			[],
-			TS ":: Tree *a  =  Node *a [Tree *a]",
+			TS ":: *Tree *a  =  Node a *[Tree a]",
 			[]
 		],CPCH
 			(TS "leading to")
