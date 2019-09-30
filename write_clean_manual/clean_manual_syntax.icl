@@ -290,7 +290,7 @@ page_a_4 char_width_and_kerns
 			[[],					TS_B,	TS "CharsDenotation",						TS "// " TAL "see B.3"],
 			[TS "DotDotExpression",	TS_E,	TST "[" TA "[ListKind] GraphExpr [" TAT "," TA "GraphExpr]" TAT ".." TA "[GraphExpr] [SpineStrictness] " ++ TST "]",
 																						[]],
-			[TS "ZF-expression",	TS_E,	TST "[" TA "[ListKind] GraphExpr " TAT "\\" TA "{Qualifier}-list [SpineStrictness]" TAT "]",
+			[TS "ZF-expression",	TS_E,	TST "[" TA "[ListKind] GraphExpr " TAT "\\\\" TA " {Qualifier}-list [SpineStrictness]" TAT "]",
 																						[]],
 			[TS "Qualifier",		TS_E,	TS "Generators { " TAT "," TA " " TABCr "let" TA " " TABCb "{" TA " {LocalDef}+ " TABCb "}" TA " } {" TAT "|" TA "Guard}",
 																						[]],

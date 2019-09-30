@@ -347,7 +347,7 @@ page_4_5 char_width_and_kerns
 		],N
 		,H3T "List Comprehensions"
 		,ST2 [
-			[TS "ZF-expression",	TS_E,	TST "[" TA "[ListKind] GraphExpr " TAT "\\" TA "{Qualifier}-list [SpineStrictness]" TAT "]",
+			[TS "ZF-expression",	TS_E,	TST "[" TA "[ListKind] GraphExpr " TAT "\\\\" TA " {Qualifier}-list [SpineStrictness]" TAT "]",
 																						[]],
 			[TS "Qualifier",		TS_E,	TS "Generators { " TAT "," TA " " TABCr "let" TA " " TABCb "{" TA " {LocalDef}+ " TABCb "}" TA " } {" TAT "|" TA "Guard}",
 																						[]],
