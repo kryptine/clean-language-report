@@ -106,13 +106,9 @@ page_6_2 char_width_and_kerns
 				TAI "instance of the overloaded function" TA " or " TAI "operator"
 				TA (" has to be defined. The type of the instance can be found via uniform substitution of the type class "+++
 					"variables by the corresponding type instances specified in the instance definition.")
-			),ST2 [
-			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " " TAC "ClassName" TA " Type+ [ClassContext]",
-			 []],
-			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{FunctionDef}+ " TABCb "}" TA "] " TABCb ";",
-			 TS "// in implementation modules"],
-			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{FunctionTypeDef}+ " TABCb "}" TA "] [Special] " TABCb ";",
-			 TS "// in definition modules"]
+			),ST [
+			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " " TAC "ClassName" TA " Type+ [ClassContext]"],
+			[[],						[],		TS "[" TABCr "where" TA "] " TABCb "{" TA " {FunctionDef}+ " TABCb "}" TA " " TABCb ";"]
 			],PCH
 				(TS "Example of the definition of an instance of a type class " TAC "Arith" TA " for type " TAC "Int"
 				 TA (". The type of the concrete functions can be  obtained via uniform substitution of the type class "+++
@@ -149,8 +145,8 @@ page_6_3 char_width_and_kerns
 			(map color_keywords [
 			[],
 			TS "instance Arith2 Int  Int  Int  where (:+:) x y = x + y",
-			TS "instance Arith2 Int  Real Real  where (:+:) x y = toReal x + y",
-			TS "instance Arith2 Real Int  Real  where (:+:) x y = x + toReal y",
+			TS "instance Arith2 Int  Real Real where (:+:) x y = toReal x + y",
+			TS "instance Arith2 Real Int  Real where (:+:) x y = x + toReal y",
 			TS "instance Arith2 Real Real Real where (:+:) x y = x + y"
 		]),S(
 			"One can define as many instances of a class as one likes. Instances can be added later on in any module that has "+++
@@ -559,15 +555,12 @@ page_6_8 char_width_and_kerns
 			TA "). To export an instantiation of a class one simply repeats the instance definition in the definition module, however "
 			TAI "without"
 			TA " revealing the concrete implementation (which can only be specified in the implementation module)."
-		),ST2 [
-			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " " TAC "ClassName" TA " Type+ [ClassContext]",
-			 []],
-			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{FunctionDef}+ " TABCb "}" TA "] " TABCb ";",
-			 TS "// only in implementation modules"],
-			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{FunctionTypeDef}+ " TABCb "}" TA "] [Special] " TABCb ";",
-			 TS "// only in definition modules"],
-			[TS "Special",				TS_E,	TSBCr "special" TA " " TABCb "{" TA "{" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list" TA " { " TABCb ";" TA " {" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list }" TABCb "}",
-			 []]
+		),ST [
+			[TS "TypeClassInstanceExportDef",	TS_E,	TSBCr "instance" TA " " TAC "ClassName" TA " InstanceExportTypes " TABCb ";"],
+			[TS "InstanceExportTypes",			TS_E,	TS "{Type+ [ClassContext]}-list"],
+			[[],								TS_B,	TS "Type+ [ClassContext] [" TABCr "where" TA "] " TABCb "{" TA "{FunctionTypeDef}+ " TABCb "}"],
+			[[],								TS_B,	TS "Type+ [ClassContext] [Special]"],
+			[TS "Special",						TS_E,	TSBCr "special" TA " " TABCb "{" TA "{" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list" TA " { " TABCb ";" TA " {" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list }" TABCb "}"]
 		],PCH
 			(TS "Exporting classes and instances.")
 			(map syntax_color [

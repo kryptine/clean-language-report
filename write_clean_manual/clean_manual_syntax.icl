@@ -60,7 +60,7 @@ page_a_1 char_width_and_kerns
 			[[],					TS_B,TS "FunctionExportTypeDef",		TS "// " TAL "see A.3"],
 			[[],					TS_B,TS "MacroDef",						TS "// " TAL "see A.4"],
 			[[],					TS_B,TS "TypeDef",						TS "// " TAL "see A.5"],
-			[[],					TS_B,TS "ClassDef",						TS "// " TAL "see A.6"],
+			[[],					TS_B,TS "ClassExportDef",				TS "// " TAL "see A.6"],
 			[[],					TS_B,TS "GenericExportDef",				TS "// " TAL "see A.7"]
 		],H2 "A.2" "Import Definition"
 		,ST [
@@ -492,15 +492,18 @@ page_a_7 char_width_and_kerns
 		],ST [
 			[TS "ClassMemberDef",	TS_E,	TS "FunctionTypeDef"],
 			[[],					[],		TS "[MacroDef]"]
-		],ST2 [
-			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " " TAC "ClassName" TA " Type+ [ClassContext]",
-			 []],
-			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{FunctionDef}+ " TABCb "}" TA "] " TABCb ";",
-			 TS "// in implementation modules"],
-			[[],						[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA "{FunctionTypeDef}+ " TABCb "}" TA "] [Special] " TABCb ";",
-			 TS "// in definition modules"],
-			[TS "Special",				TS_E,	TSBCr "special" TA " " TABCb "{" TA "{" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list" TA " { " TABCb ";" TA " {" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list }" TABCb "}",
-			 []]
+		],ST [
+			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " " TAC "ClassName" TA " Type+ [ClassContext]"],
+			[[],						[],		TS "[" TABCr "where" TA "] " TABCb "{" TA " {FunctionDef}+ " TABCb "}" TA " " TABCb ";"]
+		],ST [
+			[TS "ClassExportDef",	TS_E,	TS "TypeClassDef"],
+			[[],					TS_B,	TS "TypeClassInstanceExportDef"]
+		],ST [
+			[TS "TypeClassInstanceExportDef",	TS_E,	TSBCr "instance" TA " " TAC "ClassName" TA " InstanceExportTypes " TABCb ";"],
+			[TS "InstanceExportTypes",			TS_E,	TS "{Type+ [ClassContext]}-list"],
+			[[],								TS_B,	TS "Type+ [ClassContext] [" TABCr "where" TA "] " TABCb "{" TA "{FunctionTypeDef}+ " TABCb "}"],
+			[[],								TS_B,	TS "Type+ [ClassContext] [Special]"],
+			[TS "Special",						TS_E,	TSBCr "special" TA " " TABCb "{" TA "{" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list" TA " { " TABCb ";" TA " {" TAC "TypeVariable" TA " " TAT "=" TA " Type}-list }" TABCb "}"]
 		],H2
 			"A.7" "Generic Definitions"
 		,ST [

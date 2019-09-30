@@ -445,7 +445,7 @@ page_2_6 char_width_and_kerns
 			[[],					TS_B,TS "FunctionExportTypeDef",		TS "// " TAL "see 3.7"],
 			[[],					TS_B,TS "MacroDef",						TS "// " TAL "see 10.3"],
 			[[],					TS_B,TS "TypeDef",						TS "// " TAL "see Chapter 5"],
-			[[],					TS_B,TS "ClassDef",						TS "// " TAL "see Chapter 6"],
+			[[],					TS_B,TS "ClassExportDef",				TS "// " TAL "see Chapter 6"],
 			[[],					TS_B,TS "TypeClassInstanceExportDef",	TS "// " TAL "see 6.10"],
 			[[],					TS_B,TS "GenericExportDef",				TS "// " TAL "see Chapter 7"]
 		],MSP [
