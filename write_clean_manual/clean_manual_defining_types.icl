@@ -24,13 +24,14 @@ page_5_1 char_width_and_kerns
 				TA (" be defined on the global level. Abstract types can only be defined in a definition module hiding the actual implementation "+++
 					"in the corresponding implementation module.")
 		],ST2 [
-			[TS "TypeDef",	TS_E,	TS "AlgebraicTypeDef",	TS "// " TAL "see 5.1"],
-			[[],			TS_B,	TS "RecordTypeDef",		TS "// " TAL "see 5.2"],
-			[[],			TS_B,	TS "SynonymTypeDef",	TS "// " TAL "see 5.3"],
-			[[],			TS_B,	TS "AbstractTypeDef",	TS "// " TAL "see 5.4"],
-			[[],			TS_B,	TS "AbstractSynonymTypeDef",		[]],
-			[[],			TS_B,	TS "ExtensibleAlgebraicTypeDef",	[]],
-			[[],			TS_B,	TS "AlgebraicTypeDefExtension",		[]]
+			[TS "TypeDef",	TS_E,	TS "AlgebraicTypeDef",			TS "// " TAL "see 5.1"],
+			[[],			TS_B,	TS "RecordTypeDef",				TS "// " TAL "see 5.2"],
+			[[],			TS_B,	TS "SynonymTypeDef",			TS "// " TAL "see 5.3"],
+			[[],			TS_B,	TS "AbstractTypeDef",			TS "// " TAL "see 5.4"],
+			[[],			TS_B,	TS "AbstractSynonymTypeDef",	[]],
+			[[],			TS_B,	TS "ExtensibleAlgebraicTypeDef",[]],
+			[[],			TS_B,	TS "AlgebraicTypeDefExtension",	[]],
+			[[],			TS_B,	TS "NewTypeDef",				[]]
 		],H2
 			"5.1" "Defining Algebraic Data Types"
 		,MP [

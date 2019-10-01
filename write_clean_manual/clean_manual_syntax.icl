@@ -366,7 +366,8 @@ page_a_5 char_width_and_kerns
 			[[],			TS_B,	TS "AbstractTypeDef"],
 			[[],			TS_B,	TS "AbstractSynonymTypeDef"],
 			[[],			TS_B,	TS "ExtensibleAlgebraicTypeDef"],
-			[[],			TS_B,	TS "AlgebraicTypeDefExtension"]
+			[[],			TS_B,	TS "AlgebraicTypeDefExtension"],
+			[[],			TS_B,	TS "NewTypeDef"]
 		],ST (let {
 				dummy_columns = repeatn 6 [];
 			} in [
@@ -384,12 +385,11 @@ page_a_5 char_width_and_kerns
 			[[],			[],		TS "{" TAC "TypeVariable" TA "}",		[]]
 		],ST [
 			[TS "ExistQuantVariables",	TS_E,	TST "E." TA "{" TAC "TypeVariable" TA " }+" TAT ":"]
-		],ST [
-			[TS "FixPrec",	TS_E,	TSBCr "infixl" TA " [Prec]"],
-			[[],			TS_B,	TSBCr "infixr" TA " [Prec]"],
-			[[],			TS_B,	TSBCr "infix" TA " [Prec]"]
-		],ST [
-			[TS "Prec",	TS_E,	TS "Digit",	TS "// " TAL "see A.9"]
+		],ST2 [
+			[TS "FixPrec",	TS_E,	TSBCr "infixl" TA " [Prec]",[]],
+			[[],			TS_B,	TSBCr "infixr" TA " [Prec]",[]],
+			[[],			TS_B,	TSBCr "infix" TA " [Prec]",	[]],
+			[TS "Prec",		TS_E,	TS "Digit",					TS "// " TAL "see A.9"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -428,6 +428,8 @@ page_a_6 char_width_and_kerns
 			[TS "ExtensibleAlgebraicTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT "=" TA " {ConstructorDef " TAT "|" TA "} " TAT ".." TABCb ";"]
 		],ST [
 			[TS "AlgebraicTypeDefExtension",	TS_E,	TST "::" TA "TypeLhs " TAT "|" TA " ConstructorDef " TA " {" TAT "|" TA " ConstructorDef} " TABCb ";"]
+		],ST [
+			[TS "NewTypeDef",				TS_E,	TST "::" TA "TypeLhs " TAT "=:" TA " " TAC "ConstructorName" TA " SimpleType " TABCb ";"]
 		],H3
 			"A.5.1" "Types Expression"
 		,ST2 [
