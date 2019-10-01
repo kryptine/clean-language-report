@@ -154,10 +154,10 @@ page_4_2 char_width_and_kerns
 				"another type of list. However, one can define overloaded functions that can be used on any list: lazy, strict as well as on "+++
 				"unboxed lists.")
 		],ST2 [
-			[TS "ListType",			TS_E,	TST "[" TA "[ListKind] Type [SpineStrictness]" TAT "]",	[]],
-			[TS "ListKind",			TS_E,	TST "!",														TS "// head strict list"],
-			[[],					TS_B,	TST "#",														TS "// head strict, unboxed list"],
-			[TS "SpineStrictness",	TS_E,	TST "!",														TS "// tail (spine) strict list"]
+			[TS "ListType",			TS_E,	TST "[" TA "[ListTypeKind] Type [SpineStrictness]" TAT "]",	[]],
+			[TS "ListTypeKind",		TS_E,	TST "!",													TS "// head strict list"],
+			[[],					TS_B,	TST "#",													TS "// head strict, unboxed list"],
+			[TS "SpineStrictness",	TS_E,	TST "!",													TS "// tail (spine) strict list"]
 		]
 		,N
 		,SP(

@@ -68,6 +68,13 @@ page_a_1 char_width_and_kerns
 			[[],			TS_B,TS "ExplicitImportDef"]
 		],ST [
 			[TS "ImplicitImportDef",	TS_E,	TSBCr "import" TA " [" TAT "qualified" TA "] {" TAC "ModuleName" TA"}-list " TACb ";"]
+		],ST [
+			[TS "ExplicitImportDef",	TS_E,	TSBCr "from" TAC " ModuleName " TABCr "import" TA " [" TAT "qualified" TA "] {Imports}-list " TACb ";"],
+			[TS "Imports",				TS_E,	TSC "FunctionName"],
+			[[],						TS_B,	TST "::" TAC "TypeName" TA " [ConstructorsOrFields]"],
+			[[],						TS_B,	TSBCr "class" TA " " TAC "ClassName" TA " [Members]"],
+			[[],						TS_B,	TSBCr "instance" TA " " TAC "ClassName" TA " {SimpleType}+"],
+			[[],						TS_B,	TSBCr "generic" TA " " TAC "FunctionName"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -77,12 +84,6 @@ page_a_2 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
 		[ST [
-			[TS "ExplicitImportDef",	TS_E,	TSBCr "from" TAC " ModuleName " TABCr "import" TA " [" TAT "qualified" TA "] {Imports}-list " TACb ";"],
-			[TS "Imports",				TS_E,	TSC "FunctionName"],
-			[[],						TS_B,	TST "::" TAC "TypeName" TA " [ConstructorsOrFields]"],
-			[[],						TS_B,	TSBCr "class" TA " " TAC "ClassName" TA " [Members]"],
-			[[],						TS_B,	TSBCr "instance" TA " " TAC "ClassName" TA " {SimpleType}+"],
-			[[],						TS_B,	TSBCr "generic" TA " " TAC "FunctionName"],
 			[TS "ConstructorsOrFields",	TS_E,	TST "(..)"],
 			[[],						TS_B,	TST "(" TA "{" TAC "ConstructorName" TA "}-list" TAT ")"],
 			[[],						TS_B,	TST "{..}"],
@@ -145,6 +146,9 @@ page_a_2 char_width_and_kerns
 			[TS "UnqTypeUnEqualities",	TS_E,	TS "{{" TAC "UniqueTypeVariable" TA "}+ " TAT "<=" TA " " TAC "UniqueTypeVariable" TA "}-list"],
 			[TS "ClassOrGenericName",	TS_E,	TSC "ClassName"],
 			[[],						TS_B,	TSC "FunctionName" TA " " TAT "{|" TA "TypeKind" TAT "|}"]
+		],ST [
+			[TS "FunctionExportTypeDef",TS_E,	TSC "FunctionName" TA " " TAT "::" TA " FunctionType [Special] " TABCb ";"],
+			[[],						TS_B,	TST "(" TAC "FunctionName" TAT ")" TA " [FixPrec] " TAT "::" TA" FunctionType [Special] " TABCb ";"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -153,10 +157,7 @@ page_a_3 :: !{!CharWidthAndKerns} -> Page;
 page_a_3 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
-		[ST [
-			[TS "FunctionExportTypeDef",TS_E,	TSC "FunctionName" TA " " TAT "::" TA " FunctionType [Special] " TABCb ";"],
-			[[],						TS_B,	TST "(" TAC "FunctionName" TAT ")" TA " [FixPrec] " TAT "::" TA" FunctionType [Special] " TABCb ";"]
-		],H3 "A.3.2" "Patterns"
+		[H3 "A.3.2" "Patterns"
 		,ST [
 			[TS "Pattern",			TS_E,	TS "[" TAC "Variable" TA " " TAT "=:" TA "] BrackPattern"],
 			[TS "BrackPattern",		TS_E,	TS "PatternVariable"],
@@ -190,6 +191,10 @@ page_a_3 char_width_and_kerns
 		],ST2 [
 			[TS "ListPattern",		TS_E,	TST "[" TA "[ListKind][{LGraphPattern}-list [" TAT ":" TA " GraphPattern]] [SpineStrictness]" TAT "]",
 																	[]],
+			[TS "ListKind",			TS_E,	TST "!",				TS "// head strict list"],
+			[[],					TS_B,	TST "#",				TS "// head strict, unboxed list"],
+			[[],					TS_B,	TST "|",				TS "// overloaded list"],
+			[TS "SpineStrictness",	TS_E,	TST "!",				TS "// tail (spine) strict list"],
 			[TS "LGraphPattern",	TS_E,	TS "GraphPattern",		[]],
 			[[],					TS_B,	TS "CharsDenotation",	TS "// " TAL "see B.3"]
 		],ST [
@@ -444,10 +449,9 @@ page_a_6 char_width_and_kerns
 			[[],				TS_B,	TST "Char"],
 			[[],				TS_B,	TST "Bool"]
 		],ST2 [
-			[TS "ListType",			TS_E,	TST "[" TA "[ListKind] Type [SpineStrictness]" TAT "]",	[]],
-			[TS "ListKind",			TS_E,	TST "!",												TS "// head strict list"],
-			[[],					TS_B,	TST "#",												TS "// head strict, unboxed list"],
-			[TS "SpineStrictness",	TS_E,	TST "!",												TS "// tail (spine) strict list"]
+			[TS "ListType",			TS_E,	TST "[" TA "[ListTypeKind] Type [SpineStrictness]" TAT "]",	[]],
+			[TS "ListTypeKind",		TS_E,	TST "!",													TS "// head strict list"],
+			[[],					TS_B,	TST "#",													TS "// head strict, unboxed list"]
 		],ST [
 			[TS "TupleType",	TS_E,	TST "(" TA "[Strict] Type" TAT "," TA "{[Strict] Type}-list" TAT ")"]
 		],ST2 [
