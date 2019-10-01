@@ -489,10 +489,10 @@ page_a_7 char_width_and_kerns
 			[TS "ClassDef",	TS_E,	TS "TypeClassDef"],
 			[[],			TS_B,	TS "TypeClassInstanceDef"]
 		],ST [
-			[TS "TypeClassDef",	TS_E,	TSBCr "class" TA " " TAC "ClassName" TA " " TAC "TypeVariable" TA "+ [ClassContext]"],
+			[TS "TypeClassDef",	TS_E,	TSBCr "class" TA " " TAC "ClassName" TA " " TAC "{[" TAT "." TA "]" TAC "TypeVariable" TA "}+ [ClassContext]"],
 		    [[],				[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA " {ClassMemberDef}+ " TABCb "}" TA "] " TABCb ";"],
-			[[],				TS_B,	TSBCr "class" TA " " TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType" TABCb ";"],
-			[[],				TS_B,	TSBCr "class" TA " (" TAC "FunctionName" TA ") [FixPrec] " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType" TABCb ";"]
+			[[],				TS_B,	TSBCr "class" TA " " TAC "FunctionName" TA " " TAC "{[" TAT "." TA "]" TAC "TypeVariable" TA "}+ " TAT "::" TA " FunctionType" TABCb ";"],
+			[[],				TS_B,	TSBCr "class" TA " " TAT "(" TAC "FunctionName" TAT ")" TA " [FixPrec] " TAC "{[" TAT "." TA "]" TAC "TypeVariable" TA "}+ " TAT "::" TA " FunctionType" TABCb ";"]
 		],ST [
 			[TS "ClassMemberDef",	TS_E,	TS "FunctionTypeDef"],
 			[[],					[],		TS "[MacroDef]"]

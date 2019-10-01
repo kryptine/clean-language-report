@@ -75,10 +75,10 @@ page_6_2 char_width_and_kerns
 				TA (" are used to indicate how the different instantiations of the class vary from each other. "+++
 					"CLEAN offers multi-parameter type constructor classes, similar to those available in Haskell.")
 			),ST [
-			[TS "TypeClassDef",	TS_E,	TSBCr "class" TA " ClassName TypeVariable+ [ClassContext]"],
+			[TS "TypeClassDef",	TS_E,	TSBCr "class" TA " " TAC "ClassName" TA " " TAC "{[" TAT "." TA "]" TAC "TypeVariable" TA "}+ [ClassContext]"],
 		    [[],				[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA " {ClassMemberDef}+ " TABCb "}" TA "] " TABCb ";"],
-			[[],				TS_B,	TSBCr "class" TA " FunctionName TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"],
-			[[],				TS_B,	TSBCr "class" TA " (FunctionName) [FixPrec] TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"]
+			[[],				TS_B,	TSBCr "class" TA " " TAC "FunctionName" TA " " TAC "{[" TAT "." TA "]" TAC "TypeVariable" TA "}+ " TAT "::" TA " FunctionType" TABCb ";"],
+			[[],				TS_B,	TSBCr "class" TA " " TAT "(" TAC "FunctionName" TAT ")" TA " [FixPrec] " TAC "{[" TAT "." TA "]" TAC "TypeVariable" TA "}+ " TAT "::" TA " FunctionType" TABCb ";"]
 			],ST [
 				[TS "ClassMemberDef",	TS_E,	TS "FunctionTypeDef"],
 				[[],					[],		TS "[MacroDef]"]
@@ -492,10 +492,10 @@ page_6_7 char_width_and_kerns
 			"A class definition seems sometimes a bit overdone when a class actually only consists of one member. "+++
 			"Special syntax is provided for this case."
 		),ST [
-			[TS "TypeClassDef",	TS_E,	TSBCr "class" TA " ClassName TypeVariable+ [ClassContext]"],
+			[TS "TypeClassDef",	TS_E,	TSBCr "class" TA " " TAC "ClassName" TA " " TAC "{[" TAT "." TA "]" TAC "TypeVariable" TA "}+ [ClassContext]"],
 		    [[],				[],		TS "[[" TABCr "where" TA "] " TABCb "{" TA " {ClassMemberDef}+ " TABCb "}" TA "] " TABCb ";"],
-			[[],				TS_B,	TSBCr "class" TA " FunctionName TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"],
-			[[],				TS_B,	TSBCr "class" TA " (FunctionName) [FixPrec] TypeVariable+ " TAT "::" TA " FunctionType" TABCb ";"]
+			[[],				TS_B,	TSBCr "class" TA " " TAC "FunctionName" TA " " TAC "{[" TAT "." TA "]" TAC "TypeVariable" TA "}+ " TAT "::" TA " FunctionType" TABCb ";"],
+			[[],				TS_B,	TSBCr "class" TA " " TAT "(" TAC "FunctionName" TAT ")" TA " [FixPrec] " TAC "{[" TAT "." TA "]" TAC "TypeVariable" TA "}+ " TAT "::" TA " FunctionType" TABCb ";"]
 		],PCH
 			(TS "Example of an overloaded function/operator.")
 			(map color_keywords [
