@@ -53,7 +53,7 @@ page_5_1 char_width_and_kerns
 			[TS "AlgebraicTypeDef",	TS_E,	TST "::" TA "TypeLhs",	TST "=" TA " ConstructorDef"], 
 			[[],					[],		[],						TS "{" TAT "|" TA " ConstructorDef} " TABCb ";"]
 		],ST [
-			[TS "TypeLhs",				TS_E,	TS "[" TAT "*" TA "] TypeConstructor {TypeVariable}"],
+			[TS "TypeLhs",				TS_E,	TS "[" TAT "*" TA "] TypeConstructor {[" TAT "*" TAC "]TypeVariable" TA "}"],
 			[TS "TypeConstructor",		TS_E,	TSC "TypeName"],
 			[TS "ConstructorDef",		TS_E,	TS "[ExistQuantVariables] " TAC "ConstructorName" TA " {ArgType} {" TAT "&" TA " ClassConstraints}"],
 			[[],						TS_B,	TS "[ExistQuantVariables] " TAT "(" TAC "ConstructorName" TAT ")" TA " [FixPrec] {ArgType} {" TAT "&" TA " ClassConstraints}"],

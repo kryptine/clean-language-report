@@ -381,8 +381,8 @@ page_a_5 char_width_and_kerns
 			[[],						TS_B,	TS "[ExistQuantVariables] " TAT "(" TAC "ConstructorName" TAT ")" TA " [FixPrec] {ArgType} {" TAT "&" TA " ClassConstraints}",
 			 []]++dummy_columns
 		]),ST [
-			[TS "TypeLhs",	TS_E,	TS "[" TAT "*" TA "] TypeConstructor",	TS "// " TAL "see A.9"],
-			[[],			[],		TS "{" TAC "TypeVariable" TA "}",		[]]
+			[TS "TypeLhs",	TS_E,	TS "[" TAT "*" TA "] TypeConstructor",				TS "// " TAL "see A.9"],
+			[[],			[],		TS "{[" TAT "*" TA "]" TAC "TypeVariable" TA "}",	[]]
 		],ST [
 			[TS "ExistQuantVariables",	TS_E,	TST "E." TA "{" TAC "TypeVariable" TA " }+" TAT ":"]
 		],ST2 [
