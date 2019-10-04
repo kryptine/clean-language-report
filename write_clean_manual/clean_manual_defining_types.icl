@@ -614,7 +614,7 @@ page_5_8 char_width_and_kerns
 		,P(
 			TS "The first way is to create a record is by " TAI "explicitly" TA " defining a value for " TAI "each" TA " of its fields."
 		),ST [
-			[TS "RecordDenotation",	TS_E,	TST "{" TA "[" TAC "TypeName" TAT "|" TA "] {" TAC "FieldName" TA " " TAT "=" TA " GraphExpr}-list]" TAT "}"]
+			[TS "RecordDenotation",	TS_E,	TST "{" TA "[" TAC "QTypeName" TAT "|" TA "] {" TAC "FieldName" TA " " TAT "=" TA " GraphExpr}-list]" TAT "}"]
 		],PCH
 			(TS "Creation of a record.")
 			(map comment_blue [
@@ -647,7 +647,7 @@ page_5_8 char_width_and_kerns
 		,P(
 			TS "The second way is to construct a new record out of an existing one (a " TAI "functional record update" TA ")."
 		),ST2 [
-			[TS "RecordUpdate",	TS_E,	TST "{" TA "[" TAC "TypeName" TAT "|" TA "][RecordExpr " TAT "&" TA "][{" TAC "FieldName" TA " {Selection} = GraphExpr}-list]" TAT "}"],
+			[TS "RecordUpdate",	TS_E,	TST "{" TA "[" TAC "QTypeName" TAT "|" TA "][RecordExpr " TAT "&" TA "][{" TAC "FieldName" TA " {Selection} = GraphExpr}-list]" TAT "}"],
 			[TS "Selection",	TS_E,	TST "." TAC "FieldName"],
 			[[],				TS_B,	TST "." TA "ArrayIndex"],
 			[TS "RecordExpr",	TS_E,	TS "GraphExpr"]
@@ -699,8 +699,8 @@ page_5_9 char_width_and_kerns
 		,N
 		,H3T "Selection of a Record Field"
 		,ST [
-			[TS "RecordSelection",	TS_E,	TS "RecordExpr [" TAT "." TAC "TypeName" TA "]" TAT "." TAC "FieldName" TA " {Selection}"],
-			[[],					TS_B,	TS "RecordExpr [" TAT "." TAC "TypeName" TA "]" TAT "!" TAC "FieldName" TA " {Selection}"],
+			[TS "RecordSelection",	TS_E,	TS "RecordExpr [" TAT "." TAC "QTypeName" TA "]" TAT "." TAC "FieldName" TA " {Selection}"],
+			[[],					TS_B,	TS "RecordExpr [" TAT "." TAC "QTypeName" TA "]" TAT "!" TAC "FieldName" TA " {Selection}"],
 			[TS "Selection",		TS_E,	TST "." TAC "FieldName"],
 			[[],					TS_B,	TST "." TA "ArrayIndex"]
 		],P(
@@ -729,7 +729,7 @@ page_5_9 char_width_and_kerns
 			TA (" can be specified as pattern. Only those fields which contents one would like to use in the right-hand "+++
 				"side need to be mentioned in the pattern.")
 		),ST [
-			[TS "RecordPattern",	TS_E,	TST "{" TA "[" TAC "TypeName" TA " " TAT "|" TA "] {" TAC "FieldName" TA " [" TAT "=" TA " GraphPattern]}-list" TAT "}"]
+			[TS "RecordPattern",	TS_E,	TST "{" TA "[" TAC "QTypeName" TA " " TAT "|" TA "] {" TAC "FieldName" TA " [" TAT "=" TA " GraphPattern]}-list" TAT "}"]
 		],MSP [
 			TS "The type of the record must have been defined in a record type definition.",
 			TS "The field names specified in the pattern must be identical to the field names specified in the corresponding type.",

@@ -200,7 +200,7 @@ page_a_3 char_width_and_kerns
 		],ST [
 			[TS "TuplePattern",	TS_E,	TST "(" TA "GraphPattern" TAT "," TA "{GraphPattern}-list" TAT ")"]
 		],ST [
-			[TS "RecordPattern",	TS_E,	TST "{" TA "[TypeName " TAT "|" TA "] {" TAC "FieldName" TA " [" TAT "=" TA " GraphPattern]}-list" TAT "}"]
+			[TS "RecordPattern",	TS_E,	TST "{" TA "[" TAC "QTypeName" TA " " TAT "|" TA "] {" TAC "FieldName" TA " [" TAT "=" TA " GraphPattern]}-list" TAT "}"]
 		],ST [
 			[TS "ArrayPattern",	TS_E,	TST "{" TA "{GraphPattern}-list" TAT "}"],
 			[[],				TS_B,	TST "{" TA "{ArrayIndex " TAT "=" TA " " TAC "Variable" TA "}-list"++TST "}"],
@@ -341,11 +341,11 @@ page_a_5 char_width_and_kerns
 		],ST [
 			[TS "Record",			TS_E,	TS "RecordDenotation"],
 			[[],					TS_B,	TS "RecordUpdate"],
-			[TS "RecordDenotation",	TS_E,	TST "{" TA "[TypeName" TAT "|" TA "] {" TAC "FieldName" TA " " TAT "=" TA " GraphExpr}-list]" TAT "}"],
-			[TS "RecordUpdate",		TS_E,	TST "{" TA "[TypeName" TAT "|" TA "][RecordExpr " TAT "&" TA "][{" TAC "FieldName" TA " {Selection} " TAT "=" TA " GraphExpr}-list]" TAT "}"],
+			[TS "RecordDenotation",	TS_E,	TST "{" TA "[" TAC "QTypeName" TAT "|" TA "] {" TAC "FieldName" TA " " TAT "=" TA " GraphExpr}-list]" TAT "}"],
+			[TS "RecordUpdate",		TS_E,	TST "{" TA "[" TAC "QTypeName" TAT "|" TA "][RecordExpr " TAT "&" TA "][{" TAC "FieldName" TA " {Selection} " TAT "=" TA " GraphExpr}-list]" TAT "}"],
 			[TS "RecordExpr",		TS_E,	TS "GraphExpr"],
-			[TS "RecordSelection",	TS_E,	TS "RecordExpr [" TAT "." TA "TypeName]" TAT "." TAC "FieldName" TA " {Selection}"],
-			[[],					TS_B,	TS "RecordExpr [" TAT "." TA "TypeName]" TAT "!" TAC "FieldName" TA " {Selection}"]
+			[TS "RecordSelection",	TS_E,	TS "RecordExpr [" TAT "." TAC "QTypeName" TA "]" TAT "." TAC "FieldName" TA " {Selection}"],
+			[[],					TS_B,	TS "RecordExpr [" TAT "." TAC "QTypeName" TA "]" TAT "!" TAC "FieldName" TA " {Selection}"]
 		],ST [
 			[TS "UnitConstructor",	TS_E,	TST "()"]
 		],ST [
@@ -359,7 +359,7 @@ page_a_5 char_width_and_kerns
 			[TS "MacroDef",			TS_E,	TS "[MacroFixityDef]"],
 			[[],					[],	    TS "DefOfMacro"],
 			[TS "MacroFixityDef",	TS_E,	TST "(" TAC "FunctionName" TAT ")" TA " [FixPrec] " TABCb ";"],
-			[TS "DefOfMacro",		TS_E,	TS "Function {" TAC "Variable" TA "}+ " TAT ":==" TA " FunctionBody " TABCb ";"],
+			[TS "DefOfMacro",		TS_E,	TS "Function {" TAC "Variable" TA "} " TAT ":==" TA " FunctionBody " TABCb ";"],
 			[[],					[],		TS "[LocalFunctionAltDefs]"]
 		],H2
 			"A.5" "Type Definition"
@@ -385,8 +385,8 @@ page_a_5 char_width_and_kerns
 			[[],						TS_B,	TS "[ExistQuantVariables] " TAT "(" TAC "ConstructorName" TAT ")" TA " [FixPrec] {ArgType} {" TAT "&" TA " ClassConstraints}",
 			 []]++dummy_columns
 		]),ST [
-			[TS "TypeLhs",	TS_E,	TS "[" TAT "*" TA "] TypeConstructor",				TS "// " TAL "see A.9"],
-			[[],			[],		TS "{[" TAT "*" TA "]" TAC "TypeVariable" TA "}",	[]]
+			[TS "TypeLhs",			TS_E,	TS "[" TAT "*" TA "] TypeConstructor {[" TAT "*" TA "]" TAC "TypeVariable" TA "}",	[]],
+			[TS "TypeConstructor",	TS_E,	TSC "TypeName",																			TS "// " TAL "see A.9"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -438,7 +438,7 @@ page_a_6 char_width_and_kerns
 			"A.5.1" "Types Expression"
 		,ST2 [
 			[TS "SimpleType",		TS_E,	TSC "TypeVariable",				TS "// " TAL "see A.9"],
-			[[],					TS_B,	TSC "TypeName",					[]],
+			[[],					TS_B,	TSC "QTypeName",				[]],
 			[[],					TS_B,	TST "(" TA "Type" TAT ")",		[]],
 			[[],					TS_B,	TS "PredefinedType",			[]],
 			[[],					TS_B,	TS "PredefinedTypeConstructor",	[]]
@@ -588,7 +588,8 @@ page_a_8 char_width_and_kerns
 			[TSC "MemberName",			TS_E,TS "LowerCaseId",TS_B,	TS "UpperCaseId",TS_B,TS "SymbolId"]
 		],ST [
 			[TSC "QFunctionName",		TS_E,TS "QLowerCaseId",TS_B,TS "QUpperCaseId",TS_B,TS "QSymbolId"],
-			[TSC "QConstructorName",	TS_E,[],[],					TS "QUpperCaseId",TS_B,TS "QSymbolId"]
+			[TSC "QConstructorName",	TS_E,[],[],					TS "QUpperCaseId",TS_B,TS "QSymbolId"],
+			[TSC "QTypeName",			TS_E,[],[],					TS "QUpperCaseId",TS_B,TS "QSymbolId"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
