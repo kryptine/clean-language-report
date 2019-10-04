@@ -144,7 +144,7 @@ page_a_2 char_width_and_kerns
 			[TS "ClassContext",			TS_E,	TST "|" TA " ClassConstraints {" TAT "&" TA " ClassConstraints}"],
 			[TS "ClassConstraints",		TS_E,	TS "ClassOrGenericName-list {SimpleType}+"],
 			[TS "UnqTypeUnEqualities",	TS_E,	TS "{{" TAC "UniqueTypeVariable" TA "}+ " TAT "<=" TA " " TAC "UniqueTypeVariable" TA "}-list"],
-			[TS "ClassOrGenericName",	TS_E,	TSC "ClassName"],
+			[TS "ClassOrGenericName",	TS_E,	TSC "QClassName"],
 			[[],						TS_B,	TSC "FunctionName" TA " " TAT "{|" TA "TypeKind" TAT "|}"]
 		],ST [
 			[TS "FunctionExportTypeDef",TS_E,	TSC "FunctionName" TA " " TAT "::" TA " FunctionType [Special] " TABCb ";"],
@@ -503,7 +503,7 @@ page_a_7 char_width_and_kerns
 			[TS "ClassMemberDef",	TS_E,	TS "FunctionTypeDef"],
 			[[],					[],		TS "[MacroDef]"]
 		],ST [
-			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " " TAC "ClassName" TA " Type+ [ClassContext]"],
+			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " " TAC "QClassName" TA " Type+ [ClassContext]"],
 			[[],						[],		TS "[" TABCr "where" TA "] " TABCb "{" TA " {FunctionDef}+ " TABCb "}" TA " " TABCb ";"]
 		],ST [
 			[TS "ClassExportDef",	TS_E,	TS "TypeClassDef"],
@@ -589,7 +589,8 @@ page_a_8 char_width_and_kerns
 		],ST [
 			[TSC "QFunctionName",		TS_E,TS "QLowerCaseId",TS_B,TS "QUpperCaseId",TS_B,TS "QSymbolId"],
 			[TSC "QConstructorName",	TS_E,[],[],					TS "QUpperCaseId",TS_B,TS "QSymbolId"],
-			[TSC "QTypeName",			TS_E,[],[],					TS "QUpperCaseId",TS_B,TS "QSymbolId"]
+			[TSC "QTypeName",			TS_E,[],[],					TS "QUpperCaseId",TS_B,TS "QSymbolId"],
+			[TSC "QClassName",			TS_E,TS "QLowerCaseId",TS_B,TS "QUpperCaseId",TS_B,TS "QSymbolId"]
 		]
 		];
 	= make_page pdf_i pdf_shl;

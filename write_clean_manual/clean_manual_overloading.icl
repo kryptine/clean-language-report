@@ -107,7 +107,7 @@ page_6_2 char_width_and_kerns
 				TA (" has to be defined. The type of the instance can be found via uniform substitution of the type class "+++
 					"variables by the corresponding type instances specified in the instance definition.")
 			),ST [
-			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " " TAC "ClassName" TA " Type+ [ClassContext]"],
+			[TS "TypeClassInstanceDef",	TS_E,	TSBCr "instance" TA " " TAC "QClassName" TA " Type+ [ClassContext]"],
 			[[],						[],		TS "[" TABCr "where" TA "] " TABCb "{" TA " {FunctionDef}+ " TABCb "}" TA " " TABCb ";"]
 			],PCH
 				(TS "Example of the definition of an instance of a type class " TAC "Arith" TA " for type " TAC "Int"
@@ -200,7 +200,7 @@ page_6_3 char_width_and_kerns
 			[TS "FunctionType",			TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
 			[TS "ClassContext",			TS_E,	TST "|" TA " ClassConstraints {" TAT "&" TA " ClassConstraints}"],
 			[TS "ClassConstraints",		TS_E,	TS "ClassOrGenericName-list {SimpleType}+"],
-			[TS "ClassOrGenericName",	TS_E,	TSC "ClassName"],
+			[TS "ClassOrGenericName",	TS_E,	TSC "QClassName"],
 			[[],						TS_B,	TSC "FunctionName" TA " " TAT "{|" TA "TypeKind" TAT "|}"]
 		],PCH
 			(TS "Example of the use of a class context to impose a restriction on the instantiation of a type variable. The function "
