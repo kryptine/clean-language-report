@@ -184,10 +184,10 @@ page_a_3 char_width_and_kerns
 			[[],					TS_B,	TS "UnitPattern"]
 		],ST2 [
 			[TS "BasicValuePattern",	TS_E,	TS "BasicValue",		[]],
-			[TS "BasicValue",			TS_E,	TS "IntDenotation",		TS "// " TAL "see B.3"], 
-			[[],						TS_B,	TS "RealDenotation",	TS "// " TAL "see B.3"],
-			[[],						TS_B,	TS "BoolDenotation",	TS "// " TAL "see B.3"],
-			[[],						TS_B,	TS "CharDenotation",	TS "// " TAL "see B.3"]
+			[TS "BasicValue",			TS_E,	TS "IntDenotation",		TS "// " TAL "see B.4"], 
+			[[],						TS_B,	TS "RealDenotation",	TS "// " TAL "see B.4"],
+			[[],						TS_B,	TS "BoolDenotation",	TS "// " TAL "see B.4"],
+			[[],						TS_B,	TS "CharDenotation",	TS "// " TAL "see B.4"]
 		],ST2 [
 			[TS "ListPattern",		TS_E,	TST "[" TA "[ListKind][{LGraphPattern}-list [" TAT ":" TA " GraphPattern]] [SpineStrictness]" TAT "]",
 																	[]],
@@ -196,7 +196,7 @@ page_a_3 char_width_and_kerns
 			[[],					TS_B,	TST "|",				TS "// overloaded list"],
 			[TS "SpineStrictness",	TS_E,	TST "!",				TS "// tail (spine) strict list"],
 			[TS "LGraphPattern",	TS_E,	TS "GraphPattern",		[]],
-			[[],					TS_B,	TS "CharsDenotation",	TS "// " TAL "see B.3"]
+			[[],					TS_B,	TS "CharsDenotation",	TS "// " TAL "see B.4"]
 		],ST [
 			[TS "TuplePattern",	TS_E,	TST "(" TA "GraphPattern" TAT "," TA "{GraphPattern}-list" TAT ")"]
 		],ST [
@@ -292,7 +292,7 @@ page_a_4 char_width_and_kerns
 			[TS "ListDenotation",	TS_E,	TST "[" TA "[ListKind] [{LGraphExpr}-list [" TAT ":" TA " GraphExpr]] [SpineStrictness] " TAT "]",
 																						[]],
 			[TS "LGraphExpr",		TS_E,	TS "GraphExpr",								[]],
-			[[],					TS_B,	TS "CharsDenotation",						TS "// " TAL "see B.3"],
+			[[],					TS_B,	TS "CharsDenotation",						TS "// " TAL "see B.4"],
 			[TS "DotDotExpression",	TS_E,	TST "[" TA "[ListKind] GraphExpr [" TAT "," TA "GraphExpr]" TAT ".." TA "[GraphExpr] [SpineStrictness] " ++ TST "]",
 																						[]],
 			[TS "ZF-expression",	TS_E,	TST "[" TA "[ListKind] GraphExpr " TAT "\\\\" TA " {Qualifier}-list [SpineStrictness]" TAT "]",
@@ -322,7 +322,7 @@ page_a_5 char_width_and_kerns
 			[[],					TS_B,	TS "ArrayComprehension",								[]],
 			[[],					TS_B,	TS "ArraySelection",									[]],
 			[TS "ArrayDenotation",	TS_E,	TST "{" TA "[ArrayKind] {GraphExpr}-list" TAT "}",		[]],
-			[[],					TS_B,	TS "StringDenotation",									TS "// " TAL "see B.3"],
+			[[],					TS_B,	TS "StringDenotation",									TS "// " TAL "see B.4"],
 			[TS "ArrayUpdate",		TS_E,	TST "{" TA " ArrayExpr " TAT "&" TA " {ArrayIndex {Selection} " TAT "=" TA " GraphExpr}-list [" TAT "\\\\" TA " {Qualifier}-list]" TAT "}",
 																									[]],
 			[TS "ArrayComprehension",TS_E,	TST "{" TA "[ArrayKind] GraphExpr " TAT "\\\\" TA " {Qualifier}-list" TAT "}",
@@ -583,21 +583,5 @@ page_a_8 char_width_and_kerns
 			[TSC "ClassName",			TS_E,TS "LowerCaseId",TS_B,	TS "UpperCaseId",TS_B,TS "SymbolId"],
 			[TSC "MemberName",			TS_E,TS "LowerCaseId",TS_B,	TS "UpperCaseId",TS_B,TS "SymbolId"]
 		  ]
-		,ST [
-			[TS "LowerCaseId",	TS_E, TS "LowerCaseChar~{IdChar}"],
-			[TS "UpperCaseId",	TS_E, TS "UpperCaseChar~{IdChar}"],
-			[TS "SymbolId",		TS_E, TS "{SymbolChar}+"]
-		],ST [
-			[TS "LowerCaseChar",TS_E]++separate_by TS_B [TST (toString c) \\ c<-['a'..'m']],
-			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['n'..'z']],
-			[TS "UpperCaseChar",TS_E]++separate_by TS_B [TST (toString c) \\ c<-['A'..'M']],
-			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['N'..'Z']],
-			[TS "SymbolChar",	TS_E]++separate_by TS_B [TST (toString c) \\ c<-:"~@#$%^?!:"]++repeatn 8 [],
-			[[],				TS_B]++separate_by TS_B [TST (toString c) \\ c<-:"+-*<>\\/|&="]++repeatn 6 [],
-			[TS "IdChar",		TS_E,TS "LowerCaseChar"]++repeatn 24 [],
-			[[],				TS_B,TS "UpperCaseChar"]++repeatn 24 [],
-			[[],				TS_B,TS "Digit"]++repeatn 10 []++[TS "// " TAL "see B.3"]++repeatn 13 [],
-			[[],				TS_B,TST "_",TS_B,TST "`"]++repeatn 22 []
-		]
 		];
 	= make_page pdf_i pdf_shl;

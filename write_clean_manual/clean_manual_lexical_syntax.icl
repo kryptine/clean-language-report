@@ -28,19 +28,19 @@ page_b_1 char_width_and_kerns
 			"particular it summarizes the keywords, symbols and characters which have a special meaning in the language."
 		),ST2 [
 			[TS "LexProgram",	TS_E,	TS "{ Lexeme | {Whitespace}+ }",	[]],
-			[TS "Lexeme",		TS_E,	TS "ReservedKeywordOrSymbol",		TS "// " TAL "see Section B.4"],
-			[[],				TS_B,	TS "ReservedChar",					TS "// " TAL "see Section B.3"],
+			[TS "Lexeme",		TS_E,	TS "ReservedKeywordOrSymbol",		TS "// " TAL "see Section B.5"],
+			[[],				TS_B,	TS "ReservedChar",					TS "// " TAL "see Section B.4"],
 			[[],				TS_B,	TS "Literal",						[]],
 			[[],				TS_B,	TS "Identifier",					[]],
 			[TS "Identifier",	TS_E,	TS "LowerCaseId",					TS "// " TAL "see A.9"],
 			[[],				TS_B,	TS "UpperCaseId",					TS "// " TAL "see A.9"],
 			[[],				TS_B,	TS "SymbolId",						TS "// " TAL "see A.9"],
-			[TS "Literal",		TS_E,	TS "IntDenotation",					TS "// " TAL "see B.3"],
-			[[],				TS_B,	TS "RealDenotation",				TS "// " TAL "see B.3"],
-			[[],				TS_B,	TS "BoolDenotation",				TS "// " TAL "see B.3"],
-			[[],				TS_B,	TS "CharDenotation",				TS "// " TAL "see B.3"],
-			[[],				TS_B,	TS "CharsDenotation",				TS "// " TAL "see B.3"],
-			[[],				TS_B,	TS "StringDenotation",				TS "// " TAL "see B.3"]
+			[TS "Literal",		TS_E,	TS "IntDenotation",					TS "// " TAL "see B.4"],
+			[[],				TS_B,	TS "RealDenotation",				TS "// " TAL "see B.4"],
+			[[],				TS_B,	TS "BoolDenotation",				TS "// " TAL "see B.4"],
+			[[],				TS_B,	TS "CharDenotation",				TS "// " TAL "see B.4"],
+			[[],				TS_B,	TS "CharsDenotation",				TS "// " TAL "see B.4"],
+			[[],				TS_B,	TS "StringDenotation",				TS "// " TAL "see B.4"]
 		],ST2[
 			[TS "Whitespace",	TS_E,	TS "space",		TS "// a space character"],
 			[[],				TS_B,	TS "tab",		TS "// a horizontal tab"],
@@ -62,7 +62,32 @@ page_b_1 char_width_and_kerns
 			[[],					TS_B,	TS "ReservedChar",				[]],
 			[[],					TS_B,	TS "SpecialChar",				[]]
 		],H2
-			"B.3" "Denotations"
+			"B.3" "Identifiers"
+		,ST [
+			[TS "LowerCaseId",	TS_E, TS "LowerCaseChar~{IdChar}"],
+			[TS "UpperCaseId",	TS_E, TS "UpperCaseChar~{IdChar}"],
+			[TS "SymbolId",		TS_E, TS "{SymbolChar}+"]
+		]
+		];
+	= make_page pdf_i pdf_shl;
+
+page_b_2 :: !{!CharWidthAndKerns} -> Page;
+page_b_2 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[ST [
+			[TS "LowerCaseChar",TS_E]++separate_by TS_B [TST (toString c) \\ c<-['a'..'m']],
+			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['n'..'z']],
+			[TS "UpperCaseChar",TS_E]++separate_by TS_B [TST (toString c) \\ c<-['A'..'M']],
+			[[],                TS_B]++separate_by TS_B [TST (toString c) \\ c<-['N'..'Z']],
+			[TS "SymbolChar",	TS_E]++separate_by TS_B [TST (toString c) \\ c<-:"~@#$%^?!:"]++repeatn 8 [],
+			[[],				TS_B]++separate_by TS_B [TST (toString c) \\ c<-:"+-*<>\\/|&="]++repeatn 6 [],
+			[TS "IdChar",		TS_E,TS "LowerCaseChar"]++repeatn 24 [],
+			[[],				TS_B,TS "UpperCaseChar"]++repeatn 24 [],
+			[[],				TS_B,TS "Digit"]++repeatn 10 []++[TS "// " TAL "see B.4"]++repeatn 13 [],
+			[[],				TS_B,TST "_",TS_B,TST "`"]++repeatn 22 []
+		],H2
+			"B.4" "Denotations"
 		,ST2 [
 			[TS "IntDenotation",	TS_E,TS "[Sign]{Digit}+",														TS "// decimal number"],
 			[[],					TS_B,TS "[Sign]" TAT "0" TA "{OctDigit}+",										TS "// octal number"],
@@ -73,15 +98,7 @@ page_b_1 char_width_and_kerns
 			[TS "CharDenotation",	TS_E,TS "CharDel AnyChar/CharDel CharDel",										[]],
 			[TS "StringDenotation",	TS_E,TS "StringDel{AnyChar/StringDel}StringDel",								[]],
 			[TS "CharsDenotation",	TS_E,TS "CharDel {AnyChar/CharDel}+ CharDel",									[]]
-		]
-		];
-	= make_page pdf_i pdf_shl;
-
-page_b_2 :: !{!CharWidthAndKerns} -> Page;
-page_b_2 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[ST (let {
+		],ST (let {
 			n_extra_columns = 6;
 			} in [
 				[TS "AnyChar",		TS_E,concat_with_separator (TS " | ") [TS "IdChar",TS "ReservedChar",TS "SpecialChar"]]++repeatn (16+n_extra_columns) [],
@@ -108,11 +125,11 @@ page_b_2 char_width_and_kerns
 			[TS "CharDel",		TS_E,	TST "'"],
 			[TS "StringDel",	TS_E,	TST "\""]
 		],H2
-			"B.4" "Reserved Keywords and Symbols"
+			"B.5" "Reserved Keywords and Symbols"
 		,P(
 			TS ("Below the keywords and symbols are listed which have a special meaning in the language. Some symbols only have a "+++
 				"special meaning in a certain context. Outside this context they can be freely used if they are not a reserved character (")
-			TAL "see B.3" TA "). In the comment it is indicated for which context (name space) the symbol is predefined."
+			TAL "see B.4" TA "). In the comment it is indicated for which context (name space) the symbol is predefined."
 		),ST2 ([
 			[TS "ReservedKeywordOrSymbol",	TS_E,	[],					[]],
 			[TS "// in all contexts:",		TS "",	TST "/*",			TS "// begin of comment block"]
@@ -134,7 +151,15 @@ page_b_2 char_width_and_kerns
 														[TSBCr "import",		TS "// begin of import list"],
 														[TSBCr "module",		TS "// in module header"],
 														[TSBCr "system",		TS "// begin of system module"]
-		]),ST2 ([
+		])
+		];
+	= make_page pdf_i pdf_shl;
+
+page_b_3 :: !{!CharWidthAndKerns} -> Page;
+page_b_3 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[ST2 ([
 			[TS "// in function definitions:",	TS_B,	TST "->",	TS "// in a case expression, lambda abstraction"]
 			]++map (\ [def,comment] -> [[],TS_B,def,comment])[
 											[TST "[",				TS "// begin of a list"],
@@ -158,15 +183,7 @@ page_b_2 char_width_and_kerns
 											[TSBCr "of",			TS "// in case expression"],
 											[TSBCr "where",			TS "// begin of local def of a function alternative"],
 											[TSBCr "with",			TS "// begin of local def in a rule alternative"]
-		])
-	];
-	= make_page pdf_i pdf_shl;
-
-page_b_3 :: !{!CharWidthAndKerns} -> Page;
-page_b_3 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[ST2 ([
+		]),ST2 ([
 			[TS "// in type specifications:",	TS_B,	TST "!",	TS "// strict type"]
 			]++map (\ [def,comment] -> [[],TS_B,def,comment])[
 			[TST ".",							TS "// uniqueness type variable"],
