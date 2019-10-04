@@ -280,7 +280,7 @@ page_10_4 char_width_and_kerns
 			[TS "MacroDef",			TS_E,	TS "[MacroFixityDef]"],
 			[[],					[],	    TS "DefOfMacro"],
 			[TS "MacroFixityDef",	TS_E,	TST "(" TAC "FunctionName" TAT ")" TA " [FixPrec] " TABCb ";"],
-			[TS "DefOfMacro",		TS_E,	TS "Function {Variable} " TAT ":==" TA " FunctionBody " TABCb ";"],
+			[TS "DefOfMacro",		TS_E,	TS "Function {" TAC "Variable" TA "}+ " TAT ":==" TA " FunctionBody " TABCb ";"],
 			[[],					[],		TS "[LocalFunctionAltDefs]"]
 		],S(
 			"The compile-time substitution process is guaranteed to terminate. To ensure this some restrictions are imposed on "+++

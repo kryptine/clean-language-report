@@ -66,8 +66,8 @@ page_2_1 char_width_and_kerns
 			[TSC "MemberName",			TS_E,TS "LowerCaseId",TS_B,	TS "UpperCaseId",TS_B,TS "SymbolId"]
 		  	]
 		,ST [
-			[TS "LowerCaseId",	TS_E, TS "LowerCaseChar~{IdChar}"],
-			[TS "UpperCaseId",	TS_E, TS "UpperCaseChar~{IdChar}"],
+			[TS "LowerCaseId",	TS_E, TS "LowerCaseChar{IdChar}"],
+			[TS "UpperCaseId",	TS_E, TS "UpperCaseChar{IdChar}"],
 			[TS "SymbolId",		TS_E, TS "{SymbolChar}+"]
 		],ST [
 			[TS "LowerCaseChar",TS_E]++separate_by TS_B [TST (toString c) \\ c<-['a'..'m']],

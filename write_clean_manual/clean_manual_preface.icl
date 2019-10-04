@@ -222,7 +222,6 @@ page_p_4 char_width_and_kerns
 			[TST "terminals",			TS "are printed in " TAT "9 pts courier bold brown"],
 			[TSBCr "keywords",			TS "are printed in " TABCr "9 pts courier bold red"],
 			[TSBCb "terminals",			TS "that can be left out in layout mode are printed in " TABCb "9 pts courier bold blue"],
-			[TS "~",					TS "is used for concatenation of notions"],
 			[TS "{notion}/ str",		TS "means the longest expression not containing the string str"]
 		],P (
 			TS ("All CLEAN examples given in this report assume that the layout dependent mode has been chosen which means that "+++

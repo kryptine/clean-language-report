@@ -64,9 +64,15 @@ page_b_1 char_width_and_kerns
 		],H2
 			"B.3" "Identifiers"
 		,ST [
-			[TS "LowerCaseId",	TS_E, TS "LowerCaseChar~{IdChar}"],
-			[TS "UpperCaseId",	TS_E, TS "UpperCaseChar~{IdChar}"],
+			[TS "LowerCaseId",	TS_E, TS "LowerCaseChar{IdChar}"],
+			[TS "UpperCaseId",	TS_E, TS "UpperCaseChar{IdChar}"],
 			[TS "SymbolId",		TS_E, TS "{SymbolChar}+"]
+		]
+		,ST [
+			[TS "QLowerCaseId",		TS_E, TS "[ModuleQualifier]LowerCaseId"],
+			[TS "QUpperCaseId",		TS_E, TS "[ModuleQualifier]UpperCaseId"],
+			[TS "QSymbolId",		TS_E, TS "[ModuleQualifier space]SymbolId"],
+			[TS "ModuleQualifier",	TS_E, TST "'" TAC "ModuleName" TAT "'."]
 		]
 		];
 	= make_page pdf_i pdf_shl;
