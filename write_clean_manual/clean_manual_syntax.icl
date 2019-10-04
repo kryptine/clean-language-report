@@ -161,7 +161,7 @@ page_a_3 char_width_and_kerns
 		,ST [
 			[TS "Pattern",			TS_E,	TS "[" TAC "Variable" TA " " TAT "=:" TA "] BrackPattern"],
 			[TS "BrackPattern",		TS_E,	TS "PatternVariable"],
-			[[],					TS_B,	TS "Constructor"],
+			[[],					TS_B,	TS "QConstructor"],
 			[[],					TS_B,	TST "(" TA "GraphPattern" TAT ")"], 
 			[[],					TS_B,	TS "SpecialPattern"], 
 			[[],					TS_B,	TS "DynamicPattern"]
@@ -169,11 +169,11 @@ page_a_3 char_width_and_kerns
 			[TS "PatternVariable",	TS_E,	TSC "Variable"],
 			[[],					TS_B,	TST "_"]
 		],ST [
-			[TS "Constructor",	TS_E,	TSC "ConstructorName"],
-			[[],				TS_B,	TST "(" TAC "ConstructorName" TAT ")"]
+			[TS "QConstructor",	TS_E,	TSC "QConstructorName"],
+			[[],				TS_B,	TST "(" TAC "QConstructorName" TAT ")"]
 		],ST [
-			[TS "GraphPattern",		TS_E,	TS "Constructor {Pattern}"],
-			[[],					TS_B,	TS "GraphPattern " TAC "ConstructorName" TA " GraphPattern "],
+			[TS "GraphPattern",		TS_E,	TS "QConstructor {Pattern}"],
+			[[],					TS_B,	TS "GraphPattern " TAC "QConstructorName" TA " GraphPattern "],
 			[[],					TS_B,	TS "Pattern "]
 		],ST [
 			[TS "SpecialPattern",	TS_E,	TS "BasicValuePattern"],
@@ -224,7 +224,7 @@ page_a_3 char_width_and_kerns
 			[[],				TS_B,	TS "GraphExpr Operator GraphExpr",	[]],
 			[[],				TS_B,	TS "GenericAppExpr",				[]],
 			[TS "Operator",		TS_E,	TSC "QFunctionName",				TS "// " TAL "see A.9"],
-			[[],				TS_B,	TSC "ConstructorName",				TS "// " TAL "see A.9"]
+			[[],				TS_B,	TSC "QConstructorName",				TS "// " TAL "see A.9"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -237,7 +237,7 @@ page_a_4 char_width_and_kerns
 	# pdf_shl = make_pdf_shl pdf_i
 		[ST2 [
 			[TS "BrackGraph",	TS_E,	TS "GraphVariable"],
-								table_alt "Constructor",
+								table_alt "QConstructor",
 								table_alt "QFunction",
 								table_alt "(GraphExpr)",
 								table_alt "LambdaAbstr",
@@ -351,7 +351,7 @@ page_a_5 char_width_and_kerns
 		],ST [
 			[TS "DynamicExpression",TS_E,	TSBCr "dynamic" TA " GraphExpr [" TAT "::" TA " [UnivQuantVariables] Type [ClassContext]]"]
 		],ST [
-			[TS "MatchesPatternExpr",	TS_E,	TS "GraphExpr" TA " " TAT "=:" TA " " TAC "ConstructorName" TA " { " TAT "_" TA " }"],
+			[TS "MatchesPatternExpr",	TS_E,	TS "GraphExpr" TA " " TAT "=:" TA " " TAC "QConstructorName" TA " { " TAT "_" TA " }"],
 			[[],						TS_B,	TS "GraphExpr" TA " " TAT "=:" TA " BrackPattern"]
 		],H2
 			"A.4" "Macro Definition"
@@ -587,7 +587,8 @@ page_a_8 char_width_and_kerns
 			[TSC "ClassName",			TS_E,TS "LowerCaseId",TS_B,	TS "UpperCaseId",TS_B,TS "SymbolId"],
 			[TSC "MemberName",			TS_E,TS "LowerCaseId",TS_B,	TS "UpperCaseId",TS_B,TS "SymbolId"]
 		],ST [
-			[TSC "QFunctionName",		TS_E,TS "QLowerCaseId",TS_B, TS "QUpperCaseId",TS_B,TS "QSymbolId"]
+			[TSC "QFunctionName",		TS_E,TS "QLowerCaseId",TS_B,TS "QUpperCaseId",TS_B,TS "QSymbolId"],
+			[TSC "QConstructorName",	TS_E,[],[],					TS "QUpperCaseId",TS_B,TS "QSymbolId"]
 		]
 		];
 	= make_page pdf_i pdf_shl;

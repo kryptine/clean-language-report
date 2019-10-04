@@ -137,20 +137,20 @@ page_3_2 char_width_and_kerns
 			TAI "data constructor"
 			TA " with its optional arguments that can consist of sub-patterns) or it is a variable."
 		),ST2 [
-			[TS "Pattern",			TS_E,	TS "[Variable " TAT "=:" TA "] BrackPattern",	[]],
+			[TS "Pattern",			TS_E,	TS "[" TAC "Variable" TA " " TAT "=:" TA "] BrackPattern",	[]],
 			[TS "BrackPattern",		TS_E,	TST "(" TA "GraphPattern" TAT ")",				[]],
-			[[],					TS_B,	TS "Constructor",								[]],
+			[[],					TS_B,	TS "QConstructor",								[]],
 			[[],					TS_B,	TS "PatternVariable",							[]], 
 			[[],					TS_B,	TS "SpecialPattern",							[]], 
 			[[],					TS_B,	TS "DynamicPattern",							TS "// " TAL "see Chapter 8"],
 			[[],					[],		[],												[]],
-			[TS "GraphPattern",		TS_E,	TS "Constructor {Pattern}",						TSCb "// Ordinary data constructor"],
-			[[],					TS_B,	TS "GraphPattern " TAC "ConstructorName",		TSCb "// Infix data constructor"],
-			[[],					TS_B,	TS "GraphPattern ",								[]],
+			[TS "GraphPattern",		TS_E,	TS "QConstructor {Pattern}",					TSCb "// Ordinary data constructor"],
+			[[],					TS_B,	TS "GraphPattern " TAC "QConstructorName",		TSCb "// Infix data constructor"],
+			[[],					[],		TS "GraphPattern ",								[]],
 			[[],					TS_B,	TS "Pattern ",									[]],
 			[[],					[],		[],												[]],
-			[TS "PatternVariable",	TS_E,	TS "Variable",									[]],
-			[[],					TS_B,	TS "_ ",										[]]
+			[TS "PatternVariable",	TS_E,	TSC "Variable",									[]],
+			[[],					TS_B,	TST "_ ",										[]]
 		],P(
 			TS "A " TAI "pattern variable" TA " can be a (node) " TAI "variable" TA " or a "
 			TAI "wildcard" TA ". A " TAI "variable" TA " is a formal argument of a function that matches on "
@@ -303,7 +303,7 @@ page_3_4 char_width_and_kerns
 								table_alt "GraphExpr Operator GraphExpr",
 								table_alt "GenericAppExpr",
 			[TS "BrackGraph",	TS_E,	TS "GraphVariable",	[]],
-								table_alt "Constructor",
+								table_alt "QConstructor",
 								table_alt "QFunction",
 								table_alt "(GraphExpr)",
 								table_alt_link "LambdaAbstr" "see 3.4.1",
@@ -315,11 +315,11 @@ page_3_4 char_width_and_kerns
 		],ST [
 			[TS "QFunction",	TS_E,	TSC "QFunctionName"],
 			[[],				TS_B,	TST "(" TAC "QFunctionName" TAT ")"],
-			[TS "Constructor",	TS_E,	TSC "ConstructorName"],
-			[[],				TS_B,	TST "(" TAC "ConstructorName" TAT ")"],
+			[TS "QConstructor",	TS_E,	TSC "QConstructorName"],
+			[[],				TS_B,	TST "(" TAC "QConstructorName" TAT ")"],
 			[TS "Operator",		TS_E,	TSC "QFunctionName"],
-			[[],				TS_B,	TSC "ConstructorName"],
-			[TS "GraphVariable",TS_E,	TS "Variable"],
+			[[],				TS_B,	TSC "QConstructorName"],
+			[TS "GraphVariable",TS_E,	TSC "Variable"],
 			[[],				TS_B,	TS "SelectorVariable"]
 		],P(
 			TS ("An expression generally expresses an application of a function to its actual arguments or the (automatic) creation of a "+++
@@ -529,7 +529,7 @@ page_3_7 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
 		[ST [
-			[TS "MatchesPatternExpr",	TS_E,	TS "GraphExpr" TA " " TAT "=:" TA " " TAC "ConstructorName" TA " { " TAT "_" TA " }"],
+			[TS "MatchesPatternExpr",	TS_E,	TS "GraphExpr" TA " " TAT "=:" TA " " TAC "QConstructorName" TA " { " TAT "_" TA " }"],
 			[[],						TS_B,	TS "GraphExpr" TA " " TAT "=:" TA " BrackPattern"]
 		],P (TSC "=:" TA " in expressions binds stronger than function application. This includes additional " TAC "_"
 			TA "'s after a " TAC "ConstructorName" TA ", so " TAC "x=:(Constructor _ _)"

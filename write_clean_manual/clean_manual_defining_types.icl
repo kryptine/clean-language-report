@@ -150,10 +150,10 @@ page_5_2 char_width_and_kerns
 			TA (". A constructor pattern forces evaluation of the corresponding actual argument to strong root normal form "+++
 				"since the strategy has to determine whether the actual argument indeed is equal to the specified constructor.")
 		),ST2 [
-			[TS "GraphPattern",	TS_E,	TS "Constructor",							TS "// Zero arity Constructor"],
-			[[],				TS_B,	TST "(" TA "Constructor {Pattern}" TAT ")",	TS "// Constructor pattern"],
-			[[],				TS_B,	TS "GraphPattern " TAC "ConstructorName",	TS "// Infix Constructor operator"],
-			[[],				[],		TS "GraphPattern",							[]]
+			[TS "GraphPattern",	TS_E,	TS "QConstructor {Pattern}",				TS "// Constructor pattern"],
+			[[],				TS_B,	TS "GraphPattern " TAC "QConstructorName",	TS "// Infix Constructor operator"],
+			[[],				[],		TS "GraphPattern",							[]],
+			[[],				TS_B,	TS "Pattern",								[]]
 		]
 		];
 	= make_page pdf_i pdf_shl;
