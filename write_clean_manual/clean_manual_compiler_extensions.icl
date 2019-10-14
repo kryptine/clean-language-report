@@ -91,38 +91,9 @@ page_d_2 char_width_and_kerns
 			TS "          a & [i]=n+1;",
 			TS "        = inc_a (i+1) a;",
 			TS "        = a;"
-		]),
-		H3 "D.1.3" "New strictness annotations"
-		,N
-
-		,SP (TS "Strictness annotations in types of class instance members")
-		
-		,S "Types of class instance members may contain additional strictness annotations. For example:"
-
-		,PC (map syntax_color [
-			TS "class next a where",
-			TS "    next :: a -> a",
-			[],
-			TS "instance next Int where",
-			TS "    next :: !Int -> Int",
-			TS "    next x = x+1"
-		])
-		
-		,S ("If such an instance is exported, the type of the instance member must be "+++
-			"included in the definition module:")
-
-		,PC (map syntax_color [
-			TS "instance next Int where",
-			TS "    next :: !Int -> Int"
 		])
 
-		,S ("If no additional strictness annotations are specified, it can still "+++
-			"be exported without the type by:")
-
-		,PC (map syntax_color [
-			TS "instance next Int"
-		])
-		,H3 "D.1.4" "Hierarchical modules"
+		,H3 "D.1.3" "Hierarchical modules"
 		
 		,P (TS ("The module name can be used to specify the directory containing the "+++
 				"module. In that case the module name is the list of folder names of "+++
@@ -131,15 +102,9 @@ page_d_2 char_width_and_kerns
 			TA " is stored in file " TAC "X/Y/Z.icl" TA " (file " TAC "Z.icl" TA " in subfolder "
 			TAC "Y" TA " of folder " TAC "Z" TA "). The path containing the first folder ("
 			TAC "X" TA " in this case) should be a module search path for the compiler."
-		)
-	  ];
-	= make_page pdf_i pdf_shl;
+		),
 
-page_d_3 :: !{!CharWidthAndKerns} -> Page;
-page_d_3 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i [
-		H3 "D.1.5" "New types"
+		H3 "D.1.4" "New types"
 		,N
 
 		,SP (
@@ -165,8 +130,14 @@ page_d_3 char_width_and_kerns
 			[],
 			TS ":: T | B Int Int"
 		]
+	  ];
+	= make_page pdf_i pdf_shl;
 
-		,H3 "D.1.6" "Generics additions"
+page_d_3 :: !{!CharWidthAndKerns} -> Page;
+page_d_3 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i [
+		H3 "D.1.5" "Generics additions"
 		,N
 
 		,SP (
@@ -239,7 +210,6 @@ page_d_4 char_width_and_kerns
 	# pdf_shl = make_pdf_shl pdf_i [
 		H2	"D.2" "Clean Development Compiler Extensions"
 		,MSP [
-			TS "types of instance members in definition modules.",
 			TS "generic functions can have dependent generic functions (also in Clean 3.0).",
 			TS "type GenericInfo (in module StdGeneric) changed.",
 			TS "generic instances of generic representation types (e.g. CONS) may occur in definition modules."

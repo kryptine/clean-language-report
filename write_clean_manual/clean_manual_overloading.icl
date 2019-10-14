@@ -3,7 +3,7 @@ implementation module clean_manual_overloading;
 import StdEnv,pdf_main,pdf_text,clean_manual_styles,clean_manual_text;
 
 pages_6 :: [{!CharWidthAndKerns} -> Page];
-pages_6 = [page_6_1,page_6_2,page_6_3,page_6_4,page_6_5,page_6_6,page_6_7,page_6_8];
+pages_6 = [page_6_1,page_6_2,page_6_3,page_6_4,page_6_5,page_6_6,page_6_7,page_6_8,page_6_9];
 
 page_6_1 :: !{!CharWidthAndKerns} -> Page;
 page_6_1 char_width_and_kerns
@@ -585,16 +585,46 @@ page_6_8 char_width_and_kerns
 			[],
 			TS ("However, when an overloaded function is exported it is unknown with which concrete instances the function will be "+++
 				"applied. So, a dictionary record is constructed in which the concrete function can be stored as is explained in the "+++
-				"introduction of this Section. This approach can be very inefficient, especially in comparison to a specialized version. One "+++
+				"introduction of this section. This approach can be very inefficient, especially in comparison to a specialized version. One "+++
 				"can therefore ask the compiler to generate specialized versions of an overloaded function that is being exported. This "+++
 				"can be done by using the keyword ") TABCr "special"
 			TA (". If the exported overloaded function will be used very frequently, we advise "+++
 				"to specialize the function for the most important types it will be applied on."),
 			[]
 		],SP(
-			TS ("A specialised function can only be generated if for all type variables which appear in the "+++
-				"instance definition of a class a concrete type is defined.")
-		),H2
+			TS ("A specialised function can only be generated if a concrete type is definend for all type variables "+++
+				"which appear in the instance definition of a class.")
+		)
+
+		,P (TS ("The types of class instance members may be specified. Strictness annotations specified in the type of "+++
+				"the instance member of the class definition should be included, because the annotations are copied when "+++
+				"the type of the class instance member is instantiated."))
+		,S "Additional strictness annotations are permitted. For example:"
+
+		,PC (map syntax_color [
+			TS "class next a where",
+			TS "    next :: a -> a",
+			[],
+			TS "instance next Int where",
+			TS "    next :: !Int -> Int",
+			TS "    next x = x+1"
+		]),
+		S ("If such an instance is exported, the type of the instance member must be "+++
+			"included in the definition module:")
+
+		,PC (map syntax_color [
+			TS "instance next Int where",
+			TS "    next :: !Int -> Int"
+		]),
+		S "If no additional strictness annotations are specified, it can still be exported without the type."
+		];
+	= make_page pdf_i pdf_shl;
+
+page_6_9 :: !{!CharWidthAndKerns} -> Page;
+page_6_9 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[H2
 			"6.11" "Semantic Restrictions on Type Classes"
 		,S(
 			"Semantic restrictions:"
@@ -606,12 +636,12 @@ page_6_8 char_width_and_kerns
 			TS "A type instance of an overloaded type must be a " TAI "flat type" TA ", i.e. a type of the form " TAC "T a1 ... an"
 			TA " where " TAC "ai" TA " are type variables which are " TAI "all" TA " different.",
 			TS "It is not allowed to use a type synonym as instance.",
-			TS "The start rule cannot have an overloaded type.",
+			TS "The " TAC "Start" TA " function cannot have an overloaded type.",
 			TS "For the specification of derived members in a class the same restrictions hold as for defining macros.",
 			TS "A restricted context can only be imposed on one of the type variables appearing in the type of the expression.",
 			TS "The specification of the concrete functions can only be given in implementation modules.",
-			TS ("A specialised function can only be generated if for all type variables which appear in the "+++
-				"instance definition of a class a concrete type is defined."),
+			TS ("A specialised function can only be generated if a concrete type is defined for all type variables "+++
+				"which appear in the instance definition of a class ."),
 			TS "A request to generate a specialised function for a class instance can only be defined in a definition module."
 		]
 		];
