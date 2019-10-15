@@ -1,0 +1,19 @@
+test:
+    image: camilstaps/clean
+    before_script:
+        - apt-get update -qq
+        - apt-get install -yy --no-install-recommends curl unzip git ca-certificates
+    script:
+        - cd write_clean_manual
+        - clm -h 20M write_clean_manual -o write_clean_manual
+        - curl -L -o liberation-sans.zip https://www.fontspace.com/download/3435/36725246f64c4594a48441c88f803e0b/red-hat-inc_liberation-sans.zip
+        - unzip liberation-sans.zip LiberationSans-Regular.ttf LiberationSans-Bold.ttf LiberationSans-Italic.ttf
+        - git clone --depth=1 git://git.ghostscript.com/urw-core35-fonts.git
+        - cp urw-core35-fonts/NimbusMonoPS-Regular.ttf .
+        - cp urw-core35-fonts/NimbusMonoPS-Bold.ttf .
+        - ./write_clean_manual
+    artifacts:
+        when: always
+        paths:
+            - write_clean_manual/CleanLanguageReport.pdf
+            - write_clean_manual/CleanLanguageReport.html
