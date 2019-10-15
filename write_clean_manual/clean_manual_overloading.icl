@@ -309,7 +309,7 @@ page_6_5 char_width_and_kerns
 	# pdf_shl = make_pdf_shl pdf_i
 		[P(
 			TS ("CLEAN 2.0 offers the possibility to define generic functions. With generic functions one is able to define "+++
-						"a function like ") TAC "map" TA " once that works for " TAI "any" TA " type (see ???)."
+						"a function like ") TAC "map" TA " once that works for " TAI "any" TA " type (" TAL "see 7.2" TA ")."
 		),H2
 			"6.5" "Overlapping Instances"
 		,S(
