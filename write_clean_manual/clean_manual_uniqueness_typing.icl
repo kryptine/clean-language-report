@@ -448,15 +448,15 @@ page_9_6 char_width_and_kerns
 				"uniqueness of objects accessed via a reference labeled with ") TAI "write-permitted"
 			TA " solely depends on the types of the objects themselves.",
 			[],
-			TS ("Beforecg describing the labeling mechanism of CLEAN we mention that the \"lifetime\" of references is determined on a "+++
+			TS ("Before describing the labeling mechanism of CLEAN we mention that the \"lifetime\" of references is determined on a "+++
 				"syntactical basis. For this reason we classify references to the same expression in a function definition (say for ") TAC "f" 
 			TA ") according to their estimated run-time use, as " TAI "alternative" TA ", " TAI "observing" TA " and " TAI "parallel" TA "."
 		],MBP [
 			TS "Two references are " TAI "alternative" TA " if they belong to different alternatives of " TAC "f"
 			TA ". Note that alternatives are distinguished by patterns (including " TAC "case" TA " expressions) or by guards.",
 			TS "A reference " TAC "r" TA " is " TAI "observing" TA " w.r.t. a reference " TAC "r'"
-		 	TA " if the expression containing " TAC "r'"
-	 		TA " is either (1) guarded by an expression or (2) preceded by a strict let before expression containing " TAC "r" TA ".",
+			TA " if the expression containing " TAC "r'"
+			TA " is either (1) guarded by an expression or (2) preceded by a strict let before expression containing " TAC "r" TA ".",
 			TS "Otherwise, references are in " TAI "parallel" TA "."
 		],S(
 			"The rules used by the sharing analysis to label each reference are the following."

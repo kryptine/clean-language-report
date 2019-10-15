@@ -347,7 +347,7 @@ page_6_5 char_width_and_kerns
 			TS "    (==) x y = False"
 		]),P(
 			TS ("It is sometimes unclear which of the class instances is the most specific. In that case the lexicographic "+++
-				"order is chosen looking at the specified instances (with type variables always ") TAC "<=" TA " type constructors)."
+				"order is chosen looking at the specified instances (with type variables always ") TAC ">" TA " type constructors)."
 		),PCH
 			(TS "Example of overlapping instances. The two instances of class " TAC "C"
 			 TA " overlap with each other. In the " TAC "Start" TA " rule the function " TAC "f"
@@ -356,7 +356,7 @@ page_6_5 char_width_and_kerns
 			 TAC "f::Bool a -> Bool" TA ", the other " TAC "f::a Bool -> Bool" TA ", " TAC "Start"
 			 TA " requires " TAC "f:: Bool Bool -> Bool"
 			 TA "). The compiler will choose the first instance, because in lexicographical order "
-			 TAC " instance C Bool dontcare" TA " <= " TAC "instance C dontcare Bool" TA ".")
+			 TAC "instance C Bool dontcare" TA " <= " TAC "instance C dontcare Bool" TA ".")
 			(map syntax_color [
 			[],
 			TS "class C a1 a2",
@@ -365,11 +365,11 @@ page_6_5 char_width_and_kerns
 			[],
 			TS "instance C Bool dontcare",
 			TS "where",
-			TS "    f b x  = b",
+			TS "    f b1 b2 = b1",
 			[],
 			TS "instance C dontcare Bool",
 			TS "where",
-			TS "    f x b  = b",
+			TS "    f b1 b2 = b2",
 			[],
 			TS "Start = f True False                     // the result will yield True"
 		]),H2
