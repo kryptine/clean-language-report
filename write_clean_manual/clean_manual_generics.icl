@@ -328,8 +328,8 @@ page_7_5 char_width_and_kerns
 			[]
 		]),CPCH
 			(TS "A class for kind " TAI "k" TA ".")
-		 	(map color_keywords [
-	 		[],
+			(map color_keywords [
+			[],
 			TS "class genFun{|k|} t     :: GenFun{|k|} t .. t",
 			[]
 		]),CPCH
@@ -356,7 +356,7 @@ page_7_5 char_width_and_kerns
 			TA (". Type variable stands for all types of kind *. If a generic function has a case for a type variable it "+++
 				"means that by default all types of kind star will be handled by that instance. The programmer can override the "+++
 				"default behavior by defining an instance on a specific type."),
-			TSI "Arrow type (->)"
+			TSI "Arrow type " TAC "(->)"
 			TA (". If a generic function is supposed to work with types that involve the arrow type, an "+++
 				"instance on the arrow type has to be provided."),
 			TSI "Type constructor" TA ". A programmer may provide instances on other types. This may be needed for two reasons:"	
@@ -368,7 +368,7 @@ page_7_5 char_width_and_kerns
 			)]
 		,H2	"7.3" "Deriving Generic Functions"
 		,P(
-			TS "The user has to tell the compiler instances of which generic functions on which types are to be generated. This is done with the "
+			TS "The user has to tell the compiler which instances of generic functions on which types are to be generated. This is done with the "
 			TAI "derive" TA " clause."
 		),ST [
 			[TS "DeriveDef",	TS_E,	TSBCr "derive" TA " "TAC "FunctionName" TA " {DerivableType}-list"],
@@ -400,7 +400,7 @@ page_7_6 char_width_and_kerns
 			"representation of types that is needed to derive an instance. Deriving instances for then would yield non-"+++
 			"terminating cyclic functions. Instances on these types must be provided for the user. Derived instances of algebraic "+++
 			"types call these instances."),
-		TSI "Arrow  type  (->)"
+		TSI "Arrow type " TAC "(->)"
 		TA (". An instance on the arrow type has to be provided by the programmer, if he or she wants the "+++
 			"generic function to work with types containing arrows."),
 		TSI "Basic types" TA " like " TAC "Int" TA ", " TAC "Char" TA ", " TAC "Real" TA ", " TAC "Bool"
@@ -416,7 +416,22 @@ page_7_6 char_width_and_kerns
 	],S(
 		"The compiler issues an error if there is no required instance for a type available. Required instances are "+++
 		"determined by the overloading mechanism."
-	),H2
+	),P (
+		TSBCr "derive" TA " " TABCr "class"
+		TA " of a class and type derives for the type all generic functions that occur directly in the context of the class definition ("
+		TAL "see 6.1" TA ")."
+	),PCH
+		(TS "For example:")
+		(map syntax_color [
+		[],
+		TS "import GenEq,GenLexOrd",
+		[],
+		TS "class C a | gEq{|*|} a & gLexOrd{|*|} a & PlusMin a",
+		[],
+		TS ":: T = V Char",
+		[],
+		TS "derive class C T    // derives gEq and gLexOrd for type T"
+	]),H2
 		"7.4" "Applying Generic Functions"
 	,P(
 		TS ("The generic function in Clean stands for a set of overloaded functions. There is one function in the set for each kind. "+++
@@ -448,10 +463,18 @@ page_7_6 char_width_and_kerns
 		[],
 		TS "bmap :: (a1 -> b1) (a2 -> b2) (f a1 a2) -> (f b1 b2) | gMap{|*->*->*|} f",
 		TS "bmap f1 f2 x y = gMap{|*->*->*|} f1 f2 x y"
-	],PCH
+	]
+	];
+	= make_page pdf_i pdf_shl;
+
+page_7_7 :: !{!CharWidthAndKerns} -> Page;
+page_7_7 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+	[PCH
 		(TS ("Equality makes sense not only on for kind *. In the example we alter the standard way of "+++
 			 "comparing elements. Equality for kind * and *->* are explicitly used."))
- 		[
+		[
 		[],
 		TS "eqListFsts :: [(a, b)] [(a, c)] -> Bool | gEq{|*|} a",
 		TS "eqListFsts xs ys = gEq{|*->*|} (\\x y -> fst x === fst y) ys",
@@ -467,15 +490,7 @@ page_7_6 char_width_and_kerns
 		TS "    , [1,2,3] === [1,2,3]                               // True",
 		TS "    , gEq{|*->*|} (\\x y -> True) [1,2,3] [4,5,6]        // True",
 		TS "    )"
-	])
-	];
-	= make_page pdf_i pdf_shl;
-
-page_7_7 :: !{!CharWidthAndKerns} -> Page;
-page_7_7 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-	[H2
+	]),H2
 		"7.5" "Using Constructor Information"
 	,S(
 		"As it was outlined above, the structural representation of types lacks information about specific constructors and record "+++
@@ -533,7 +548,15 @@ page_7_7 char_width_and_kerns
 		TS "    , gcd_type       :: GenType                  // type of the constructor",
 		TS "    , gcd_index      :: Int                      // index of the contructor in the type def",
 		TS "    }"
-	]),CPCH
+	])
+	];
+	= make_page pdf_i pdf_shl;
+
+page_7_8 :: !{!CharWidthAndKerns} -> Page;
+page_7_8 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[PCH
 		(TS "The record descriptor is passed after " TABCr "of" TA " in the RECORD case of a generic function.")
 		(map comment_blue [
 		TS ":: GenericRecordDescriptor =",
@@ -551,15 +574,7 @@ page_7_7 char_width_and_kerns
 		TS "    , gfd_index      :: Int                      // index of the field in the record",
 		TS "    , gfd_cons       :: GenericRecordDescriptor  // the record constructor",
 		TS "    }"
-	])
-	];
-	= make_page pdf_i pdf_shl;
-
-page_7_8 :: !{!CharWidthAndKerns} -> Page;
-page_7_8 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[PCH
+	]),PCH
 			(TS "Generic pretty printer.")
 			[
 			[],
@@ -616,7 +631,15 @@ page_7_8 char_width_and_kerns
 			TS "    (A. (a:a) (b:b): (.a -> .b) -> (f:f a:a) -> g:g a:a, [f <= a, g <= b])",
 			TS "    (.t .f) -> .t .g",
 			TS "    , [f <= t, g <= t]"
-		],H2
+		]
+		];
+	= make_page pdf_i pdf_shl;
+
+page_7_9 :: !{!CharWidthAndKerns} -> Page;
+page_7_9 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[H2
 			"7.7" "Exporting Generic Functions"
 		,P(
 			TS ("Generic declarations and generic cases - both provided and derived - can be exported from a module. "+++
@@ -628,15 +651,7 @@ page_7_8 char_width_and_kerns
 			[[],						TS_B,	TSBCr "derive" TA " " TAC "FunctionName" TA " {DeriveExportType [UsedGenericDependencies]}-list " TABCb ";"],
 			[[],						TS_B,	TSBCr "derive" TA " " TABCr "class" TA " " TAC "ClassName" TA " {DerivableType}-list " TABCb ";"],
 			[TS "GenericDef",			TS_E,	TSBCr "generic" TA " " TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType"]
-		]
-		];
-	= make_page pdf_i pdf_shl;
-
-page_7_9 :: !{!CharWidthAndKerns} -> Page;
-page_7_9 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[ST [
+		],ST [
 			[TS "DeriveExportType",		TS_E,	TSC "TypeName"],
 			[[],						TS_B,	TS "GenericMarkerType [" TABCr "of" TA " UsedGenericInfoFields]"],
 			[[],						TS_B,	TS "PredefinedTypeConstructor"],

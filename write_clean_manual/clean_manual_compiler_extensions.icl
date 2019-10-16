@@ -219,8 +219,7 @@ page_d_4 char_width_and_kerns
 		,MSP [
 			TS "Function arguments may have contexts with universally quantified type variables.",
 			TS "Constructors may have contexts (for normal and universally quantified type variables).",
-			TS "dynamic types may have contexts.",
-			TS "derive class."
+			TS "dynamic types may have contexts."
 		]
 	  ];
 	= make_page pdf_i pdf_shl;
