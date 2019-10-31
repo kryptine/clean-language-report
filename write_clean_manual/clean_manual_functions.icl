@@ -1258,6 +1258,6 @@ page_3_15 char_width_and_kerns
 			TS ("Notice that strictness annotations are only allowed at the outermost level of the argument type. Strictness "+++
 						"annotations inside type instances of arguments are not possible (with exception for some predefined types like "+++
 						"tuples and lists). Any (part of) a data structure can be changed from lazy to strict, but this has to be specified "+++
-						"in the type definition (") TAL "see 5.1.5" TA ")."
+						"in the type definition (") TAL "see 5.1.6" TA ")."
 		)];
 	= make_page pdf_i pdf_shl;

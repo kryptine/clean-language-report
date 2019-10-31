@@ -113,23 +113,6 @@ page_d_2 char_width_and_kerns
 		,PC [
 			TS ":: () = ()"
 		]
-		,N
-
-		,SP (
-			TS "Extensible algebraic types can be defined by adding " TAC "| .."
-			TA " to the algebraic type definition (or just " TAC ".."
-			TA (" without constructors). In other modules additional constructors may be added "+++
-				"(once per module) by using ") TAC "|" TA " in the definition instead of " TAC "=" TA ".")
-
-		,PCH (TS "For example, to define extensible type " TAC "T" TA " with constructor " TAC "A" TA ":")[
-			[],
-			TS ":: T = A Int | .."
-		]
-
-		,PCH (TS "To extended " TAC "T" TA " with constructor " TAC "B" TA " in another module:")[
-			[],
-			TS ":: T | B Int Int"
-		]
 	  ];
 	= make_page pdf_i pdf_shl;
 

@@ -48,7 +48,7 @@ page_5_1 char_width_and_kerns
 				"data constructor in a type definition are type instances of types (that are defined or are being defined)."),
 			[],
 			TS "Types can be preceded by uniqueness type attributes (" TAL "see Chapter 9"
-			TA "). The arguments of a defined data constructor can optionally be annotated as being strict (" TAL "see 5.1.5" TA ")."
+			TA "). The arguments of a defined data constructor can optionally be annotated as being strict (" TAL "see 5.1.6" TA ")."
 		],ST [
 			[TS "AlgebraicTypeDef",	TS_E,	TST "::" TA "TypeLhs",	TST "=" TA " ConstructorDef"], 
 			[[],					[],		[],						TS "{" TAT "|" TA " ConstructorDef} " TABCb ";"]
@@ -365,7 +365,31 @@ page_5_5 char_width_and_kerns
 			[],
 			TS "Start = f (C Ids)"
 		],H3
-			"5.1.5" "Strictness Annotations in Type Definitions"
+			"5.1.5" "Extensible Algebraic Types"
+		,P (
+			TS ("An extensible algebraic type is an algebraic type that can be extended with additional constructors in other modules. "+++
+				"To define it add ")
+			TAC "| .." TA " to an algebraic type definition (or just " TAC ".." TA " after " TAC "|"
+			TA (" without constructors). In other modules additional constructors may be added "+++
+				"(once per module) by using ") TAC "|" TA " in the definition instead of " TAC "=" TA ".")
+		,ST [
+			[TS "ExtensibleAlgebraicTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT "=" TA " {ConstructorDef " TAT "|" TA "} " TAT ".." TABCb ";"],
+			[TS "AlgebraicTypeDefExtension",	TS_E,	TST "::" TA "TypeLhs " TAT "|" TA " ConstructorDef " TA " {" TAT "|" TA " ConstructorDef} " TABCb ";"]
+		],PCH (TS "For example, to define extensible algebraic types " TAC "X" TA " and " TAC "Y" TA " with constructor " TAC "A" TA ":")[
+			[],
+			TS ":: X a = ..",
+			TS ":: Y = A Int | .."
+		]
+		,PCH (TS "To extended " TAC "X" TA " with constructor " TAC "Xn" TA " and " TAC "Y" TA " with " TAC "B" TA " and " TAC "C"
+			TA " in another module (in which " TAC "X" TA " and " TAC "Y" TA " are imported):")[
+			[],
+			TS ":: X a | Xn a",
+			TS ":: Y | B Int Int | C Int Int Int"
+		],P (
+			TS ("Additional constructors can also be exported and imported. These constructors can be imported directly using an explicit import, "+++
+				"but not using a ConstructorsOrFields list of an imported type")
+		),H3
+			"5.1.6" "Strictness Annotations in Type Definitions"
 		,S(
 			"Functional programs will generally run much more efficient when strict data structures are being used instead of lazy "+++
 			"ones. If the inefficiency of your program becomes problematic one can think of changing lazy data structures into strict "+++
@@ -408,12 +432,19 @@ page_5_5 char_width_and_kerns
 			TS ("When a strict annotated argument is put in a strict context while the argument is defined in terms of another strict "+++
 				"annotated data structure the latter is put in a strict context as well and therefore also evaluated. So, one can change the "+++
 				"default ") TAI "lazy semantics" TA " of CLEAN into a (" TAI "hyper" TA ") " TAI "strict semantics"
-			TA  " as demanded. The type system will check the consistency of types and ensure that the specified strictness is maintained.",
-			[],
-			TS ("There is no explicit notation for creating unboxed versions of an algebraic data type. The compiler will automatically "+++
+			TA  " as demanded. The type system will check the consistency of types and ensure that the specified strictness is maintained."
+		]
+		];
+	= make_page pdf_i pdf_shl;
+
+page_5_6 :: !{!CharWidthAndKerns} -> Page;
+page_5_6 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[P (TS ("There is no explicit notation for creating unboxed versions of an algebraic data type. The compiler will automatically "+++
 				"choose the most efficient representation for a given data type. For algebraic data type definitions containing strict "+++
 				"elements of basic type, record type and array type an unboxed representation will be chosen.")
-		],PCH
+		),PCH
 			(TS "Example: both integer values in the definition of " TAC "Point"
 			 TA (" are strict and will be stored unboxed since they are known to be of basic type. "+++
 				 "The integer values stored in ") TAC "MyPoint"
@@ -425,15 +456,7 @@ page_5_5 char_width_and_kerns
 			TS "::MyTuple a = Pair !a !a",
 			[],
 			TS "::MyPoint :== MyTuple Int"
-		]
-		];
-	= make_page pdf_i pdf_shl;
-
-page_5_6 :: !{!CharWidthAndKerns} -> Page;
-page_5_6 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[PCH
+		],PCH
 			(TS "A user defined lazy list similar to type " TAC "[a]" TA " could be defined in algebraic type definition as follows:")
 			[
 			[],
@@ -452,7 +475,7 @@ page_5_6 char_width_and_kerns
 			TS "::TailSList a     =   TailSCons a !(TailSList a)",
 			TS "                  |   TailSNil"
 		],PCH
-			(TS "A strict listssimilar to type " TAC "[!a!]" TA " could be defined in algebraic type definition as follows:")
+			(TS "A strict list similar to type " TAC "[!a!]" TA " could be defined in algebraic type definition as follows:")
 			[
 			[],
 			TS "::StrictList a    =   StrictCons !a !(StrictList a)",
@@ -467,10 +490,10 @@ page_5_6 char_width_and_kerns
 			(TS "An unboxed list similar to type " TAC "[#Int!]" TA " could be defined in algebraic type definition as follows:")
 			[
 			[],
-			TS "::UnboxedIList    =   UnboxedICons !Int  !UnboxedIList",
+			TS "::UnboxedIList    =   UnboxedICons !Int !UnboxedIList",
 			TS "                  |   UnboxedINil"
 		],H3
-			"5.1.6" "Semantic Restrictions on Algebraic Data Types"
+			"5.1.7" "Semantic Restrictions on Algebraic Data Types"
 	 	,S(
 			"Other semantic restrictions on algebraic data types:"
 		),MSP [
@@ -485,12 +508,20 @@ page_5_6 char_width_and_kerns
 				"in a curried way in the function world, but then they have to be used as ordinary prefix constructors."),
 			TS ("Type constructors can be used in a curried way in the type world; to use predefined bracket-like type constructors "+++
 				"(for lists, tuples, arrays) in a curried way they must be used in prefix notation."),
-			TS "The right-hand side of an algebraic data type definition should yield a type of kind" TAC "X"
+			TS "The right-hand side of an algebraic data type definition should yield a type of kind " TAC "X"
 			TA ", all arguments of the data constructor being defined should be of kind " TAC "X" TA " as well.",
 			TS "A type can only be instantiated with a type that is of the same kind.",
 			TS ("An existentially quantified type variable specified in an algebraic type can only be instantiated with a concrete type "+++
 				"(= not a type variable) when a data structure of this type is created.")
-		],H2
+		]
+		];
+	= make_page pdf_i pdf_shl;
+
+page_5_7 :: !{!CharWidthAndKerns} -> Page;
+page_5_7 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[H2
 			"5.2" "Defining Record Types"
 		,P(
 			TS "A " TAI "record type"
@@ -509,15 +540,7 @@ page_5_6 char_width_and_kerns
 			TA ("). In that case one only has to specify the values for those fields that differ from the old "+++
 				"record. Matching and creation of records can hence be specified in CLEAN in such a way that after a change in the "+++
 				"structure of a record only those functions have to be changed that are explicitly referring to the changed fields.")
-		)
-		];
-	= make_page pdf_i pdf_shl;
-
-page_5_7 :: !{!CharWidthAndKerns} -> Page;
-page_5_7 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[P(
+		),P(
 			TS "Existential and universal type variables (" TAL "see 5.1.3" TA " and " TAL "5.1.4"
 			TA (") are allowed in record types (as in any other type). The "+++
 				"arguments of the constructor can optionally be annotated as being strict (")
@@ -562,7 +585,15 @@ page_5_7 char_width_and_kerns
 			[],
 			TS "    myset:: [Int] Int -> [Int]",
 			TS "    myset is i = [i:is]"
-		]),PC (map color_keywords [
+		])
+		];
+	= make_page pdf_i pdf_shl;
+
+page_5_8 :: !{!CharWidthAndKerns} -> Page;
+page_5_8 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[PC (map color_keywords [
 			TS "CreateObject2 = {state = 0.0, get = myget, set = myset}",
 			TS "where",
 			TS "    myget:: Real -> Int",
@@ -579,15 +610,7 @@ page_5_7 char_width_and_kerns
 			[],
 			TS "Start:: [Object]",
 			TS "Start = map (Set 3) [CreateObject1,CreateObject2]"
-		])
-		];
-	= make_page pdf_i pdf_shl;
-
-page_5_8 :: !{!CharWidthAndKerns} -> Page;
-page_5_8 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[PCH
+		]),PCH
 			(TS "Example of a complex number as record type with strict components.")
 			[
 			[],
@@ -633,7 +656,14 @@ page_5_8 char_width_and_kerns
 			TS "                                     , y = py",
 			TS "                                     }",
 			TS "                               }"
-		]),MSP [
+		])];
+	= make_page pdf_i pdf_shl;
+
+page_5_9 :: !{!CharWidthAndKerns} -> Page;
+page_5_9 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[MSP [
 			TS ("A record can only be used if its type has been defined in a record type definition; the field names used must be "+++
 				"identical to the field names specified in the corresponding type."),
 			TS "When creating a record explicitly, the order in which the record fields are instantiated is irrelevant, but " TAI "all"
@@ -654,14 +684,7 @@ page_5_8 char_width_and_kerns
 		],N
 		,SP(
 			TS "The record expression must yield a record."
-		)];
-	= make_page pdf_i pdf_shl;
-
-page_5_9 :: !{!CharWidthAndKerns} -> Page;
-page_5_9 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[P(
+		),P(
 			TS "The record written to the left of the " TAC "& (r & f = v" TA " is pronounced as: "TAC "r"
 			TA " with for " TAC "f" TA " the value " TAC "v" TA ") is the record to be duplicated.  On the right from the "
 			TAC "&" TA " the structures are specified in which the new record " TAI "differs"
@@ -710,7 +733,15 @@ page_5_9 char_width_and_kerns
 				"record selection can be very handy for destructively updating of uniquely typed records with values that depend on the "+++
 				"current contents of the record. Record selection binds more tightly (priority ")
 			TAC "11" TA ") than application (priority " TAC "10" TA ")."
-		),PCH
+		)
+		];
+	= make_page pdf_i pdf_shl;
+
+page_5_10 :: !{!CharWidthAndKerns} -> Page;
+page_5_10 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[PCH
 			(TS "Record selection.")
 			(map comment_blue [
 			[],
@@ -736,15 +767,7 @@ page_5_9 char_width_and_kerns
 			TS ("When matching a record, the type contructor which can be used to disambiguate the record from other records, can "+++
 				"only be left out if there is ") TAI "at least "
 			TA "one field name is specified which is not being defined in some other record."
-		]
-		];
-	= make_page pdf_i pdf_shl;
-
-page_5_10 :: !{!CharWidthAndKerns} -> Page;
-page_5_10 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[PCH
+		],PCH
 			(TS "Use of record patterns.")
 			[
 			[],
@@ -790,7 +813,15 @@ page_5_10 char_width_and_kerns
 			[],
 			TS "Start:: Int",
 			TS "Start = map2 (*) [2,3,4,5] [7,8,9,10]"
-		],H2
+		]
+		];
+	= make_page pdf_i pdf_shl;
+
+page_5_11 :: !{!CharWidthAndKerns} -> Page;
+page_5_11 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[H2
 			"5.4" "Defining Abstract Data Types"
 		,P(
 			TS "A type can be exported by defining the type in a CLEAN definition module (" TAL "see Chapter 2"
@@ -822,15 +853,7 @@ page_5_10 char_width_and_kerns
 			TS "Top      ::   (Stack a) -> a",
 			TS "Push     :: a (Stack a) -> Stack a",
 			TS "Pop      ::   (Stack a) -> Stack a"
-		])
-		];
-	= make_page pdf_i pdf_shl;
-
-page_5_11 :: !{!CharWidthAndKerns} -> Page;
-page_5_11 char_width_and_kerns
-	# pdf_i = init_PDFInfo char_width_and_kerns;
-	# pdf_shl = make_pdf_shl pdf_i
-		[PC (map color_keywords [
+		]),PC (map color_keywords [
 			TS "implementation module stack",
 			[],
 			TS "::Stack a :== [a]",
@@ -852,7 +875,7 @@ page_5_11 char_width_and_kerns
 			TS "Pop [e:s] = s"
 		]),H3
 			"5.4.1" "Defining Abstract Data Types with Synonym Type Definition"
-	 	,S(
+		,S(
 			"Because the concrete definition of an abstract data type does not appear in the definition module, the compiler cannot "+++
 			"generate optimal code. Therefore, if the concrete type is a synonym type, the right-hand-side of the definition may be "+++
 			"included surrounded by brackets:"
