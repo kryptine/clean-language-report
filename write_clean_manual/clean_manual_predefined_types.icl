@@ -41,9 +41,9 @@ page_4_1 char_width_and_kerns
 			[],
 			TSI "Basic types" TA " are " TAI "algebraic types" TA " (" TAL "see 5.1"
 			TA ") which are predefined for reasons of efficiency and convenience: " TAC "Int"
-			TA " (for 32 bits integer values), " TAC "Real" TA " (for 64 bit double precision floating point values), "
+			TA " (for 32 or 64 bits integer values), " TAC "Real" TA " (for 64 bit double precision floating point values), "
 			TAC "Char" TA " (for 8 bits ASCII character values) and " TAC "Bool"
-			TA ("(for 8 bits Boolean values). For programming convenience special syntax is introduced to denote constant values "+++
+			TA (" (for 8 bits Boolean values). For programming convenience special syntax is introduced to denote constant values "+++
 				"(data constructors) of these predefined types. Functions to create and manipulate objects of basic types can be found in "+++
 				"the CLEAN ") TAC "StdEnv" TA " library (as indicated below).",
 			[],
@@ -988,8 +988,8 @@ page_4_13 char_width_and_kerns
 				"To make this possible a type constructor has been predefined for all predefined types of higher order kind (")
 			TAL "see also 5.1.2" TA "). The kind " TAC "X" TA " stands for any so-called " TAI "first-order" 
 			TA " type: a type expecting no further arguments ((" TAC "Int" TA ", " TAC "Bool" TA ", " TAC "[Int]"
-			TA ", etcetera). All function arguments are of kind " TAC "X" TAC ". The kind " TAC "X -> X"
-			TA "stands for a type that can be applied to a (first-order) type, which then yields another first-order type, "
+			TA ", etcetera). All function arguments are of kind " TAC "X" TA ". The kind " TAC "X -> X"
+			TA " stands for a type that can be applied to a (first-order) type, which then yields another first-order type, "
 			TAC "X -> X -> X" TA " expects two type arguments, and so on."
 		),PC [
 			TS "Int, Bool, [Int], Tree [Int]   :: X",
@@ -1007,8 +1007,7 @@ page_4_13 char_width_and_kerns
 			[[],								TS_B,	TST "{}",	TS "// lazy array type constructor"],
 			[[],								TS_B,	TST "{!}",	TS "// strict array type constructor"],
 			[[],								TS_B,	TST "{#}",	TS "// unboxed array type constructor"],
-			[[],								TS_B,	TST "(->)",	TS "// arrow type constructor"],
-			[[],								TS_B,	TST "()",	TS "// unit type constructor"]
+			[[],								TS_B,	TST "(->)",	TS "// arrow type constructor"]
 		],PCH
 			(TS "So, all predefined types can be written down in prefix notation as well, as follows:")
 			[
@@ -1053,7 +1052,7 @@ page_4_14 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
 		[H2
-			"4.7" "Predefined Abstract Types"
+			"4.7" "Predefined Abstract And Synonym Types"
 		,MP [
 			[],
 			TSI "Abstract data types" TA " are types of which the actual definition is hidden (" TAL "see 5.4" 
@@ -1079,7 +1078,14 @@ page_4_14 char_width_and_kerns
 		),ST2 [
 				[TS "PredefType",	TS_E,	TST "World",	TS "// see " TAC "StdWorld.dcl"],
 				[[],				TS_B,	TST "File",		TS "// see " TAC "StdFileIO.dcl"],
-				[[],				TS_B,	TST "String",	TS "// synonym for {#Char}"]
-		]
-		];
+				[[],				TS_B,	TST "String",	TS "// synonym for {#Char}"],
+				[[],				TS_B,	TST "()",		TS "// unit type"]
+		],H2
+			"4.8" "Predefined Unit Type"
+		,P (
+			TS "The unit type is a predefined type with type constructor " TAC "()" TA " " TAL "(see 4.7)" TA " and constructor " TAC "()" TA "."
+		),ST [
+			[TS "UnitPattern",		TS_E,	TST "()"],
+			[TS "UnitConstructor",	TS_E,	TST "()"]
+		]];
 	= make_page pdf_i pdf_shl;

@@ -102,25 +102,14 @@ page_d_2 char_width_and_kerns
 			TA " is stored in file " TAC "X/Y/Z.icl" TA " (file " TAC "Z.icl" TA " in subfolder "
 			TAC "Y" TA " of folder " TAC "Z" TA "). The path containing the first folder ("
 			TAC "X" TA " in this case) should be a module search path for the compiler."
-		),
-
-		H3 "D.1.4" "New types"
-		,N
-
-		,SP (
-			TS "The predefined unit type.")
-
-		,PC [
-			TS ":: () = ()"
-		]
-	  ];
+		)];
 	= make_page pdf_i pdf_shl;
 
 page_d_3 :: !{!CharWidthAndKerns} -> Page;
 page_d_3 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i [
-		H3 "D.1.5" "Generics additions"
+		H3 "D.1.4" "Generics additions"
 		,N
 
 		,SP (

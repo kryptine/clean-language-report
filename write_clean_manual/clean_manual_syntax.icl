@@ -475,7 +475,8 @@ page_a_7 char_width_and_kerns
 		[ST2 [
 			[TS "PredefType",					TS_E,	TST "World",	TS "// see " TAC "StdWorld.dcl"],
 			[[],								TS_B,	TST "File",		TS "// see " TAC "StdFileIO.dcl"],
-			[[],								TS_B,	TST "String",	TS "// synonym for {#Char}"]
+			[[],								TS_B,	TST "String",	TS "// synonym for {#Char}"],
+			[[],								TS_B,	TST "()",		TS "// unit type constructor"]
 		],ST2 [
 			[TS "PredefinedTypeConstructor",	TS_E,	TST "[]",		TS "// list type constructor"],
 			[[],								TS_B,	TST "[! ]",		TS "// head strict list type constructor"],
@@ -487,8 +488,7 @@ page_a_7 char_width_and_kerns
 			[[],								TS_B,	TST "{}",		TS "// lazy array type constructor"],
 			[[],								TS_B,	TST "{!}",		TS "// strict array type constructor"],
 			[[],								TS_B,	TST "{#}",		TS "// unboxed array type constructor"],
-			[[],								TS_B,	TST "(->)",		TS "// arrow type constructor"],
-			[[],								TS_B,	TST "()",		TS "// unit type constructor"]
+			[[],								TS_B,	TST "(->)",		TS "// arrow type constructor"]
 		],H2
 			"A.6" "Class and Instance Definitions"
 		,ST [

@@ -221,7 +221,7 @@ page_3_3 char_width_and_kerns
 			[[],					TS_B,	TS "TuplePattern",		TS "// " TAL "see 4.3.2"],
 			[[],					TS_B,	TS "ArrayPattern",		TS "// " TAL "see 4.4.2"],
 			[[],					TS_B,	TS "RecordPattern",		TS "// " TAL "see 5.2.2"],
-			[[],					TS_B,	TS "UnitPattern",		[]]
+			[[],					TS_B,	TS "UnitPattern",		TS "// " TAL "see 4.8"]
 		],H2
 			"3.3" "Guards"
 		,ST [
@@ -391,7 +391,7 @@ page_3_5 char_width_and_kerns
 			table_alt_link "ArraySelection" "see 4.4.1",
 			table_alt_link "Record" "see 5.2.1",
 			table_alt_link "RecordSelection" "see 5.2.1",
-			table_alt "UnitConstructor"
+			table_alt_link "UnitConstructor" "see 4.8"
 		],H3
 			"3.4.1" "Lambda Abstraction"
 		,MP [
