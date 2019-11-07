@@ -514,11 +514,11 @@ page_7_7 char_width_and_kerns
 		(TS "Examples of structural representation with constructor and field information")
 		[
 		[],
-		TS ":: ListS a   :== EITHER (CONS UNIT) (CONS (PAIR a (List a)))",
-		TS ":: TreeS a   :== EITHER (CONS a) (CONS (PAIR (Tree a) (Tree a)))",
+		TS ":: ListS a   :== OBJECT (EITHER (CONS UNIT) (CONS (PAIR a (List a))))",
+		TS ":: TreeS a   :== OBJECT (EITHER (CONS a) (CONS (PAIR (Tree a) (Tree a))))",
 		[],
 		TS ":: Complex   = { re   :: Real, im   :: Real }",
-		TS ":: ComplexS  :== PAIR (FIELD Real) (FIELD Real)"
+		TS ":: ComplexS  :== RECORD (PAIR (FIELD Real) (FIELD Real))"
 	],ST [
 		[TS "GenericTypeArg",	TS_E,	TS "GenericMarkerType [" TABCr "of" TA " Pattern]"],
 		[[],					TS_B,	TSC "TypeName"],
@@ -576,7 +576,7 @@ page_7_8 char_width_and_kerns
 		TS "    }"
 	]),PCH
 			(TS "Generic pretty printer.")
-			[
+			(map syntax_color [
 			[],
 			TS "generic gToString a ::        String    a            -> String",
 			TS "gToString {|Int|}             sep       x            = toString x",
@@ -587,15 +587,14 @@ page_7_8 char_width_and_kerns
 			TS "gToString {|CONS of c|} fx    sep       (CONS x)",
 			TS "    | c.gcd_arity == 0",
 			TS "         = c.gcd_name",
-			TS "    | isEmpty c.gcd_fields",
 			TS "         = \"(\" +++ c.gcd_name +++ \" \" +++ fx \" \"  x +++ \")\"",
-			TS "    | otherwise",
-			TS "        = \"{\" +++ c.gcd_name +++ \" | \" +++ fx \", \" x +++ \"}\"",
+			TS "gToString {|RECORD of c|} fx  sep       (RECORD x)",
+			TS "        = \"{\" +++ c.grd_name +++ \" | \" +++ fx \", \" x +++ \"}\"",
 			TS "gToString {|FIELD of f|} fx   sep       (FIELD x)    = f.gfd_name +++ \"=\" +++ fx x",
 			[],
 			TS "toStr :: a -> String | gToString{|*|} a",
 			TS "toStr   x = gToString{|*|} \"\" x"
-		],H2
+		]),H2
 			"7.6" "Generic Functions and Uniqueness Typing"
 		,S(
 			"Uniqueness is very important in Clean. The generic extension can deal with uniqueness. The mechanism that derives "+++
