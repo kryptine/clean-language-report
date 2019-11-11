@@ -136,25 +136,9 @@ page_d_3 char_width_and_kerns
 		,P (TS "add: " TAC "of {gcd_name}" TA " in the definition module:")
 
 		,PC [TS "derive g2 CONS of {gcd_name};"]
-      
+
 		,P (TSC "g2" TA " for " TAC "CONS" TA " will be called with just a " TAC "gcd_name"
 			TA ", instead of a " TAC "GenericConsDescriptor" TA " record.")
-		,N
-
-		,SP (
-			TS ("Generic function definitions that depend on other generic functions, can be defined "+++
-				"by adding a ") TAC "|" TA " followed by the required generic functions, separated by commas.")
-		
-		,P (TS "For example, to define " TAC "h" TA " using " TAC "g1" TA " and " TAC "g2" TA ":")
-		
-		,PC (map syntax_color [
-			TS "generic g1 a :: a -> Int;",
-			TS "generic g2 a :: a -> Int;",
-			TS "generic h a | g1 a, g2 a :: a -> Int;",
-			[],
-			TS "h{|OBJECT of {gtd_name}|} _ g1 _ (OBJECT a)",
-			TS "    = g1 a+size (gtd_name);"
-		])
 		,N
 
 		,SP (

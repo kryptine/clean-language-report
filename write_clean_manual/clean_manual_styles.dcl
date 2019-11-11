@@ -72,6 +72,7 @@ TSb :: !{#Char} -> [Text];						// text start blue
 TSL :: !{#Char} -> [Text];						// text start link
 TSCb :: !{#Char} -> [Text];						// text start courier blue
 TSBCb :: !{#Char} -> [Text];					// text start bold courier blue
+TSBCbC :: !{#Char} -> [Text];					// text start bold blue in courier
 TSBCr :: !{#Char} -> [Text];					// text start bold courier red
 red_bold_s_in_courier :: !{#Char} -> [Text];
 orange_bold_s :: !{#Char} -> [Text];
@@ -85,6 +86,7 @@ TS_B :: [Text];									// text start |
 (TAC) infixl :: ![Text] !{#Char} -> [Text];		// text append courier
 (TACb) infixl :: ![Text] !{#Char} -> [Text];	// text append courier blue
 (TABCb) infixl :: ![Text] !{#Char} -> [Text];	// text append bold courier blue
+(TABCbC) infixl :: ![Text] !{#Char} -> [Text];	// text append bold blue in courier
 (TABCr) infixl :: ![Text] !{#Char} -> [Text];	// text append bold courier red
 (TAL) infixl :: ![Text] !{#Char} -> [Text];		// text append link
 (TAT) infixl :: ![Text] !{#Char} -> [Text];		// text append terminal (bold courier brown)

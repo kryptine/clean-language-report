@@ -71,6 +71,12 @@ TSBCb s
 	   TString s,
 	   TFont microsoft_sans_serif_n ("/F1 "+++toString font_size+++" Tf") FCBlack];
 
+TSBCbC :: !{#Char} -> [Text];
+TSBCbC s
+	= [TFont courier_bold_n ("/F5 "+++toString font_size+++" Tf") (FCRGB (0,0,255)),
+	   TString s,
+	   TFont courier_n ("/F4 "+++toString font_size+++" Tf") FCBlack];
+
 TSBCr :: !{#Char} -> [Text];
 TSBCr s
 	= [TFont courier_bold_n ("/F5 "+++toString font_size+++" Tf") (FCRGB (255,0,0)),
@@ -111,6 +117,9 @@ TS_B = TS "|";
 
 (TABCb) infixl :: ![Text] !{#Char} -> [Text];
 (TABCb) t s = t++TSBCb s;
+
+(TABCbC) infixl :: ![Text] !{#Char} -> [Text];
+(TABCbC) t s = t++TSBCbC s;
 
 (TABCr) infixl :: ![Text] !{#Char} -> [Text];
 (TABCr) t s = t++TSBCr s;

@@ -266,7 +266,7 @@ page_7_4 char_width_and_kerns
 				"The type variables mentioned after the generic function name are called ") TAI "generic type variables"
 			TA ". Similar to type classes, they are substituted by the actual instance type. A generic definition actually defines a "
 			TAI "set"
-			TA (" of type constructor classes. There is one class for each possible kind in the set. Such a generic funcion is sometimes "+++
+			TA (" of type constructor classes. There is one class for each possible kind in the set. Such a generic function is sometimes "+++
 				"called a kind-indexed class. The classes are generated using the type of the generic function. The classes always have one "+++
 				"class variable, even if the generic function has several generic variables. The reason for this restriction is that the "+++
 				"generic function can be defined by induction on one argument only.")
@@ -639,7 +639,32 @@ page_7_9 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
 		[H2
-			"7.7" "Exporting Generic Functions"
+			"7.7" "Generic Functions Using Other Generic Functions"
+		,S "Generic type variables may not be used in the context of a generic function, for example: "
+		,PC (map syntax_color [
+			TS "generic f1 a :: a -> Int | Eq a" TABCbC ";" TA "       // incorrect",
+			TS "generic f2 a :: a -> Int | gEq{|*|} a" TABCbC ";" TA " // incorrect"
+		]),P (
+			TS "However generic function definitions that depend on other generic functions can be defined by adding a " TAC "|"
+			TA " followed by the required generic functions, separated by commas."
+		),ST [
+			[TS "GenericDef",		TS_E,	TSBCr "generic" TA " " TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ [GenericDependencies] " TAT "::" TA " FunctionType"],
+			[TS "GenericDependencies",TS_E,	TST "|" TA " {" TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ }-list"]
+		],P (
+			TS "For example, to define " TAC "h" TA " using " TAC "g1" TA " and " TAC "g2" TA ":"
+		),PC (map syntax_color [
+			TS "generic g1 a :: a -> Int" TABCbC ";",
+			TS "generic g2 a :: a -> Int" TABCbC ";",
+			TS "generic h a | g1 a, g2 a :: a -> Int" TABCbC ";",
+			[],
+			TS "h{|PAIR|} ha g1a g2a hb g1b g2b (PAIR a b)",
+			TS "    = g1a a+g2b b" TABCb ";"
+		]),P (
+			TS "The algorithm for generating classes described in " TAL "7.2"
+			TA " is extended to add the dependent generic function arguments after each argument added by "
+			TAC "(GenFun{|k|} b1 .. bn)" TA "."
+		),H2
+			"7.8" "Exporting Generic Functions"
 		,P(
 			TS ("Generic declarations and generic cases - both provided and derived - can be exported from a module. "+++
 				"Exporting a generic function is done by giving the ")
