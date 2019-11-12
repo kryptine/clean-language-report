@@ -425,9 +425,11 @@ page_a_6 char_width_and_kerns
 		],ST [
 			[TS "SynonymTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT ":==" TA " Type " TABCb ";"]
 		],ST [
-			[TS "AbstractTypeDef",	TS_E,	TST "::" TA "TypeLhs " TABCb ";"]
+			[TS "AbstractTypeDef",			TS_E,	TST "::" TA " [" TAT "!" TA "][UnqOrCoercibleTypeAttrib] TypeConstructor {[" TAT "*" TA "]" TAC "TypeVariable" TA "}" TABCb ";"],
+			[TS "UnqOrCoercibleTypeAttrib",	TS_E,	TST "*"],
+			[[],							TS_B,	TST "."]
 		],ST [
-			[TS "AbstractSynonymTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT "(:==" TA " Type " TAT ")" TA " " TABCb ";"]
+			[TS "AbstractSynonymTypeDef",	TS_E,	TS "AbstractTypeDef " TAT "(:==" TA " Type " TAT ")" TA " " TABCb ";"]
 		],ST [
 			[TS "ExtensibleAlgebraicTypeDef",	TS_E,	TST "::" TA "TypeLhs " TAT "=" TA " {ConstructorDef " TAT "|" TA "} " TAT ".." TABCb ";"]
 		],ST [
@@ -460,10 +462,6 @@ page_a_6 char_width_and_kerns
 			[[],					TS_B,	TST "#",													TS "// head strict, unboxed list"]
 		],ST [
 			[TS "TupleType",	TS_E,	TST "(" TA "[Strict] Type" TAT "," TA "{[Strict] Type}-list" TAT ")"]
-		],ST2 [
-			[TS "ArrayType",	TS_E,	TST "{" TA "[ArrayKind] Type" TAT "}",	[]],
-			[TS "ArrayKind",	TS_E,	TST "!",								TS "// strict array"],
-			[[],				TS_B,	TST "#",								TS "// unboxed array"]
 		]
 		];
 	= make_page pdf_i pdf_shl;
@@ -473,6 +471,10 @@ page_a_7 char_width_and_kerns
 	# pdf_i = init_PDFInfo char_width_and_kerns;
 	# pdf_shl = make_pdf_shl pdf_i
 		[ST2 [
+			[TS "ArrayType",	TS_E,	TST "{" TA "[ArrayKind] Type" TAT "}",	[]],
+			[TS "ArrayKind",	TS_E,	TST "!",								TS "// strict array"],
+			[[],				TS_B,	TST "#",								TS "// unboxed array"]
+		],ST2 [
 			[TS "PredefType",					TS_E,	TST "World",	TS "// see " TAC "StdWorld.dcl"],
 			[[],								TS_B,	TST "File",		TS "// see " TAC "StdFileIO.dcl"],
 			[[],								TS_B,	TST "String",	TS "// synonym for {#Char}"],

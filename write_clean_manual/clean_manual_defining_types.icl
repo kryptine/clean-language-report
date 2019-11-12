@@ -839,7 +839,9 @@ page_5_11 char_width_and_kerns
 			TS ("The left-hand side of the concrete type should be identical to (modulo alpha conversion for variable names) the left-"+++
 				"hand side of the abstract type definition (inclusive strictness and uniqueness type attributes).")
 		],ST [
-			[TS "AbstractTypeDef",	TS_E,	TST "::" TA "TypeLhs " TABCb ";"]
+			[TS "AbstractTypeDef",			TS_E,	TST "::" TA " [" TAT "!" TA "][UnqOrCoercibleTypeAttrib] TypeConstructor {[" TAT "*" TA "]" TAC "TypeVariable" TA "}" TABCb ";"],
+			[TS "UnqOrCoercibleTypeAttrib",	TS_E,	TST "*"],
+			[[],							TS_B,	TST "."]
 		],PCH
 			(TS "Example of an abstract data type.")
 			(map color_keywords [
@@ -848,7 +850,7 @@ page_5_11 char_width_and_kerns
 			[],
 			TS "::Stack a",
 			[],
-			TS "Empty    ::   (Stack a)",
+			TS "Empty    ::    Stack a",
 			TS "isEmpty  ::   (Stack a) -> Bool",
 			TS "Top      ::   (Stack a) -> a",
 			TS "Push     :: a (Stack a) -> Stack a",
@@ -858,7 +860,7 @@ page_5_11 char_width_and_kerns
 			[],
 			TS "::Stack a :== [a]",
 			[],
-			TS "Empty:: (Stack a)",
+			TS "Empty:: Stack a",
 			TS "Empty = []",
 			[],
 			TS "isEmpty:: (Stack a) -> Bool",
@@ -880,7 +882,7 @@ page_5_11 char_width_and_kerns
 			"generate optimal code. Therefore, if the concrete type is a synonym type, the right-hand-side of the definition may be "+++
 			"included surrounded by brackets:"
 		),ST [
-			[TS "AbstractSynonymTypeDef",	TS_E,	TST "::" TA "TypeLhs ( " TAT ":==" TA " Type ) " TABCb ";"]
+			[TS "AbstractSynonymTypeDef",	TS_E,	TS "AbstractTypeDef " TAT "(:==" TA " Type " TAT ")" TA " " TABCb ";"]
 		],S(
 			"The type of the implementation is still hidden as for other abstract data types, except that the compiler uses it only to "+++
 			"generate the same code as for a synonym type."
