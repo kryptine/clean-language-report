@@ -694,5 +694,22 @@ page_7_9 char_width_and_kerns
 		]),S(
 			"A generic function cannot be derived for an abstract data type, but it can be derived in the module where the "+++
 			"abstract type defined. Thus, when one may export derived instance along with the abstract data type."
-		)];
+		)
+		,P (
+			TS "The used generic info fields for generic instances of "
+			TAC "OBJECT" TA ", " TAC "CONS" TA ", " TAC "RECORD" TA " and " TAC "FIELD"
+			TA " can be specified by adding: " TAC "of" TA " {" TAC "FieldName"
+			TA "}-list, at the end of the derive statement. The compiler uses this to optimize the generated code.")
+
+		,P (TS "For example for:")
+
+		,PC [TS "gToString {|FIELD of {gfd_name}|} fx sep (FIELD x) = gfd_name +++ \"=\" +++ fx x"]
+
+		,P (TS "add: " TAC "of {gcd_name}" TA " in the definition module:")
+
+		,PC [TS "derive gToString FIELD of {gfd_name}"]
+
+		,P (TS "and the function will be called with just a " TAC "gfd_name"
+			TA ", instead of a " TAC "GenericFieldDescriptor" TA " record.")
+		];
 	= make_page pdf_i pdf_shl;

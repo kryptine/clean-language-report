@@ -120,34 +120,21 @@ page_d_3 char_width_and_kerns
 				"same syntax as used in implementation modules. This makes it possible "+++
 				"for the compiler to optimise derived generic functions in other modules."))
 
-		,SP (
-			TS "In definition modules the used generic info fields for generic instances of "
-			TAC "OBJECT" TA ", " TAC "CONS" TA ", " TAC "RECORD" TA " and " TAC "FIELD"
-			TA " can be specified by adding: " TAC "of" TA (" and the pattern, at the end of "+++
-				"the derive statement. The compiler uses this to optimize the generated code."))
-
-		,PCH (TS "For example if " TAC "g2" TA " is defined as:")
-			(map syntax_color [
-				[],
-				TS "generic g2 a :: a -> Int;",
-				TS "g2{|CONS of {gcd_name}|} _ _ = size gcd_name;"
-		])
-
-		,P (TS "add: " TAC "of {gcd_name}" TA " in the definition module:")
-
-		,PC [TS "derive g2 CONS of {gcd_name};"]
-
-		,P (TSC "g2" TA " for " TAC "CONS" TA " will be called with just a " TAC "gcd_name"
-			TA ", instead of a " TAC "GenericConsDescriptor" TA " record.")
 		,N
-
 		,SP (
 			TS ("In definition modules unused generic function dependencies for generic instances "+++
 				"can be specified by adding: ") TAC "with"
 			TA " followed by the list of dependencies, but an " TAC "_"
 			TA " for unused dependencies. The compiler uses this to optimize the generated code.")
 
-		,P (TS "For example for the previous definition add: " TAC "with _ g1 _" TA " in the definition module:")
+		,P (TS "For example for:")
+
+		,PC (map syntax_color [
+			TS "generic h a | g1 a, g2 a :: a -> Int;",
+			TS "h {|OBJECT of {gtd_name}|} _ g1_a _ (OBJECT a) = g1_a gtd_name a;"
+		])
+
+		,P (TS "Add: " TAC "with _ g1 _" TA " in the definition module:")
 		
 		,PC (map syntax_color [
 			TS "derive h OBJECT of {gtd_name} with _ g1 _;"
@@ -166,7 +153,6 @@ page_d_4 char_width_and_kerns
 	# pdf_shl = make_pdf_shl pdf_i [
 		H2	"D.2" "Clean Development Compiler Extensions"
 		,MSP [
-			TS "generic functions can have dependent generic functions (also in Clean 3.0).",
 			TS "type GenericInfo (in module StdGeneric) changed.",
 			TS "generic instances of generic representation types (e.g. CONS) may occur in definition modules."
 		]
