@@ -143,7 +143,7 @@ page_a_2 char_width_and_kerns
 			[TS "FunctionType",			TS_E,	TS "[{ArgType}+ " TAT "->" TA "] Type [ClassContext] [UnqTypeUnEqualities]"],
 			[TS "ClassContext",			TS_E,	TST "|" TA " ClassConstraints {" TAT "&" TA " ClassConstraints}"],
 			[TS "ClassConstraints",		TS_E,	TS "ClassOrGenericName-list {SimpleType}+"],
-			[TS "UnqTypeUnEqualities",	TS_E,	TS "{{" TAC "UniqueTypeVariable" TA "}+ " TAT "<=" TA " " TAC "UniqueTypeVariable" TA "}-list"],
+			[TS "UnqTypeUnEqualities",	TS_E,	TST "[" TA " {{" TAC "UniqueTypeVariable" TA "}+ " TAT "<=" TA " " TAC "UniqueTypeVariable" TA "}-list " TAT "]"],
 			[TS "ClassOrGenericName",	TS_E,	TSC "QClassName"],
 			[[],						TS_B,	TSC "FunctionName" TA " " TAT "{|" TA "TypeKind" TAT "|}"]
 		],ST [

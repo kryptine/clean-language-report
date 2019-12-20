@@ -747,7 +747,7 @@ page_9_10 char_width_and_kerns
 			(TS "In this example, the respective expanded types of the instances are")
 			[
 			[],
-			TS "map:: (u:a -> v:b) w:[u:a] -> x:[v:b], w <= u, x <= v",
+			TS "map:: (u:a -> v:b) w:[u:a] -> x:[v:b], [w <= u, x <= v]",
 			TS "map:: (u:a -> v:b) (T u:a) -> T v:b"
 		],P(
 			TS ("The type system of CLEAN requires that a possible propagation attribute is explicitly indicated in the type specification of "+++
