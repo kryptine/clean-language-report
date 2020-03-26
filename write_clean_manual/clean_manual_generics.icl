@@ -3,7 +3,7 @@ implementation module clean_manual_generics;
 import StdEnv,pdf_main,pdf_text,clean_manual_styles,clean_manual_text;
 
 pages_7 :: [{!CharWidthAndKerns} -> Page];
-pages_7 = [page_7_1,page_7_2,page_7_3,page_7_4,page_7_5,page_7_6,page_7_7,page_7_8,page_7_9];
+pages_7 = [page_7_1,page_7_2,page_7_3,page_7_4,page_7_5,page_7_6,page_7_7,page_7_8,page_7_9,page_7_10];
 
 page_7_1 :: !{!CharWidthAndKerns} -> Page;
 page_7_1 char_width_and_kerns
@@ -674,6 +674,7 @@ page_7_9 char_width_and_kerns
 			[TS "GenericExportDef",		TS_E,	TS "GenericDef " TABCb ";"],
 			[[],						TS_B,	TSBCr "derive" TA " " TAC "FunctionName" TA " {DeriveExportType [UsedGenericDependencies]}-list " TABCb ";"],
 			[[],						TS_B,	TSBCr "derive" TA " " TABCr "class" TA " " TAC "ClassName" TA " {DerivableType}-list " TABCb ";"],
+			[[],						TS_B,	TSC "FunctionName" TA " " TAT "{|" TA "GenericExportTypeArg" TAT "|}" TA " {Pattern}+ " TAT "=" TA " FunctionBody"],
 			[TS "GenericDef",			TS_E,	TSBCr "generic" TA " " TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ " TAT "::" TA " FunctionType"]
 		],ST [
 			[TS "DeriveExportType",		TS_E,	TSC "TypeName"],
@@ -684,7 +685,9 @@ page_7_9 char_width_and_kerns
 			[[],						TS_B,	TSC "Variable"],
 			[TS "UsedGenericDependencies",TS_E,	TSBCr "with" TA " {UsedGenericDependency}"],
 			[TS "UsedGenericDependency",TS_E,	TSC "Variable"],
-			[[],						TS_B,	TST "_"]
+			[[],						TS_B,	TST "_"],
+			[TS "GenericExportTypeArg",	TS_E,	TS "GenericMarkerType [" TABCr "of" TA " Pattern]"],
+			[[],						TS_B,	TSBCr "UNIT" TA " | " TABCr "PAIR" TA " | " TABCr "EITHER"]
 		],PCH
 			(TS "Example. Exporting of generic mapping. Definition as given in module GenMap.dcl")
 			(map color_keywords [
@@ -694,14 +697,19 @@ page_7_9 char_width_and_kerns
 		]),S(
 			"A generic function cannot be derived for an abstract data type, but it can be derived in the module where the "+++
 			"abstract type defined. Thus, when one may export derived instance along with the abstract data type."
-		)
-		,P (
+		),P (
 			TS "The used generic info fields for generic instances of "
 			TAC "OBJECT" TA ", " TAC "CONS" TA ", " TAC "RECORD" TA " and " TAC "FIELD"
 			TA " can be specified by adding: " TAC "of" TA " {" TAC "FieldName"
 			TA "}-list, at the end of the derive statement. The compiler uses this to optimize the generated code.")
+		];
+	= make_page pdf_i pdf_shl;
 
-		,P (TS "For example for:")
+page_7_10 :: !{!CharWidthAndKerns} -> Page;
+page_7_10 char_width_and_kerns
+	# pdf_i = init_PDFInfo char_width_and_kerns;
+	# pdf_shl = make_pdf_shl pdf_i
+		[P (TS "For example for:")
 
 		,PC [TS "gToString {|FIELD of {gfd_name}|} fx sep (FIELD x) = gfd_name +++ \"=\" +++ fx x"]
 

@@ -524,7 +524,8 @@ page_a_7 char_width_and_kerns
 			[[],				TS_B,	TS "DeriveDef ;"]
 		],ST [
 			[TS "GenericDef",		TS_E,	TSBCr "generic" TA " " TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ [GenericDependencies] " TAT "::" TA " FunctionType"],
-			[TS "GenericDependencies",TS_E,	TST "|" TA " {" TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ }-list"],
+			[TS "GenericDependencies",TS_E,	TST "|" TA " {" TAC "FunctionName" TA " " TAC "TypeVariable" TA "+ }-list"]
+		],ST [
 			[TS "GenericCase",		TS_E,	TSC "FunctionName" TA " " TAT "{|" TA "GenericTypeArg" TAT "|}" TA " {Pattern}+ " TAT "=" TA " FunctionBody"],
 			[TS "GenericTypeArg",	TS_E,	TS "GenericMarkerType [" TABCr "of" TA " Pattern]"],
 			[[],					TS_B,	TSC "TypeName"],
@@ -556,7 +557,8 @@ page_a_8 char_width_and_kerns
 		],ST [
 			[TS "GenericExportDef",		TS_E,	TS "GenericDef " TABCb ";"],
 			[[],						TS_B,	TSBCr "derive" TA " " TAC "FunctionName" TA " {DeriveExportType [UsedGenericDependencies]}-list " TABCb ";"],
-			[[],						TS_B,	TSBCr "derive" TA " " TABCr "class" TA " " TAC "ClassName" TA " {DerivableType}-list " TABCb ";"]
+			[[],						TS_B,	TSBCr "derive" TA " " TABCr "class" TA " " TAC "ClassName" TA " {DerivableType}-list " TABCb ";"],
+			[[],						TS_B,	TSC "FunctionName" TA " " TAT "{|" TA "GenericExportTypeArg" TAT "|}" TA " {Pattern}+ " TAT "=" TA " FunctionBody"]
 		],ST [
 			[TS "DeriveExportType",		TS_E,	TSC "TypeName"],
 			[[],						TS_B,	TS "GenericMarkerType [" TABCr "of" TA " UsedGenericInfoFields]"],
@@ -568,6 +570,9 @@ page_a_8 char_width_and_kerns
 			[TS "UsedGenericDependencies",TS_E,	TSBCr "with" TA " {UsedGenericDependency}"],
 			[TS "UsedGenericDependency",TS_E,	TSC "Variable"],
 			[[],						TS_B,	TST "_"]
+		],ST [
+			[TS "GenericExportTypeArg",	TS_E,	TS "GenericMarkerType [" TABCr "of" TA " Pattern]"],
+			[[],						TS_B,	TSBCr "UNIT" TA " | " TABCr "PAIR" TA " | " TABCr "EITHER"]
 		],H2
 			"A.8" "Foreign Export Definition"
 		,ST [
